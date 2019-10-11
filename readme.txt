@@ -5,8 +5,10 @@ OR What i learned using linux for 2 years..
 
 How it works:
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as js variables
-***** Installation at ur own risk :)  Backup original files so u can revert back if dont like or does not work ********
+Modified plasma qml files to get the desired effects.
+I am a not a QML/QT expert, maybe someone with better skills could do this more efficently...
 
+***** Installation at your own risk ;)  Backup original files so u can revert back if dont like or does not work ********
 
 > uses node js functions for both calendar and temperature functions
 > uses node fs to create js variable files used in qml lockscreen files
