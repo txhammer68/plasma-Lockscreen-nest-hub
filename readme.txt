@@ -30,6 +30,9 @@ use the qml files supplied to over-ride the default plasma ones // backup origin
 edit both Clock.qml and LockscreenUi.qml and change import statements fir JS to path of download or home directory
 copy Clock.qml to /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/
 copy LockScreenUi.qml to /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/
+copy MainBlock.qml  /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/
+copy UserDelegate.qml /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/
+copy WallpaperFader.qml  /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/
 
 
 Systemd changes
