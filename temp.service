@@ -1,0 +1,14 @@
+# updates weather js 
+# sudo systemctl enable temp.service
+
+
+[Install]
+WantedBy=multi-user.target
+
+
+[Unit]
+Description=Update temp files 30 min intervals
+
+[Service]
+Type=oneshot
+ExecStart=/run/media/hammer/Data/projects/weather

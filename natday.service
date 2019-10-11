@@ -1,0 +1,12 @@
+# updates National Day calendar js 
+# sudo systemctl enable natday.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=Update national day calendar files
+
+[Service]
+Type=oneshot
+ExecStart=node /run/media/hammer/Data/projects/nat-day1.js

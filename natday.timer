@@ -1,0 +1,11 @@
+[Unit]
+Description=runs Naional day calendar update service nightly
+ 
+[Timer]
+OnCalendar=*-*-* 00:10:00
+Persistent=true
+OnBootSec=1min
+Unit=natday.service
+ 
+[Install]
+WantedBy=timers.target
