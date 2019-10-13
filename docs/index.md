@@ -1,6 +1,7 @@
 # Custom Lockscreen for KDE plasma
 
-* Changes made - clock remove am/pm
+## Changes made
+* Clock remove am/pm
 * Added calendar event to Clock
 * Added current temperature
 * Modified UI to hide status bar/show user login when KB/mouse movement detected
