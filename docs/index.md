@@ -1,4 +1,3 @@
 # Testing dev webpage
 
-![example](.../screenlocker.gif)
-Format: ![Alt Text](url)
+![example](.../lock-screen1.png)
