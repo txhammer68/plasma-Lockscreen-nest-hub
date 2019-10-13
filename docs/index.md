@@ -12,4 +12,4 @@ using systemd to update calendar events and temperature, as kscrenlocker does no
   maybe someone with better qml skills could show me a better way in pure qml...
   still a WIP, use at ur own risk!
 
-![example](lock-screen1.png)
+![example](lock-screen.png)
