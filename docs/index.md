@@ -1,4 +1,4 @@
 # Testing dev webpage
 
-![example](../screenlocker.gif)
+![example](.../screenlocker.gif)
 Format: ![Alt Text](url)
