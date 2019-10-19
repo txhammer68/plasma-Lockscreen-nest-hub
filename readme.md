@@ -1,20 +1,20 @@
-# Lockscreen update readme
+# Custom Lockscreen readme
 
-A good hack job to get temp and calendar events on the lockscreen
-OR What i learned using linux for 2 years..
+A good hack job to get weather and calendar events on the lockscreen
+OR what i learned using linux for 2 years..
 
 ## How it works:
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as js variables
-Modified plasma qml files to get the desired effects.
+Modified Breeze plasma qml files to get the desired effects.
 I am a not a QML/QT expert, maybe someone with better skills could do this more efficently...
-
-** Installation at your own risk ;)  Backup original files so u can revert back if dont like or does not work **
 
 * uses node js functions for both calendar and temperature functions
 * uses node fs to create js variable files used in qml lockscreen files
 * calendar events from public ical National Day, but could use any web access public calendar
-* edit nat-day1.js to change url for calendar of your choice
+** edit nat-day1.js to change url for calendar of your choice
 * using node js functions and systemd to run the scripts at certain times to keep lockscreen current
+
+## Installation at your own risk ;)  Backup original files so u can revert back if dont like or does not work
 
 * Extract all files to home directory / lockscreen
 * Install node js server within that folder
@@ -23,7 +23,7 @@ I am a not a QML/QT expert, maybe someone with better skills could do this more 
     ** modify ical js to your own public event calendar
     ** modify weather script for your city - 
         within the nodejs-weather-app-master folder edit index.js and change city name   
-        // const city = location || 'City Name, State USA';
+             const city = location || 'City Name, State USA';
         ** running within folder node weather will retrieve current temp for your city and create
         temp.js used as variable within Lockscreen.qml
 
