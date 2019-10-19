@@ -64,23 +64,26 @@ ___________
 
 1. Test ical event info with > node js ical with node natday1.js  will retrieve calendar event and create natday.js variable file used in Clock.qml
 2. Test weather info with > node weather will retrieve temperature info and create temp.js variable file used in LockScreenUi.qml
-3. Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /usr/share/plasma/look-and-feel/org.kde.breeze.desktop
+3. Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/"Your Theme'
 4. Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the two timers installed above.
 
 ### NOTES:
 ____________
-node js server required for js scripts
-ical, fs, weather-app install required to work
-using node js functions and systemd to run the scripts at certain times to keep lockscreen current
-weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
-natday.js is used in Clock.qml as js variable to print the National Day calendar events - this file is updated from the systemd service/timer events
-natday1.js is used as node js to get the calendar event info
-temp.js   is used in LockscreeUi.qml as variable to print the current temperature  - this file is updated from the systemd service/timer events
-node weather is used to get current weather temp info  - edit weather - index.js for city info and location to create variable file
-you must edit the qml files to reflect the location of these files, also the node js files must be changed 
+* node js server required for js scripts
+* ical, fs, weather-app install required to work
+* using node js functions and systemd to run the scripts at certain times to keep lockscreen current
+* weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
+* natday.js is used in Clock.qml as js variable to print the National Day calendar events - 
+    this file is updated from the   systemd service/timer events
+* natday1.js is used as node js to get the calendar event info
+* temp.js is used in LockscreeUi.qml as variable to print the current temperature  - 
+    this file is updated from the systemd service/timer events
+* node weather is used to get current weather temp info  - edit weather - index.js for city info and 
+   location to create variable file
+* you must edit the qml files to reflect the location of these files, also the node js files must be changed 
     to reflect the location to write the js variable files
-...
+
 ### TODO:
 _________
-update temp variable to update dynamically, current only display temp from before screen locked
-get email count - requires oauth for gmail security
+* update temp variable to update dynamically, current only display temp from before screen locked
+* get email count - requires oauth for gmail security
