@@ -2,6 +2,7 @@
 
 A good hack job to get weather and calendar events on the lockscreen
 OR what i learned using linux for 2 years..
+![Image of Lockscreen](images/lockscreen1.png)
 
 ## How it works:
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as js variables
