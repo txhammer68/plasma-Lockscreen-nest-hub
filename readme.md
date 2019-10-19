@@ -1,12 +1,12 @@
 # Custom Lockscreen readme
 
 A good hack job to get weather and calendar events on the lockscreen
-OR what i learned using linux for 2 years..
+Or what i learned using linux for 2 years.
 ![Image of Lockscreen](lock-screen1.png)
 
 ## How it works:
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as js variables
-Modified Breeze plasma qml files to get the desired effects.
+Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens.
 I am a not a QML/QT expert, maybe someone with better skills could do this more efficently...
 
 * uses node js functions for both calendar and temperature functions
