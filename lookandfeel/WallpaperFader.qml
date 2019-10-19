@@ -32,9 +32,8 @@ Item {
     id: wallpaperFader
     property Item clock
     property Item mainStack
-    property Item footer
+    // property Item footer
     property Item header
-    property Item shadow1
     property alias source: wallpaperBlur.source
     state: lockScreenRoot.uiVisible ? "on" : "off"
     property real factor: 0
@@ -109,10 +108,7 @@ Item {
                 target: mainStack
                 opacity: 1
             }
-            PropertyChanges {
-                target: footer
-                opacity: 0
-            }
+        
             PropertyChanges {
                 target: wallpaperFader
                 factor: 0
@@ -127,10 +123,7 @@ Item {
                 opacity: 0
             }
             
-           PropertyChanges {
-               target: shadow1
-               opacity: 0
-           }
+            
         },
         State {
             name: "off"
@@ -139,10 +132,6 @@ Item {
                 opacity: 0
             }
             PropertyChanges {
-                target: footer
-                opacity: 1
-            }
-            PropertyChanges {
                 target: wallpaperFader
                 factor: 0
             }
@@ -155,10 +144,6 @@ Item {
                 opacity: 1
             }
             
-           PropertyChanges {
-               target: header.shadow1
-               opacity: 1
-            }
         }
     ]
     transitions: [
@@ -170,15 +155,17 @@ Item {
                 NumberAnimation {
                     target: mainStack
                     property: "opacity"
-                    duration: units.longDuration
+                    // duration: units.longDuration
+                    duration: 500
                     easing.type: Easing.InOutQuad
                 }
                 NumberAnimation {
-                    target: footer
+                    target: header
                     property: "opacity"
-                    duration: units.longDuration
-                    easing.type: Easing.InOutQuad
+                    duration: 500
+                    // easing.type: Easing.InOutQuad
                 }
+                
             }
         },
         Transition {
@@ -192,11 +179,12 @@ Item {
                     easing.type: Easing.InOutQuad
                 }
                 NumberAnimation {
-                    target: footer
+                    target: header
                     property: "opacity"
                     duration: 500
-                    easing.type: Easing.InOutQuad
+                    // easing.type: Easing.InOutQuad
                 }
+                
             }
         }
     ]

@@ -21,30 +21,34 @@ import QtQuick 2.8
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.5
 import org.kde.plasma.core 2.0
-import "/run/media/hammer/Data/projects/natday.js" as Global
+import "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js" as Global
 
 ColumnLayout {
     readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
 
     Label {
         // text: Qt.formatTime(timeSource.data["Local"]["DateTime"])
+        lineHeightMode: Text.FixedHeight
+        lineHeight: 120 
         text: Qt.formatTime(timeSource.data["Local"]["DateTime"],"h:mm ap").replace("am", "").replace("pm", "")
         color: ColorScope.textColor
        //  style: softwareRendering ? Text.Outline : Text.Normal
         // styleColor: softwareRendering ? ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
+        Layout.alignment: Qt.AlignHCenter
+        renderType: Text.QtRendering
         font {
             pointSize: 80 //Mockup says this, I'm not sure what to do?
             family: "Spectral"
         }
-        lineHeightMode: Text.FixedHeight
-        lineHeight: 120 
-        Layout.alignment: Qt.AlignHCenter
-        renderType: Text.QtRendering
     }
     Label {
         // text: Qt.formatDate(timeSource.data["Local"]["DateTime"], Qt.DefaultLocaleLongDate)
         text: Qt.formatDate(timeSource.data["Local"]["DateTime"],"dddd - MMMM  d")
         color: ColorScope.textColor
+        lineHeightMode: Text.FixedHeight
+        lineHeight: 60
+        Layout.alignment: Qt.AlignHCenter
+        renderType: Text.QtRendering
         //style: softwareRendering ? Text.Outline : Text.Normal
         //styleColor: softwareRendering ? ColorScope.backgroundColor : "transparent" //no outline, doesn't matter
         font {
@@ -52,8 +56,6 @@ ColumnLayout {
             // family: config.displayFont
             family: "Spectral"
         }
-        Layout.alignment: Qt.AlignHCenter
-        renderType: Text.QtRendering
     }
     
     Label {

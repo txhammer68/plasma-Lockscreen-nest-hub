@@ -27,13 +27,13 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.plasma.private.sessions 2.0
 import "../components"
-import "/run/media/hammer/Data/projects/temp.js" as Global
+import "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js" as Global
 
 PlasmaCore.ColorScope {
 
     // If we're using software rendering, draw outlines instead of shadows
     // See https://bugs.kde.org/show_bug.cgi?id=398317
-    readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
+    // readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
 
     colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
 
@@ -79,18 +79,18 @@ PlasmaCore.ColorScope {
 
         property bool uiVisible: false
         property bool blockUI: mainStack.depth > 1 || mainBlock.mainPasswordBox.text.length > 0 || inputPanel.keyboardActive
-
         x: parent.x
         y: parent.y
         width: parent.width
         height: parent.height
         hoverEnabled: true
+        cursorShape: Qt.BlankCursor;
         drag.filterChildren: true
         onPressed: uiVisible = true;
         onPositionChanged: uiVisible = true;
         onUiVisibleChanged: {
             if (blockUI) {
-                fadeoutTimer.running = false;
+                fadeoutTimer.running = false;                
             } else if (uiVisible) {
                 fadeoutTimer.restart();
             }
@@ -98,23 +98,30 @@ PlasmaCore.ColorScope {
         onBlockUIChanged: {
             if (blockUI) {
                 fadeoutTimer.running = false;
+                cursorShape:Qt.ArrowCursor;
                 uiVisible = true;
+                
             } else {
+                cursorShape: Qt.BlankCursor;
                 fadeoutTimer.restart();
+                
             }
         }
         Keys.onEscapePressed: {
             uiVisible = !uiVisible;
             if (inputPanel.keyboardActive) {
                 inputPanel.showHide();
+                
             }
             if (!uiVisible) {
+                cursorShape:Qt.ArrowCursor;
                 mainBlock.mainPasswordBox.text = "";
             }
         }
         Keys.onPressed: {
             uiVisible = true;
             event.accepted = false;
+            cursorShape:Qt.ArrowCursor;
         }
         Timer {
             id: fadeoutTimer
@@ -125,7 +132,7 @@ PlasmaCore.ColorScope {
                 }
             }
         }
-
+        
         Component.onCompleted: PropertyAnimation { id: launchAnimation; target: lockScreenRoot; property: "opacity"; from: 0; to: 1; duration: 1000 }
 
         states: [
@@ -135,6 +142,8 @@ PlasmaCore.ColorScope {
                 PropertyChanges { target: lockScreenRoot; y: lockScreenRoot.height }
                 // we also change the opacity just to be sure it's not visible even on unexpected screen dimension changes with possible race conditions
                 PropertyChanges { target: lockScreenRoot; opacity: 0 }
+                
+                
             }
         ]
 
@@ -162,10 +171,9 @@ PlasmaCore.ColorScope {
             state: lockScreenRoot.uiVisible ? "on" : "off"
             source: wallpaper
             mainStack: mainStack
-            footer: footer
+            // footer: footer
             clock: clock
             header: header
-            shadow1: shadow1
             
         }
 
@@ -197,25 +205,6 @@ PlasmaCore.ColorScope {
       target: clock
       running:true
     }
-    
-    //   DropShadow {
-     //       id: clockShadow
-      //      anchors.fill: clock
-      //      source: clock
-      //      visible: !softwareRendering
-        //    horizontalOffset: 1
-        //    verticalOffset: 1
-        //    radius: 6
-        //    samples: 14
-         //   spread: 0.3
-         //   color: "black" // matches Breeze window decoration and desktopcontainment
-         //   Behavior on opacity {
-         //       OpacityAnimator {
-          //          duration: 1000
-          //          easing.type: Easing.InOutQuad
-             //   }
-          //  }
-       // }
 
         Clock {
             id: clock
@@ -237,9 +226,6 @@ PlasmaCore.ColorScope {
                 })
             }
         }
-
-        
-        
         StackView {
             id: mainStack
             anchors {
@@ -477,21 +463,16 @@ PlasmaCore.ColorScope {
                 bottomMargin: units.largeSpacing
             }
         }
-      
- RowLayout {
-            id: header
-            property Item shadow1: headerShadow
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right + 1800
-                margins: units.smallSpacing
-            }
-            
-            DropShadow {
+        
+        
+        Item {
+       id:header
+       opacity: 1
+       
+       DropShadow {
             id: headerShadow
-            anchors.fill: header   
-            source: header
+            anchors.fill: header1 
+            source: header1
             horizontalOffset: 0
             verticalOffset: 1
             radius: 16
@@ -499,19 +480,28 @@ PlasmaCore.ColorScope {
             spread: 0.4
             color: Qt.rgba(0, 0, 0, 1)
         }
-   
+       
+ RowLayout {
+            id: header1
+            anchors {
+                top: parent.top
+                left: parent.left
+                right: parent.right + 1800
+                margins: units.smallSpacing
+            }
+       
          Image {
         id: gmail
-        source: "/usr/share/icons/KFaenza/apps/scalable/gmailwatcher.svg"
+        source: "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/icons/email3.png"
         smooth: true
         sourceSize.width: 40
         sourceSize.height: 40
         }
         
         Text {
-              text: "24"
-              font.family: "Roboto"
-              font.pointSize: 22
+              text: "14"
+              font.family: "Open Sans"
+              font.pointSize: 20
             color: "white"
             antialiasing : true
         }
@@ -522,45 +512,30 @@ PlasmaCore.ColorScope {
             height: 16
         }
                 
-        Image {
-            id: msgr
-        source: "/usr/share/icons/msgnr.png"
-        smooth: true
-        sourceSize.width: 40
-        sourceSize.height: 40
-        }
-        
-        Text {
-              text: "8"
-              font.family: "Roboto"
-              font.pointSize: 22
-            color: "white"
-            antialiasing : true
-        }
             Item { // spacer
                 id:spc2
-            width: 1400
+            width: 1460
             height: 16
         }
             
             Image {
         id: weather1
-        // source: "/usr/share/icons/FaenzaFlattr-DarkDecoration/status/scalable/weather-few-clouds.svg"
-        source: "/usr/share/icons/oxygen/base/64x64/status/weather-clouds.png"
+        source: "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/icons/weather-clouds.png"
         smooth: true
         sourceSize.width: 48
         sourceSize.height: 48
         }
       
-       Text {
-             text: Global.temp
-           font.family: "Roboto"
-            font.pointSize: 22
-           color: "white"
+      Text {
+        text: Global.temp
+        font.family: "Open Sans"
+        font.pointSize: 22
+        color: "white"
         antialiasing : true
-       }
+    }
    }
  }
+    }
     Component.onCompleted: {
         // version support checks
         if (root.interfaceVersion < 1) {
