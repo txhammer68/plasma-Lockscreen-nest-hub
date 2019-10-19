@@ -3,18 +3,18 @@
 A good hack job to get temp and calendar events on the lockscreen
 OR What i learned using linux for 2 years..
 
-How it works:
+## How it works:
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as js variables
 Modified plasma qml files to get the desired effects.
 I am a not a QML/QT expert, maybe someone with better skills could do this more efficently...
 
-***** Installation at your own risk ;)  Backup original files so u can revert back if dont like or does not work ********
+** Installation at your own risk ;)  Backup original files so u can revert back if dont like or does not work **
 
-> uses node js functions for both calendar and temperature functions
-> uses node fs to create js variable files used in qml lockscreen files
-> calendar events from public ical National Day, but could use any web access public calendar
-> edit nat-day1.js to change url for calendar of your choice
-> using node js functions and systemd to run the scripts at certain times to keep lockscreen current
+* uses node js functions for both calendar and temperature functions
+* uses node fs to create js variable files used in qml lockscreen files
+* calendar events from public ical National Day, but could use any web access public calendar
+* edit nat-day1.js to change url for calendar of your choice
+* using node js functions and systemd to run the scripts at certain times to keep lockscreen current
 
 Extract all files to home directory folder lockscreen
 install node js server within that folder
@@ -22,18 +22,20 @@ install node ical, fs, weather
     weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
     modify ical js to your own public event calendar
     modify weather script for your city - 
-        within the nodejs-weather-app-master folder edit index.js and change city name   // const city = location || 'City Name, State USA';
-        running within folder node weather will retrieve current temp for your city and create temp.js used as variable within Lockscreen.qml
+        within the nodejs-weather-app-master folder edit index.js and change city name   
+        // const city = location || 'City Name, State USA';
+        running within folder node weather will retrieve current temp for your city and create
+        temp.js used as variable within Lockscreen.qml
 
 ### Plasma changes
-...
+......
 Use Plasma Look And Feel Explorer installed as plasma-sdk to create a new Look and Feel Theme within 
     /home/.local/share/plasma/look-and-feel/"Your Theme'
     This is required as Breeze LnF theme has all the components needed to customize the Lockscreen.
     Copy the folders within Breeze /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/
-    to your new theme folder created above...
+    to your new theme folder created above
 
-use the qml files supplied to over-ride the default plasma ones // backup originals first...
+Use the qml files supplied to over-ride the default plasma ones // backup originals first
 edit both Clock.qml and LockscreenUi.qml and change import statements for JS to path of download or home directory
 copy Clock.qml to /home/.local/share/plasma/look-and-feel/"Your Theme'/components/
 copy LockScreenUi.qml to /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/lockscreen/
@@ -56,7 +58,7 @@ copy temp.timer to /etc/systemd/system/  // used to fetch weather temperature da
 run sudo sudo systemctl start temp.service    // starts systemd service and timer
 run sudo sudo systemctl enable temp.service    // enables systemd service and timer
 run sudo sudo systemctl enable temp.timer
-...
+
 ### Testing
 ....
 
@@ -64,7 +66,7 @@ run sudo sudo systemctl enable temp.timer
 2. Test weather info with > node weather will retrieve temperature info and create temp.js variable file used in LockScreenUi.qml
 3. Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /usr/share/plasma/look-and-feel/org.kde.breeze.desktop
 4. Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the two timers installed above.
-...
+
 ### NOTES:
 node js server required for js scripts
 ical, fs, weather-app install required to work
