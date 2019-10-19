@@ -52,12 +52,11 @@ _________
 * run sudo sudo systemctl start natday.service      --starts systemd service and timer
 * run sudo sudo systemctl enable natday.service     --enables systemd service and timer
 * run sudo sudo systemctl enable natday.timer
-
-** copy temp.service to /etc/systemd/system/        --used to fetch weather temperature daily every 30 mins
-** copy temp.timer to /etc/systemd/system/          --used to fetch weather temperature daily every 30 mins
-** run sudo sudo systemctl start temp.service       --starts systemd service and timer
-** run sudo sudo systemctl enable temp.service      --enables systemd service and timer
-** run sudo sudo systemctl enable temp.timer
+* copy temp.service to /etc/systemd/system/        --used to fetch weather temperature daily every 30 mins
+* copy temp.timer to /etc/systemd/system/          --used to fetch weather temperature daily every 30 mins
+* run sudo sudo systemctl start temp.service       --starts systemd service and timer
+* run sudo sudo systemctl enable temp.service      --enables systemd service and timer
+* run sudo sudo systemctl enable temp.timer
 
 ### Testing
 ___________
