@@ -11,11 +11,12 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 
 Requirements:
 KDE Plasma 5.15, Node JS server, systemd
-* uses node js functions for both calendar and temperature functions
-* uses node fs to create js variable files used in qml lockscreen files
-* calendar events from public ical National Day, but could use any web access public calendar
-** edit nat-day1.js to change url for calendar of your choice
-* using node js functions and systemd to run the scripts at certain times to keep lockscreen current
+* Uses node js functions for both calendar and temperature functions
+* Uses node fs to create js variable files used in qml lockscreen files
+* Calendar events from public ical National Day, but could use any web access public calendar
+* Using node js functions and systemd to run the scripts at certain times to keep lockscreen current
+* Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
+* Some knowledge of node javascript,plasma qml files,linux systemd
 
 ## Installation at your own risk ;)  Backup original files so u can revert back if dont like or does not work
 
