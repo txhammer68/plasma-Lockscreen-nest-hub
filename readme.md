@@ -9,6 +9,8 @@ kscreenlocker does not allow internet acesss, so this is a workaround using loca
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens.
 I am not a QML/QT expert, maybe someone with better skills could do this more efficently.
 
+Requirements:
+KDE Plasma 5.15, Node JS server, systemd
 * uses node js functions for both calendar and temperature functions
 * uses node fs to create js variable files used in qml lockscreen files
 * calendar events from public ical National Day, but could use any web access public calendar
