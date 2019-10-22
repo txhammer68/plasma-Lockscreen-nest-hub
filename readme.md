@@ -21,6 +21,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * Node JS server - https://nodejs.dev/
 * Weather function from https://github.com/nahidulhasan/nodejs-weather-app
 * Python script for gmail https://github.com/akora/gmail-message-counter-python
+* National Day Calendar - https://natdaycal.wordpress.com/
 * Gmail Oauth https://developers.google.com/gmail/api/quickstart/python
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
 * Some knowledge of node javascript,python,plasma qml files,linux systemd
