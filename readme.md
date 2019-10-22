@@ -65,11 +65,11 @@ Use the qml files supplied to over-ride the default plasma ones // backup origin
 * copy UserDelegate.qml /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
 * copy WallpaperFader.qml  /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
 
-Changes to qml files:
+Changes to qml files: <br/>
 Modified Clock.qml to remove AMPM, as plasma only allows 24 hour clock or AMPM, added calendar event import variable <br/>
 Modified LockscreenUi.qml to import javascript files as varibles, added dropshadow to header status area <br/>
   added effect to make clock and header status disappear / login info appear when mouse/kb movement detected <br/>
-Modified UserDelegate.qml to remove circle around user avatar, enlarged avatar <br/>
+Modified UserDelegate.qml to remove circle around user avatar, enlarged avatar and font <br/>
 Modified WallpaperFader.qml to make the clock and header status disappear when the mouse/kb movement detected.
 
 
@@ -122,6 +122,7 @@ ____________
 
 * Info on weather temperature and gmail count displayed from before screen locked, 
    not sure how to update after screen locked.
+* images used in status area are included, must change path within qml files to reflect location of images
 
 ### TODO:
 _________
