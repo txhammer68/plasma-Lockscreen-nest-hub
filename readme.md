@@ -27,14 +27,14 @@ KDE Plasma 5.15, Node JS server, python3, systemd
    ** See https://developers.google.com/gmail/api/quickstart/python for more info
 * Install node js server within that folder
 * Install node ical, fs, weather
-    ** weather function from https://github.com/nahidulhasan/nodejs-weather-app - 
+** weather function from https://github.com/nahidulhasan/nodejs-weather-app - 
        modified to write to file instead of console
-    ** modify ical js to your own public event calendar
-    ** modify weather script for your city - 
-        within the nodejs-weather-app-master folder edit index.js and change city name   
-             const city = location || 'City Name, State USA';
-        ** running within folder node weather will retrieve current temp for your city and create
-        temp.js used as variable within Lockscreen.qml
+** modify ical js to your own public event calendar
+** modify weather script for your city - 
+   within the nodejs-weather-app-master folder edit index.js and change city name   
+    const city = location || 'City Name, State USA';
+** running within folder node weather will retrieve current temp for your city and create
+   temp.js used as variable within Lockscreen.qml
 
 ### Plasma changes
 _____________
