@@ -7,6 +7,8 @@ Or what i learned using linux for 2 years.
 
 ## How it works:
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as js variables
+Using javacript node, python to create js variables written to file system 
+used for info within qml losckreen files and systemd to update them.
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens.
 I am not a QML/QT expert, maybe someone with better skills could do this more efficently.
 
@@ -48,11 +50,18 @@ to your new theme folder created above.
 
 Use the qml files supplied to over-ride the default plasma ones // backup originals first
 * edit both Clock.qml and LockscreenUi.qml and change import statements for JS to path of download or home directory
+* import statments for gmail, weather in LockscreenUi.qml, calendar event in Clock.qml
 * copy Clock.qml to /home/.local/share/plasma/look-and-feel/"Your Theme'/components/
 * copy LockScreenUi.qml to /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/lockscreen/
 * copy MainBlock.qml  /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/lockscreen/
 * copy UserDelegate.qml /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
 * copy WallpaperFader.qml  /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
+Modified Clock.qml to remove AMPM, as plasma only allows 24 hour clock or AMPM
+  added calendar event info
+Modified LockscreenUi.qml to import javascript files as varibles, added dropshadow to header status area
+  added effect to make clock and header status disappear / login info appear when mouse/kb movement detected
+Modified UserDelegate.qml to remove circle around user avatar, enlarged avatar
+Modified WallpaperFader.qml to make the clock and header status disappear when the mouse/kb movement detected.
 
 
 ### Systemd changes
