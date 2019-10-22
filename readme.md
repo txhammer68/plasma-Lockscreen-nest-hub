@@ -12,9 +12,9 @@ Or what i learned using linux for 2 years. Skill level - Advanced
 ## How it works:
 
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as JS variables
-Using javacript node, python to create JS variables written to file system 
-JS for variables within qml losckreen files and systemd to update them.
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens.
+Using javacript node and python to create JS variables written to file system 
+The JS variables are used within qml losckreen files and systemd scripts to update them.
 I am not a QML/QT expert, maybe someone with better skills could do this more efficently.
 
 ## Requirements:
