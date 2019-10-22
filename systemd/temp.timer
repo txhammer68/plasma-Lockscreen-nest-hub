@@ -6,7 +6,7 @@ Description=runs weather temps update service every 60 mins
  
 [Timer]
 OnBootSec=1min
-OnCalendar=*:0/60
+OnCalendar=*-*-* *:00:00
 Persistent=true
 Unit=temp.service
  

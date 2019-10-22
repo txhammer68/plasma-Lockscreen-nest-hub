@@ -6,7 +6,7 @@ Description=runs gmail unread mail count hourly
  
 [Timer]
 OnBootSec=1min
-OnCalendar=*:0/60
+OnCalendar=*-*-* *:00:00
 Persistent=true
 Unit=gmail.service
  
