@@ -56,7 +56,9 @@ Use the qml files supplied to over-ride the default plasma ones // backup origin
 * copy MainBlock.qml  /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/lockscreen/
 * copy UserDelegate.qml /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
 * copy WallpaperFader.qml  /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
-Modified Clock.qml to remove AMPM, as plasma only allows 24 hour clock or AMPM, added calendar event info <br/>
+
+Changes to qml files:
+Modified Clock.qml to remove AMPM, as plasma only allows 24 hour clock or AMPM, added calendar event info variable <br/>
 Modified LockscreenUi.qml to import javascript files as varibles, added dropshadow to header status area <br/>
   added effect to make clock and header status disappear / login info appear when mouse/kb movement detected <br/>
 Modified UserDelegate.qml to remove circle around user avatar, enlarged avatar <br/>
@@ -91,7 +93,7 @@ ___________
 * Test gmail count with python3 counter.py - use counter.py provided, <br/>
     will retrieve unread mail count info and create gmail.js 
 * Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/'Your Theme'
-* Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the two timers installed above.
+* Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the timers installed above.
 
 ### NOTES:
 ____________
