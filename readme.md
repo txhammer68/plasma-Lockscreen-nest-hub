@@ -15,11 +15,10 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 
 ## Requirements:
 * KDE Plasma 5.15, Node JS server, python3, systemd
-* node js functions for both calendar and temperature functions
-* node fs to create js variable files used in qml lockscreen files
-* python script to get gmail unread mail count, create qml variable
-* Calendar events from public ical National Day, but could use any web access public calendar
-* Using node js functions and systemd to run the scripts at certain times to keep lockscreen current
+* Node JS server - https://nodejs.dev/
+* Weather function from https://github.com/nahidulhasan/nodejs-weather-app
+* Python script for gmail https://github.com/akora/gmail-message-counter-python
+* Gmail Oauth https://developers.google.com/gmail/api/quickstart/python
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
 * Some knowledge of node javascript,python,plasma qml files,linux systemd
 
@@ -32,13 +31,13 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
    ** See https://developers.google.com/gmail/api/quickstart/python for more info
 * Install node js server within that folder
 * Install node ical, fs, weather
-** weather function from https://github.com/nahidulhasan/nodejs-weather-app - 
-       modified to write to file instead of console overwrite index.js with one provided
-** modify ical js to your own public event calendar
-** modify weather script for your city - 
+* optional - modify natday1.js to your own public event calendar
+* weather function from https://github.com/nahidulhasan/nodejs-weather-app - 
+       modified to write to file, use provided index.js to get the file system write info
+* modify weather script for your city - 
    within the nodejs-weather-app-master folder edit index.js and change city name   
     const city = location || 'City Name, State USA';
-** running within folder node weather will retrieve current temp for your city and create
+* running within folder node weather will retrieve current temp for your city and create
    temp.js used as variable within Lockscreen.qml
 
 ### Plasma changes
