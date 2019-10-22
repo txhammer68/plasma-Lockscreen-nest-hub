@@ -2,6 +2,7 @@
 
 ## Modifications
 Display unread gmail messages count,weather and calendar events on the lockscreen
+attempt to get an android type lockscreen
 Or what i learned using linux for 2 years. Skill level - Advanced
 ![Image of Lockscreen](lock-screen1.png)
 
