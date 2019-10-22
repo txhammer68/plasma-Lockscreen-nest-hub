@@ -84,13 +84,13 @@ _________
 
 ### Testing
 ___________
-* Test ical event info with > node js ical with node natday1.js  will retrieve calendar event and create 
+* Test ical event info with > with node natday1.js  will retrieve calendar event and create <br/>
    natday.js variable file used in Clock.qml
-* Test weather info with > node weather will retrieve temperature info and create temp.js 
+* Test weather info with > node weather will retrieve temperature info and create temp.js <br/>
   variable file used in LockScreenUi.qml
-* Test gmail count with python3 counter.py - use counter.py provided, 
-    will retrieve unread mail count info and create count.js 
-* Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/"Your Theme'
+* Test gmail count with python3 counter.py - use counter.py provided, <br/>
+    will retrieve unread mail count info and create gmail.js 
+* Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/'Your Theme'
 * Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the two timers installed above.
 
 ### NOTES:
@@ -100,9 +100,9 @@ ____________
 * using node js functions and systemd to run the scripts at certain times to keep lockscreen current
 * weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
 * natday.js is used in Clock.qml as js variable to print the National Day calendar events - 
-    this file is updated from the   systemd service/timer events
+    this file is updated from the systemd service/timer events
 * natday1.js is used as node js to get the calendar event info
-* temp.js is used in LockscreeUi.qml as variable to print the current temperature  - 
+* temp.js is used in LockscreeUi.qml as variable to display the current temperature  - 
     this file is updated from the systemd service/timer events
 * node weather is used to get current weather temp info  - edit weather - index.js for city info and 
    location to create variable file
