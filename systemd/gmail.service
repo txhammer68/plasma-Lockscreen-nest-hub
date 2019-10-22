@@ -1,0 +1,14 @@
+# updates Gmail unread mail count
+# sudo systemctl enable gmail.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=Update gmail unread mail count
+
+[Service]
+Type=oneshot
+LogLevelMax=2
+ExecStart=/run/media/hammer/Data/projects/gmail/gmail.sh
+

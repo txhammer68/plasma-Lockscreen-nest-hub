@@ -1,0 +1,12 @@
+# updates National Day calendar js 
+
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=Update national day calendar files
+
+[Service]
+LogLevelMax=2
+Type=simple
+ExecStart=node /run/media/hammer/Data/projects/nat-day1.js

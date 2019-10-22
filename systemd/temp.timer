@@ -1,0 +1,14 @@
+# updates weather temp js 
+# sudo systemctl enable temp.timer
+
+[Unit]
+Description=runs weather temps update service every 60 mins
+ 
+[Timer]
+OnBootSec=1min
+OnCalendar=*:0/60
+Persistent=true
+Unit=temp.service
+ 
+[Install]
+WantedBy=timers.target

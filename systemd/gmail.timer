@@ -1,0 +1,14 @@
+# updates runs gmail unread mail count hourly
+# sudo systemctl enable gmail.timer
+
+[Unit]
+Description=runs gmail unread mail count hourly
+ 
+[Timer]
+OnBootSec=1min
+OnCalendar=*:0/60
+Persistent=true
+Unit=gmail.service
+ 
+[Install]
+WantedBy=timers.target
