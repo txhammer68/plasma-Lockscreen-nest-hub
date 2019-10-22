@@ -13,7 +13,7 @@ An attempt to get an android type lockscreen <br/>
 Or what i learned using linux for 2 years. Skill level - Advanced <br/>
 ![Image of Lockscreen](lock-screen1.png)
 
-## How it works:
+### How it works:
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as JS variables <br/>
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens. <br/>
 Using javacript node and python to create JS variables written to file system <br/>
@@ -30,7 +30,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
 * Some knowledge of node javascript,python,plasma qml files,linux systemd
 
-## Installation at your own risk ;)  Backup original files so u can revert back.
+### Installation at your own risk ;)  Backup original files so u can revert back.
 
 * Extract all files to home directory / lockscreen
 * From github - https://github.com/akora/gmail-message-counter-python modify for your inbox, setup Oauth credentials
@@ -103,7 +103,7 @@ ___________
 * Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/'Your Theme'
 * Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the timers installed above.
 
-### NOTES:
+### Notes
 ____________
 * node js server required for js scripts
 * ical, fs, weather-app install required to work
