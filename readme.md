@@ -4,17 +4,16 @@
 * Display unread gmail messages count
 * Current weather temp and conditions
 * Calendar events from web ical
-
-An attempt to get an android type lockscreen
-Or what i learned using linux for 2 years. Skill level - Advanced
+<br/>
+An attempt to get an android type lockscreen <br/>
+Or what i learned using linux for 2 years. Skill level - Advanced <br/>
 ![Image of Lockscreen](lock-screen1.png)
 
 ## How it works:
-
-kscreenlocker does not allow internet acesss, so this is a workaround using local files as JS variables
-Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens.
-Using javacript node and python to create JS variables written to file system 
-The JS variables are used within qml losckreen files and systemd scripts to update them.
+kscreenlocker does not allow internet acesss, so this is a workaround using local files as JS variables <br/>
+Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens. <br/>
+Using javacript node and python to create JS variables written to file system <br/>
+The JS variables are used within qml losckreen files and systemd scripts to update them. <br/>
 I am not a QML/QT expert, maybe someone with better skills could do this more efficently.
 
 ## Requirements:
