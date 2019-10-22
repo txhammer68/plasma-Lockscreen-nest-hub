@@ -1,4 +1,4 @@
-# Custom Lockscreen readme
+# Plasma Custom Lockscreen
 
 ## Modifications
 Display unread gmail messages count,weather and calendar events on the lockscreen
@@ -8,9 +8,9 @@ Or what i learned using linux for 2 years. Skill level - Advanced
 
 ## How it works:
 
-kscreenlocker does not allow internet acesss, so this is a workaround using local files as js variables
-Using javacript node, python to create js variables written to file system 
-used for variables within qml losckreen files and systemd to update them.
+kscreenlocker does not allow internet acesss, so this is a workaround using local files as JS variables
+Using javacript node, python to create JS variables written to file system 
+JS for variables within qml losckreen files and systemd to update them.
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens.
 I am not a QML/QT expert, maybe someone with better skills could do this more efficently.
 
@@ -23,7 +23,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
 * Some knowledge of node javascript,python,plasma qml files,linux systemd
 
-## Installation at your own risk ;)  Backup original files so u can revert back if dont like or does not work
+## Installation at your own risk ;)  Backup original files so u can revert back.
 
 * Extract all files to home directory / lockscreen
 * From github - https://github.com/akora/gmail-message-counter-python modify for your inbox, setup Oauth credentials
@@ -44,13 +44,13 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 ### Plasma changes
 _____________
 Use Plasma Look And Feel Explorer installed as plasma-sdk to create a new Look and Feel Theme within 
-/home/.local/share/plasma/look-and-feel/"Your Theme'
+/home/.local/share/plasma/look-and-feel/'Your Theme'
 This is required as Breeze LnF theme has all the components needed to customize the Lockscreen.
 Copy the folders from Breeze > /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/
 to your new theme folder created above.
 
 Use the qml files supplied to over-ride the default plasma ones // backup originals first
-* edit both Clock.qml and LockscreenUi.qml and change import statements for JS to path of download or home directory
+* edit the supplied Clock.qml and LockscreenUi.qml and change import statements for JS to path of your home directory
 * import statments for gmail, weather in LockscreenUi.qml, calendar event in Clock.qml
 * copy Clock.qml to /home/.local/share/plasma/look-and-feel/"Your Theme'/components/
 * copy LockScreenUi.qml to /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/lockscreen/
@@ -59,7 +59,7 @@ Use the qml files supplied to over-ride the default plasma ones // backup origin
 * copy WallpaperFader.qml  /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
 
 Changes to qml files:
-Modified Clock.qml to remove AMPM, as plasma only allows 24 hour clock or AMPM, added calendar event info variable <br/>
+Modified Clock.qml to remove AMPM, as plasma only allows 24 hour clock or AMPM, added calendar event import variable <br/>
 Modified LockscreenUi.qml to import javascript files as varibles, added dropshadow to header status area <br/>
   added effect to make clock and header status disappear / login info appear when mouse/kb movement detected <br/>
 Modified UserDelegate.qml to remove circle around user avatar, enlarged avatar <br/>
