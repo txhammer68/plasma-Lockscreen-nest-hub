@@ -10,20 +10,25 @@ Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1
 I am not a QML/QT expert, maybe someone with better skills could do this more efficently.
 
 Requirements:
-KDE Plasma 5.15, Node JS server, systemd
+KDE Plasma 5.15, Node JS server, python3, systemd
 * Uses node js functions for both calendar and temperature functions
 * Uses node fs to create js variable files used in qml lockscreen files
+* Uses python script to get gmail unread mail count, create qml variable
 * Calendar events from public ical National Day, but could use any web access public calendar
 * Using node js functions and systemd to run the scripts at certain times to keep lockscreen current
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
-* Some knowledge of node javascript,plasma qml files,linux systemd
+* Some knowledge of node javascript,python,plasma qml files,linux systemd
 
 ## Installation at your own risk ;)  Backup original files so u can revert back if dont like or does not work
 
 * Extract all files to home directory / lockscreen
+* From github - https://github.com/akora/gmail-message-counter-python modify for your inbox, setup Oauth credentials
+   ** Modified to write to a file the unread mail count, add categories - updates, social
+   ** See https://developers.google.com/gmail/api/quickstart/python for more info
 * Install node js server within that folder
 * Install node ical, fs, weather
-    ** weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
+    ** weather function from https://github.com/nahidulhasan/nodejs-weather-app - 
+       modified to write to file instead of console
     ** modify ical js to your own public event calendar
     ** modify weather script for your city - 
         within the nodejs-weather-app-master folder edit index.js and change city name   
