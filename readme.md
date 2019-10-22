@@ -1,15 +1,15 @@
 # Custom Lockscreen readme
 
 ## Modifications
-Get unread gmail messages,weather and calendar events on the lockscreen
-Or what i learned using linux for 2 years.
+Display unread gmail messages count,weather and calendar events on the lockscreen
+Or what i learned using linux for 2 years. Skill level - Advanced
 ![Image of Lockscreen](lock-screen1.png)
 
 ## How it works:
 
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as js variables
 Using javacript node, python to create js variables written to file system 
-used for info within qml losckreen files and systemd to update them.
+used for variables within qml losckreen files and systemd to update them.
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens.
 I am not a QML/QT expert, maybe someone with better skills could do this more efficently.
 
