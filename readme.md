@@ -56,11 +56,11 @@ Use the qml files supplied to over-ride the default plasma ones // backup origin
 * copy MainBlock.qml  /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/lockscreen/
 * copy UserDelegate.qml /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
 * copy WallpaperFader.qml  /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
-Modified Clock.qml to remove AMPM, as plasma only allows 24 hour clock or AMPM /n
-  added calendar event info
-Modified LockscreenUi.qml to import javascript files as varibles, added dropshadow to header status area /n
-  added effect to make clock and header status disappear / login info appear when mouse/kb movement detected
-Modified UserDelegate.qml to remove circle around user avatar, enlarged avatar
+Modified Clock.qml to remove AMPM, as plasma only allows 24 hour clock or AMPM <br/>
+  added calendar event info <br/>
+Modified LockscreenUi.qml to import javascript files as varibles, added dropshadow to header status area <br/>
+  added effect to make clock and header status disappear / login info appear when mouse/kb movement detected <br/>
+Modified UserDelegate.qml to remove circle around user avatar, enlarged avatar <br/>
 Modified WallpaperFader.qml to make the clock and header status disappear when the mouse/kb movement detected.
 
 
