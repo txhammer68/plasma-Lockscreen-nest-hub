@@ -1,8 +1,11 @@
 # Plasma Custom Lockscreen
 
 ## Modifications
-Display unread gmail messages count,weather and calendar events on the lockscreen
-attempt to get an android type lockscreen
+* Display unread gmail messages count
+* Current weather temp and conditions
+* Calendar events from web ical
+
+An attempt to get an android type lockscreen
 Or what i learned using linux for 2 years. Skill level - Advanced
 ![Image of Lockscreen](lock-screen1.png)
 
@@ -34,7 +37,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * Install node ical, fs, weather
 * optional - modify natday1.js to your own public event calendar
 * weather function from https://github.com/nahidulhasan/nodejs-weather-app - 
-       modified to write to file, use provided index.js to get the file system write info
+       modified to write to file, use provided index.js to get the file system write logic
 * modify weather script for your city - 
    within the nodejs-weather-app-master folder edit index.js and change city name   
     const city = location || 'City Name, State USA';
@@ -100,15 +103,15 @@ ___________
 ____________
 * node js server required for js scripts
 * ical, fs, weather-app install required to work
-* using node js functions and systemd to run the scripts at certain times to keep lockscreen current
+* using node JS functions and systemd to run the scripts at certain times to keep lockscreen current
 * weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
-* natday.js is used in Clock.qml as js variable to print the National Day calendar events - 
+* natday.js is used in Clock.qml as JS variable to display the National Day calendar events - 
     this file is updated from the systemd service/timer events
-* natday1.js is used as node js to get the calendar event info
+* natday1.js is used as node JS to get the calendar event info
 * temp.js is used in LockscreeUi.qml as variable to display the current temperature  - 
     this file is updated from the systemd service/timer events
 * node weather is used to get current weather temp info  - edit weather - index.js for city info and 
-   location to create variable file
+   location
 * you must edit the qml files to reflect the location of these files, also the node js files must be changed 
     to reflect the location to write the js variable files
 * Info on weather temperature and gmail count displayed from before screen locked, 
