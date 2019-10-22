@@ -28,6 +28,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.private.sessions 2.0
 import "../components"
 import "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js" as Global
+import "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/gmail.js" as Gmail
 
 PlasmaCore.ColorScope {
 
@@ -76,7 +77,6 @@ PlasmaCore.ColorScope {
 
     MouseArea {
         id: lockScreenRoot
-
         property bool uiVisible: false
         property bool blockUI: mainStack.depth > 1 || mainBlock.mainPasswordBox.text.length > 0 || inputPanel.keyboardActive
         x: parent.x
@@ -84,7 +84,7 @@ PlasmaCore.ColorScope {
         width: parent.width
         height: parent.height
         hoverEnabled: true
-        cursorShape: Qt.BlankCursor;
+        // cursorShape: Qt.BlankCursor;
         drag.filterChildren: true
         onPressed: uiVisible = true;
         onPositionChanged: uiVisible = true;
@@ -98,11 +98,9 @@ PlasmaCore.ColorScope {
         onBlockUIChanged: {
             if (blockUI) {
                 fadeoutTimer.running = false;
-                cursorShape:Qt.ArrowCursor;
                 uiVisible = true;
                 
             } else {
-                cursorShape: Qt.BlankCursor;
                 fadeoutTimer.restart();
                 
             }
@@ -114,14 +112,12 @@ PlasmaCore.ColorScope {
                 
             }
             if (!uiVisible) {
-                cursorShape:Qt.ArrowCursor;
                 mainBlock.mainPasswordBox.text = "";
             }
         }
         Keys.onPressed: {
             uiVisible = true;
             event.accepted = false;
-            cursorShape:Qt.ArrowCursor;
         }
         Timer {
             id: fadeoutTimer
@@ -210,7 +206,7 @@ PlasmaCore.ColorScope {
             id: clock
             property Item shadow: clockShadow
             anchors.horizontalCenter: parent.horizontalCenter
-            y: (mainBlock.userList.y + mainStack.y)/8 - height/8
+            y: (mainBlock.userList.y + mainStack.y)/8 - height/3.5
             visible: y > 0
             Layout.alignment: Qt.AlignBaseline
         }
@@ -231,8 +227,11 @@ PlasmaCore.ColorScope {
             anchors {
                 left: parent.left
                 right: parent.right
+                verticalCenter: parent.verticalCenter
             }
-            height: lockScreenRoot.height + units.gridUnit * 3
+            // y: (parent.top + 500)
+            height: lockScreenRoot.height + units.gridUnit * 4
+            // height: (parent.top + 2800)
             focus: true //StackView is an implicit focus scope, so we need to give this focus so the item inside will have it
 
             initialItem: MainBlock {
@@ -262,7 +261,7 @@ PlasmaCore.ColorScope {
                 }
 
                 onLoginRequest: {
-                    root.notification = ""
+                    root.notification = "open sesame"
                     authenticator.tryUnlock(password)
                 }
                 
@@ -499,8 +498,8 @@ PlasmaCore.ColorScope {
         }
         
         Text {
-              text: "14"
-              font.family: "Open Sans"
+              text: Gmail.count
+              font.family: "Roboto"
               font.pointSize: 20
             color: "white"
             antialiasing : true
@@ -528,7 +527,7 @@ PlasmaCore.ColorScope {
       
       Text {
         text: Global.temp
-        font.family: "Open Sans"
+        font.family: "Roboto"
         font.pointSize: 22
         color: "white"
         antialiasing : true

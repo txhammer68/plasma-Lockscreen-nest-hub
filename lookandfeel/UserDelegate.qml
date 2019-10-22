@@ -28,7 +28,7 @@ Item {
 
     // If we're using software rendering, draw outlines instead of shadows
     // See https://bugs.kde.org/show_bug.cgi?id=398317
-    readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
+    // readonly property bool softwareRendering: GraphicsInfo.api === GraphicsInfo.Software
 
     property bool isCurrent: true
 
@@ -83,7 +83,7 @@ Item {
         id: imageSource
         anchors {
             bottom: usernameDelegate.top
-            bottomMargin: units.largeSpacing
+            bottomMargin: units.smallSpacing
             horizontalCenter: parent.horizontalCenter
         }
         Behavior on width { 
@@ -120,7 +120,7 @@ Item {
     ShaderEffect {
         anchors {
             bottom: usernameDelegate.top
-            bottomMargin: units.largeSpacing
+            bottomMargin: units.smallSpacing
             horizontalCenter: parent.horizontalCenter
         }
 
@@ -182,7 +182,7 @@ Item {
     PlasmaComponents.Label {
         id: usernameDelegate
         // font.pointSize: Math.max(fontSize + 2,theme.defaultFont.pointSize + 2)
-        font.family: config.Font || "Open Sans"
+        font.family: config.Font || "Roboto"
         // font.pointSize: config.FontPointSize ? config.FontPointSize * 1.2 : root.height / 80 * 1.2
         font.pointSize: 18
         font.bold: true
