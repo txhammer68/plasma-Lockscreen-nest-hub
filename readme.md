@@ -4,6 +4,7 @@
 * Display unread gmail messages count
 * Current weather temp and conditions
 * Calendar events from web ical
+
 An attempt to get an android type lockscreen <br/>
 Or what i learned using linux for 2 years. Skill level - Advanced <br/>
 ![Image of Lockscreen](lock-screen1.png)
