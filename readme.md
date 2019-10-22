@@ -6,6 +6,7 @@ Or what i learned using linux for 2 years.
 ![Image of Lockscreen](lock-screen1.png)
 
 ## How it works:
+
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as js variables
 Using javacript node, python to create js variables written to file system 
 used for info within qml losckreen files and systemd to update them.
