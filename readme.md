@@ -11,7 +11,7 @@
 
 An attempt to get an android type lockscreen <br/>
 Or what i learned using linux for 2 years. Skill level - Advanced <br/>
-![Image of Lockscreen](lock-screen1.png)
+![Image of Lockscreen](lockscreen.gif)
 
 ### How it works:
 kscreenlocker does not allow internet acesss, so this is a workaround using local files as JS variables <br/>
