@@ -103,6 +103,9 @@ ____________
 * node js server required for js scripts
 * ical, fs, weather-app install required to work
 * using node JS functions and systemd to run the scripts at certain times to keep lockscreen current
+* you must edit the qml files to reflect the location of these files, also the node JS files must be changed 
+    to reflect the location to write the JS variable files
+
 #### Node JS functions
 * node natday1.js creates file called natday.js which is used in Clock.qml as a variable with import statement
 * node weather creates file called temp.js which is used in LockscreenUi.qml as a variable with import statement
@@ -111,15 +114,7 @@ ____________
 * python3 counter.py calls gmail to get unread mail messages and creates a file gmail.js  used in LockscreenUi.qml as a variable with import statement
 
 * weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
-* natday.js is used in Clock.qml as JS variable to display the National Day calendar events - 
-    this file is updated from the systemd service/timer events
-* natday1.js is used as node JS to get the calendar event info
-* temp.js is used in LockscreeUi.qml as variable to display the current temperature  - 
-    this file is updated from the systemd service/timer events
-* node weather is used to get current weather temp info  - edit weather - index.js for city info and 
-   location
-* you must edit the qml files to reflect the location of these files, also the node js files must be changed 
-    to reflect the location to write the js variable files
+
 * Info on weather temperature and gmail count displayed from before screen locked, 
    not sure how to update after screen locked.
 
