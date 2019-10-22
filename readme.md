@@ -1,6 +1,7 @@
 # Custom Lockscreen readme
 
-A good hack job to get weather and calendar events on the lockscreen
+## Modifications
+Get unread gmail messages,weather and calendar events on the lockscreen
 Or what i learned using linux for 2 years.
 ![Image of Lockscreen](lock-screen1.png)
 
@@ -9,11 +10,11 @@ kscreenlocker does not allow internet acesss, so this is a workaround using loca
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens.
 I am not a QML/QT expert, maybe someone with better skills could do this more efficently.
 
-Requirements:
-KDE Plasma 5.15, Node JS server, python3, systemd
-* Uses node js functions for both calendar and temperature functions
-* Uses node fs to create js variable files used in qml lockscreen files
-* Uses python script to get gmail unread mail count, create qml variable
+## Requirements:
+* KDE Plasma 5.15, Node JS server, python3, systemd
+* node js functions for both calendar and temperature functions
+* node fs to create js variable files used in qml lockscreen files
+* python script to get gmail unread mail count, create qml variable
 * Calendar events from public ical National Day, but could use any web access public calendar
 * Using node js functions and systemd to run the scripts at certain times to keep lockscreen current
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
@@ -23,12 +24,13 @@ KDE Plasma 5.15, Node JS server, python3, systemd
 
 * Extract all files to home directory / lockscreen
 * From github - https://github.com/akora/gmail-message-counter-python modify for your inbox, setup Oauth credentials
-   ** Modified to write to a file the unread mail count, add categories - updates, social
+   ** Modified to write to a file the unread mail count, add categories - updates, social, 
+      use counter.py provided, instead of one from github
    ** See https://developers.google.com/gmail/api/quickstart/python for more info
 * Install node js server within that folder
 * Install node ical, fs, weather
 ** weather function from https://github.com/nahidulhasan/nodejs-weather-app - 
-       modified to write to file instead of console
+       modified to write to file instead of console overwrite index.js with one provided
 ** modify ical js to your own public event calendar
 ** modify weather script for your city - 
    within the nodejs-weather-app-master folder edit index.js and change city name   
@@ -61,19 +63,27 @@ _________
 * run sudo sudo systemctl start natday.service      --starts systemd service and timer
 * run sudo sudo systemctl enable natday.service     --enables systemd service and timer
 * run sudo sudo systemctl enable natday.timer
-* copy temp.service to /etc/systemd/system/        --used to fetch weather temperature daily every 30 mins
-* copy temp.timer to /etc/systemd/system/          --used to fetch weather temperature daily every 30 mins
+* copy temp.service to /etc/systemd/system/        --used to fetch weather temperature daily every 60 mins
+* copy temp.timer to /etc/systemd/system/          --used to fetch weather temperature daily every 60 mins
 * run sudo sudo systemctl start temp.service       --starts systemd service and timer
 * run sudo sudo systemctl enable temp.service      --enables systemd service and timer
 * run sudo sudo systemctl enable temp.timer
+* copy gmail.service to /etc/systemd/system/        --used to get gmail count daily every 60 mins
+* copy gmail.timer to /etc/systemd/system/          --used to get gmail count daily every 60 mins
+* run sudo sudo systemctl start gmail.service       --starts systemd service and timer
+* run sudo sudo systemctl enable gmail.service      --enables systemd service and timer
+* run sudo sudo systemctl enable gmail.timer
 
 ### Testing
 ___________
-
-1. Test ical event info with > node js ical with node natday1.js  will retrieve calendar event and create natday.js variable file used in Clock.qml
-2. Test weather info with > node weather will retrieve temperature info and create temp.js variable file used in LockScreenUi.qml
-3. Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/"Your Theme'
-4. Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the two timers installed above.
+* Test ical event info with > node js ical with node natday1.js  will retrieve calendar event and create 
+   natday.js variable file used in Clock.qml
+* Test weather info with > node weather will retrieve temperature info and create temp.js 
+  variable file used in LockScreenUi.qml
+* Test gmail count with python3 counter.py - use counter.py provided, 
+    will retrieve unread mail count info and create count.js 
+* Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/"Your Theme'
+* Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the two timers installed above.
 
 ### NOTES:
 ____________
@@ -90,8 +100,9 @@ ____________
    location to create variable file
 * you must edit the qml files to reflect the location of these files, also the node js files must be changed 
     to reflect the location to write the js variable files
+* Info on weather temperature and gmail count displayed from before screen locked, 
+   not sure how to update after screen locked.
 
 ### TODO:
 _________
-* update temp variable to update dynamically, current only display temp from before screen locked
-* get email count - requires oauth for gmail security
+* update temp and email to update dynamically,
