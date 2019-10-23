@@ -39,61 +39,14 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
    ** See https://developers.google.com/gmail/api/quickstart/python for more info
 * Install node js server within that folder
 * Install node ical, fs, weather
-* optional - modify natday1.js to your own public event calendar
-* weather function from https://github.com/nahidulhasan/nodejs-weather-app - 
-       modified to write to file, use provided index.js to get the file system write logic
-* modify weather script for your city - 
+* natday1.js is the event info JS, change location to write variable file
+* modify weather script for your city and change locationn to write js variable file
    within the nodejs-weather-app-master folder edit index.js and change city name   
     const city = location || 'City Name, State USA';
-* running within folder node weather will retrieve current temp for your city and create
-   temp.js used as variable within Lockscreen.qml
-
-### Plasma changes
-_____________
-Use Plasma Look And Feel Explorer installed as plasma-sdk to create a new Look and Feel Theme within 
-/home/.local/share/plasma/look-and-feel/'Your Theme'
-This is required as Breeze LnF theme has all the components needed to customize the Lockscreen.
-Copy the folders from Breeze > /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/
-to your new theme folder created above.
-
-Use the qml files supplied to over-ride the default plasma ones // backup originals first
-* edit the supplied Clock.qml and LockscreenUi.qml and change import statements for JS to path of your home directory
-* import statments for gmail, weather in LockscreenUi.qml, calendar event in Clock.qml
-* copy Clock.qml to /home/.local/share/plasma/look-and-feel/"Your Theme'/components/
-* copy LockScreenUi.qml to /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/lockscreen/
-* copy MainBlock.qml  /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/lockscreen/
-* copy UserDelegate.qml /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
-* copy WallpaperFader.qml  /home/.local/share/plasma/look-and-feel/"Your Theme'/contents/components/
-
-Changes to qml files: <br/>
-Modified Clock.qml to remove AMPM, as plasma only allows 24 hour clock or AMPM, added calendar event import variable <br/>
-Modified LockscreenUi.qml to import javascript files as varibles, added dropshadow to header status area <br/>
-  added effect to make clock and header status disappear / login info appear when mouse/kb movement detected <br/>
-Modified UserDelegate.qml to remove circle around user avatar, enlarged avatar and font <br/>
-Modified WallpaperFader.qml to make the clock and header status disappear when the mouse/kb movement detected.
-
-
-### Systemd changes
-_________
-* Edit systemd service files to reflect location of node js scripts
-* copy natday.service to /etc/systemd/system/       --used to fetch calendar events daily at 12:10 am
-* copy natday.timer to /etc/systemd/system/         --used to fetch calendar events daily at 12:10 am
-  * run sudo sudo systemctl start natday.service      --starts systemd service and timer
-  * run sudo sudo systemctl start natday.timer      --starts systemd service and timer
-  * run sudo sudo systemctl enable natday.service     --enables systemd service and timer
-  * run sudo sudo systemctl enable natday.timer
-* copy temp.service to /etc/systemd/system/        --used to fetch weather temperature daily every 60 mins
-* copy temp.timer to /etc/systemd/system/          --used to fetch weather temperature daily every 60 mins
-  * run sudo sudo systemctl start temp.service       --starts systemd service and timer
-  * run sudo sudo systemctl start temp.timer       --starts systemd service and timer
-  * run sudo sudo systemctl enable temp.service      --enables systemd service and timer
-  * run sudo sudo systemctl enable temp.timer
-* copy gmail.service to /etc/systemd/system/        --used to get gmail count daily every 60 mins
-* copy gmail.timer to /etc/systemd/system/          --used to get gmail count daily every 60 mins
-  * run sudo sudo systemctl start gmail.service       --starts systemd service and timer
-  * run sudo sudo systemctl start gmail.timer       --starts systemd service and timer
-  * run sudo sudo systemctl enable gmail.service      --enables systemd service and timer
-  * run sudo sudo systemctl enable gmail.timer
+* Copy systemd scripts to systemd folder and start and enable services
+* Using Plasma Look And Feel Explorer create a new LnF theme
+* Edit supplied qml files to change location of folders for your system
+* Copy qml files to the new theme folder created
 
 ### Testing
 ___________
@@ -113,6 +66,9 @@ ____________
 * using node JS functions and systemd to run the scripts at certain times to keep lockscreen current
 * you must edit the qml files to reflect the location of these files, also the node JS files must be changed 
     to reflect the location to write the JS variable files
+* optional - modify natday1.js to your own public event calendar
+* weather function from https://github.com/nahidulhasan/nodejs-weather-app - 
+       modified to write to file, use provided index.js to get the file system write logic
 
 #### Node JS functions
 * node natday1.js creates file called natday.js which is used in Clock.qml as a variable with import statement
