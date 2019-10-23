@@ -1,4 +1,4 @@
-# Plasma Custom Lockscreen
+# Custom Plasma Lockscreen
 
 ## Modifications
 * Display unread gmail messages count
