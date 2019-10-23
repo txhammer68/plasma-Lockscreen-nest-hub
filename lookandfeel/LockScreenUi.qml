@@ -27,8 +27,6 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.plasma.private.sessions 2.0
 import "../components"
-import "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js" as Global
-import "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/gmail.js" as Gmail
 
 PlasmaCore.ColorScope {
 
@@ -169,7 +167,6 @@ PlasmaCore.ColorScope {
             mainStack: mainStack
             // footer: footer
             clock: clock
-            header: header
             
         }
 
@@ -206,7 +203,7 @@ PlasmaCore.ColorScope {
             id: clock
             property Item shadow: clockShadow
             anchors.horizontalCenter: parent.horizontalCenter
-            y: (mainBlock.userList.y + mainStack.y)/8 - height/3.5
+            y: (mainBlock.userList.y + mainStack.y)/8 - height/5
             visible: y > 0
             Layout.alignment: Qt.AlignBaseline
         }
@@ -462,79 +459,7 @@ PlasmaCore.ColorScope {
                 bottomMargin: units.largeSpacing
             }
         }
-        
-        
-        Item {
-       id:header
-       opacity: 1
-       
-       DropShadow {
-            id: headerShadow
-            anchors.fill: header1 
-            source: header1
-            horizontalOffset: 0
-            verticalOffset: 1
-            radius: 16
-            samples: 64
-            spread: 0.4
-            color: Qt.rgba(0, 0, 0, 1)
-        }
-       
- RowLayout {
-            id: header1
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right + 1800
-                margins: units.smallSpacing
-            }
-       
-         Image {
-        id: gmail
-        source: "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/icons/email3.png"
-        smooth: true
-        sourceSize.width: 40
-        sourceSize.height: 40
-        }
-        
-        Text {
-              text: Gmail.count
-              font.family: "Roboto"
-              font.pointSize: 20
-            color: "white"
-            antialiasing : true
-        }
-        
-        Item { // spacer
-            id:spc1
-            width: 30
-            height: 16
-        }
-                
-            Item { // spacer
-                id:spc2
-            width: 1460
-            height: 16
-        }
-            
-            Image {
-        id: weather1
-        source: "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/icons/weather-clouds.png"
-        smooth: true
-        sourceSize.width: 48
-        sourceSize.height: 48
-        }
-      
-      Text {
-        text: Global.temp
-        font.family: "Roboto"
-        font.pointSize: 22
-        color: "white"
-        antialiasing : true
-    }
-   }
- }
-    }
+    }    
     Component.onCompleted: {
         // version support checks
         if (root.interfaceVersion < 1) {

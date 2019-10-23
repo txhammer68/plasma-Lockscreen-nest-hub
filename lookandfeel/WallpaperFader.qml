@@ -32,8 +32,6 @@ Item {
     id: wallpaperFader
     property Item clock
     property Item mainStack
-    // property Item footer
-    property Item header
     property alias source: wallpaperBlur.source
     state: lockScreenRoot.uiVisible ? "on" : "off"
     property real factor: 0
@@ -118,11 +116,6 @@ Item {
                 opacity: 0
             }
             
-            PropertyChanges {
-                target: header
-                opacity: 0
-            }
-            
             
         },
         State {
@@ -137,10 +130,6 @@ Item {
             }
             PropertyChanges {
                 target: clock.shadow
-                opacity: 1
-            }
-            PropertyChanges {
-                target: header
                 opacity: 1
             }
             
@@ -159,12 +148,6 @@ Item {
                     duration: 500
                     easing.type: Easing.InOutQuad
                 }
-                NumberAnimation {
-                    target: header
-                    property: "opacity"
-                    duration: 500
-                    // easing.type: Easing.InOutQuad
-                }
                 
             }
         },
@@ -177,12 +160,6 @@ Item {
                     property: "opacity"
                     duration: 500
                     easing.type: Easing.InOutQuad
-                }
-                NumberAnimation {
-                    target: header
-                    property: "opacity"
-                    duration: 500
-                    // easing.type: Easing.InOutQuad
                 }
                 
             }
