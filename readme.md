@@ -73,14 +73,13 @@ ____________
 #### Node JS functions
 * node natday1.js creates file called natday.js which is used in Clock.qml as a variable with import statement
 * node weather creates file called temp.js which is used in LockscreenUi.qml as a variable with import statement
+* weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
+* Info on weather temperature and gmail count displayed from before screen locked, 
+   not sure how to update after screen locked.
 
 #### Python 3 functions
 * python3 counter.py calls gmail to get unread mail messages and creates a file gmail.js  used in LockscreenUi.qml as a variable with import statement
 
-* weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
-
-* Info on weather temperature and gmail count displayed from before screen locked, 
-   not sure how to update after screen locked.
 * images used in status area are included, must change path within qml files to reflect location of images
 
 ### TODO:
