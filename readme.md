@@ -45,7 +45,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
     const city = location || 'City Name, State USA';
 * Copy systemd scripts to systemd folder and start and enable services
 * Using Plasma Look And Feel Explorer create a new LnF theme
-* Edit supplied qml files to change location of folders for your system
+* Edit supplied qml files to change location of JS variables for your system
 * Copy qml files to the new theme folder created
 
 ### Testing
