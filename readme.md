@@ -1,8 +1,7 @@
 # Custom Plasma Lockscreen
 
 ## Modifications
-* Display unread gmail messages count
-* Current weather temp and conditions
+* Display unread gmail messages count, current weather temp and conditions
 * Calendar events - national day web ical
 * kb/mouse movement, hide clock and status info, show login/password Ui
 * Enlarged user avatar and font
