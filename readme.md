@@ -37,7 +37,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * Install node js server within that folder
 * Install node ical, fs, weather
 * natday1.js is the event info JS, change location to write variable file
-* modify weather script for your city and change locationn to write js variable file
+* modify weather script for your city and change location to write js variable file
    within the nodejs-weather-app-master folder edit index.js and change city name   
     const city = location || 'City Name, State USA';
 * Copy systemd scripts to systemd folder and start and enable services
