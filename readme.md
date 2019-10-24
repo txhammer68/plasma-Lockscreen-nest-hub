@@ -24,6 +24,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * National Day Calendar - https://natdaycal.wordpress.com/
 * Gmail Oauth https://developers.google.com/gmail/api/quickstart/python
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
+      https://userbase.kde.org/Plasma/Create_a_Global_Theme_Package
 * Some knowledge of node javascript,python,plasma qml files,linux systemd
 
 ### Installation at your own risk ;)  Backup original files so u can revert back.
