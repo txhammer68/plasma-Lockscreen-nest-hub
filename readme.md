@@ -10,7 +10,8 @@ Or what i learned using linux for 2 years. <br/>
 ![Image of Lockscreen](lockscreen.gif)
 
 ### How it works:
-kscreenlocker does not allow internet acesss, so this is a workaround using local files as JS variables <br/>
+For security reasons, kscreenlocker does not allow internet acesss, 
+this is a hack using local files as JS variables <br/>
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens. <br/>
 Using javacript node and python to create JS variables written to file system <br/>
 The JS variables are used within qml losckreen files and systemd scripts to update them. <br/>
@@ -55,6 +56,8 @@ ___________
     will retrieve unread mail count info and create gmail.js 
 * Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/'Your Theme'
 * Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the timers installed above.
+* Info on weather temperature and gmail count displayed from before screen locked, 
+   not sure how to update after screen locked.
 
 ### Notes
 ____________
@@ -71,8 +74,6 @@ ____________
 * node natday1.js creates file called natday.js which is used in Clock.qml as a variable with import statement
 * node weather creates file called temp.js which is used in LockscreenUi.qml as a variable with import statement
 * weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
-* Info on weather temperature and gmail count displayed from before screen locked, 
-   not sure how to update after screen locked.
 
 #### Python 3 functions
 * python3 counter.py calls gmail to get unread mail messages and creates a file gmail.js  used in LockscreenUi.qml as a variable with import statement
@@ -83,3 +84,4 @@ ____________
 _________
 * update temp and email to update dynamically
 * exract image metadata exif for description / location -- good for images from usplash/wallhaven/reddit earthporn
+* idea for kde - allow trusted apps / widgets access to lockscreen
