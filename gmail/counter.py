@@ -68,10 +68,13 @@ def main():
     email_count = len(ListMessagesMatchingQuery(service, "me", "label:unread category:primary"))
     email_count1 = len(ListMessagesMatchingQuery(service, "me", "label:unread category:social"))
     email_count2 = len(ListMessagesMatchingQuery(service, "me", "label:unread category:updates"))
-    counter = email_count + email_count1 + email_count2 + 1
+    email_count3 = len(ListMessagesMatchingQuery(service, "me", "label:unread category:promotions"))
+    email_count4 = len(ListMessagesMatchingQuery(service, "me","label:unread"))
+    counter = email_count + email_count1 + email_count2 + email_count3 + 1
     # print(email_count)
     # print(email_count1)
-    # print(email_count2)
+    # print(counter)
+    # print(email_count4)
     
     f = open("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/gmail.js", "w+")
     print("var count=",counter,file=f)
