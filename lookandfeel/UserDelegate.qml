@@ -182,7 +182,7 @@ Item {
     PlasmaComponents.Label {
         id: usernameDelegate
         // font.pointSize: Math.max(fontSize + 2,theme.defaultFont.pointSize + 2)
-        font.family: config.Font || "Roboto"
+        font.family: config.Font || "Noto Sans"
         // font.pointSize: config.FontPointSize ? config.FontPointSize * 1.2 : root.height / 80 * 1.2
         font.pointSize: 18
         font.bold: true
@@ -219,7 +219,7 @@ Item {
                     target: clock;
                     from: 1;
                     to: 0;
-                    duration: 500
+                    duration: 1000
                     // easing.type: Easing.InOutQuad
                 }
             }

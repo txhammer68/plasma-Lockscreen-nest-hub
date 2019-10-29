@@ -21,10 +21,8 @@ import QtQuick 2.8
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
 import QtGraphicalEffects 1.0
-
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
-
 import org.kde.plasma.private.sessions 2.0
 import "../components"
 
@@ -79,7 +77,7 @@ PlasmaCore.ColorScope {
         property bool blockUI: mainStack.depth > 1 || mainBlock.mainPasswordBox.text.length > 0 || inputPanel.keyboardActive
         x: parent.x
         y: parent.y
-        width: parent.width
+        width: parent.width + 60
         height: parent.height
         hoverEnabled: true
         // cursorShape: Qt.BlankCursor;
@@ -186,7 +184,7 @@ PlasmaCore.ColorScope {
                     from: 1;
                     to: 0;
                     duration: 500
-                    // easing.type: Easing.InOutQuad
+                    easing.type: Easing.InOutQuad
                 }
             }
         }
@@ -224,10 +222,11 @@ PlasmaCore.ColorScope {
             anchors {
                 left: parent.left
                 right: parent.right
+                top: parent.top
                 verticalCenter: parent.verticalCenter
+                verticalCenterOffset : -80
             }
-            // y: (parent.top + 500)
-            height: lockScreenRoot.height + units.gridUnit * 4
+            height: lockScreenRoot.height + units.gridUnit / 4
             // height: (parent.top + 2800)
             focus: true //StackView is an implicit focus scope, so we need to give this focus so the item inside will have it
 
