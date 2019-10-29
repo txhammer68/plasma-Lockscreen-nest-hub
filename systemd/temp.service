@@ -10,4 +10,4 @@ Description=Update temp files 60 min intervals
 [Service]
 LogLevelMax=2
 Type=oneshot
-ExecStart=node /run/media/hammer/Data/projects/nodejs-weather-app-master/
+ExecStart=node /run/media/hammer/Data/projects/nodejs-weather-app-master/index.js
