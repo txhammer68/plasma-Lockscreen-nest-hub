@@ -1,0 +1,53 @@
+{
+  "_from": "cnn-market",
+  "_id": "cnn-market@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha512-8ey5qw3lHWH1LeKBwdJUVx4f6AQQIWQTJbXQL7OUi+r1eG4mK50b7ljYGP9DBZY1vwkaGzOz7qqaRqkQT0gYDg==",
+  "_location": "/cnn-market",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cnn-market",
+    "name": "cnn-market",
+    "escapedName": "cnn-market",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cnn-market/-/cnn-market-1.0.3.tgz",
+  "_shasum": "c09c143d5cf7628e6267f54ce4f4ee2ceb230b7b",
+  "_spec": "cnn-market",
+  "_where": "/run/media/hammer/Data/projects",
+  "author": {
+    "name": "Fabian Beuke",
+    "email": "mail@beuke.org"
+  },
+  "bugs": {
+    "url": "https://github.com/madnight/cnn-market/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "nodemon": "^1.19.1",
+    "scrape-it": "^5.1.4"
+  },
+  "deprecated": false,
+  "description": "Stock market information from CNN",
+  "homepage": "https://github.com/madnight/cnn-market#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "cnn-market",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madnight/cnn-market.git"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "version": "1.0.3"
+}
