@@ -7,8 +7,8 @@
 
 An attempt to get an android type lockscreen <br/>
 Or what i learned using linux for 2 years. <br/>
-[![Audi R8](http://img.youtube.com/vi/KOxbO0EI4MA/0.jpg)](https://www.youtube.com/watch?v=KOxbO0EI4MA "Audi R8")
 ![Image of Lockscreen]('lockscreen (1).mp4')
+![]('lockscreen (1).mp4')
 
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
