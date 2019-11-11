@@ -7,7 +7,7 @@
 
 An attempt to get an android type lockscreen <br/>
 Or what i learned using linux for 2 years. <br/>
-![Image of Lockscreen](lockscreen.gif)
+![Image of Lockscreen](lockscreen (1).mp4)
 
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
