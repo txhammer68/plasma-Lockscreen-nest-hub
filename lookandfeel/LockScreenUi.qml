@@ -80,13 +80,13 @@ PlasmaCore.ColorScope {
         width: parent.width + 60
         height: parent.height
         hoverEnabled: true
-        // cursorShape: Qt.BlankCursor;
+        cursorShape: uiVisible ? Qt.ArrowCursor : Qt.BlankCursor
         drag.filterChildren: true
         onPressed: uiVisible = true;
         onPositionChanged: uiVisible = true;
         onUiVisibleChanged: {
             if (blockUI) {
-                fadeoutTimer.running = false;                
+                fadeoutTimer.running = false;
             } else if (uiVisible) {
                 fadeoutTimer.restart();
             }
@@ -174,8 +174,8 @@ PlasmaCore.ColorScope {
             source: clock
             horizontalOffset: 1
             verticalOffset: 1
-            radius: 12
-            samples: 32
+            radius: 10
+            samples: 48
             spread: 0.4
             color: Qt.rgba(0, 0, 0, 1)
             Behavior on opacity {
@@ -465,5 +465,6 @@ PlasmaCore.ColorScope {
             // ksmserver of 5.4, with greeter of 5.5
             root.viewVisible = true;
         }
+        org_kde_plasma_screenlocker_greeter_app.cursorHidden = true;
     }
 }

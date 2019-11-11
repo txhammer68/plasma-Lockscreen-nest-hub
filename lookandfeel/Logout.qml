@@ -160,7 +160,7 @@ PlasmaCore.ColorScope {
             
             LogoutButton {
                 id: rebootButton
-                iconSource: "/usr/share/icons/oxyfaenza-master/32x32/actions/system-reboot.png"
+                iconSource: "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/icons/system-reboot.png"
                 text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Reboot")
                 action: root.rebootRequested
                 KeyNavigation.right: shutdownButton
@@ -169,7 +169,7 @@ PlasmaCore.ColorScope {
             }
             LogoutButton {
                 id: shutdownButton
-                iconSource: "/usr/share/icons/oxyfaenza-master/32x32/actions/system-shutdown.png"
+                iconSource: "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/icons/system-shutdown.png"
                 text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Shutdown")
                 action: root.haltRequested
                 KeyNavigation.left: rebootButton
@@ -179,7 +179,7 @@ PlasmaCore.ColorScope {
             }
             LogoutButton {
                 id: logoutButton
-                iconSource: "/usr/share/icons/oxyfaenza-master/32x32/actions/system-log-out.png"
+                iconSource: "/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/icons/system-log-out.png"
                 text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Logout")
                 action: root.logoutRequested
                 KeyNavigation.left: shutdownButton
