@@ -8,7 +8,8 @@
 An attempt to get an android type lockscreen <br/>
 Or what i learned using linux for 2 years. <br/>
 ![Image of Lockscreen](lockscreen.gif)
-[![Alternate Text]({lockscreen.gif})]({"lockscreen (1).mp4"} "TEST")
+
+[![Plasma Lockscreen](lockscreen.png)](https://www.youtube.com/embed/bqqbzRAz9kQ "Plasma Lockscreen")
 
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
