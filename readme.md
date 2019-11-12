@@ -8,9 +8,7 @@
 An attempt to get an android type lockscreen <br/>
 Or what i learned using linux for 2 years. <br/>
 ![Image of Lockscreen](lockscreen.gif)
-<video width="640" height="480" controls>
-  <source src="lockscreen (1).mp4" type="video/mp4">
-</video>
+[![Alternate Text]({lockscreen.gif})]({"lockscreen (1).mp4"} "TEST")
 
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
