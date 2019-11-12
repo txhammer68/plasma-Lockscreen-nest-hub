@@ -7,7 +7,6 @@
 
 An attempt to get an android type lockscreen <br/>
 Or what i learned using linux for 2 years. <br/>
-![Image of Lockscreen](lockscreen.gif)
 
 [![Plasma Lockscreen](lockscreen.png)](https://www.youtube.com/embed/bqqbzRAz9kQ "Plasma Lockscreen")
 
