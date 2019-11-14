@@ -19,9 +19,11 @@ function printError(error) {
   };
 };
 
-// Connect to wunderground API
+
+
+
 function getForecast() {
-  var request = https.get(`https://api.weather.com/v3/wx/forecast/daily/5day?postalKey=your zip code1:US&units=e&language=en-US&format=json&apiKey=you Key`, function(response) {
+  var request = https.get(`https://api.weather.com/v3/wx/forecast/daily/5day?postalKey=your zip code:US&units=e&language=en-US&format=json&apiKey=your key here`, function(response) {
     // console.log(response.statusCode); // for testing to see the status code
     var body = ''; // start with an empty body since node gets responses in chunks
 
@@ -36,24 +38,26 @@ function getForecast() {
           // Parse the data
           var forecast = JSON.parse(body);
           // console.log(forecast); // for testing to see the JSON response
-               for (i = 0; i <= 10   ; i++) {
+               for (i = 0; i <= 5   ; i++) {
                 var rain = '';
                 var icon = ``;
          // console.log(forecast.dayOfWeek[0])
-        //console.log(i,forecast.dayOfWeek[i],forecast.daypart[0].precipChance[i],forecast.daypart[0].precipChance[i+1])
+        console.log(forecast.dayOfWeek[i],forecast.narrative[i])
          // console.log(forecast.dayOfWeek[i],forecast.daypart[0].precipChance[3],forecast.daypart[0].precipChance[4])
         //console.log(forecast.dayOfWeek[i],forecast.daypart[0].precipChance)
        
         if (forecast.dayOfWeek[i] == `Monday`) {
             
             if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i]
-                rain = forecast.daypart[0].precipChance[i];
+               icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
+               // console.log(forecast.dayOfWeek[i],forecast.daypart[0].dayOrNight[i],rain)
                 
                     }
               else  {
-                  icon = forecast.daypart[0].iconCode[i+1]
-                rain = forecast.daypart[0].precipChance[i+1];
+                  icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
+               // console.log(forecast.dayOfWeek[i],forecast.daypart[0].dayOrNight[i+1],rain)
                
               }
                     
@@ -68,13 +72,12 @@ function getForecast() {
         else if  (forecast.dayOfWeek[i] == `Tuesday`) {
             
            if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i]
-                rain = forecast.daypart[0].precipChance[i];
-                console.log(i,forecast.daypart[0].dayOrNight[i]) 
+               icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
                     }
               else  {
-                  icon = forecast.daypart[0].iconCode[i+1]
-                rain = forecast.daypart[0].precipChance[i+1];
+                  icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
                  
               }
               
@@ -88,13 +91,13 @@ function getForecast() {
         else if  (forecast.dayOfWeek[i] == `Wednesday`) {
            
             if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i]
-                rain = forecast.daypart[0].precipChance[i];
+               icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
                 
                     }
               else  {
-                  icon = forecast.daypart[0].iconCode[i+1]
-                rain = forecast.daypart[0].precipChance[i+1];
+                  icon = forecast.daypart[0].iconCode[i*2]
+               rain = forecast.daypart[0].precipChance[i*2];
                
               }
             
@@ -109,13 +112,12 @@ function getForecast() {
         else if  (forecast.dayOfWeek[i] == `Thursday`) {
            
             if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i]
-                rain = forecast.daypart[0].precipChance[i];
-                
+               icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
                     }
               else  {
-                  icon = forecast.daypart[0].iconCode[i+1]
-                rain = forecast.daypart[0].precipChance[i+1];
+                  icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
                 
               }
             
@@ -128,13 +130,12 @@ function getForecast() {
         else if  (forecast.dayOfWeek[i] == `Friday`) {
             
            if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i]
-                rain = forecast.daypart[0].precipChance[i];
-                
+               icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
                     }
               else  {
-                  icon = forecast.daypart[0].iconCode[i+1]
-                rain = forecast.daypart[0].precipChance[i+1];
+                  icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
                
               }
             dow[i].day = `\nvar day` + i + `= \x22FRI\x22`
@@ -146,14 +147,13 @@ function getForecast() {
         else if  (forecast.dayOfWeek[i] == `Saturday`) {
            
             if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i]
-                rain = forecast.daypart[0].precipChance[i];
+               icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
                
                     }
               else  {
-                  icon = forecast.daypart[0].iconCode[i+1]
-                rain = forecast.daypart[0].precipChance[i+1];
-               
+                 icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
               }
             
             dow[i].day = `\nvar day` + i + `=\x22SAT\x22`
@@ -165,13 +165,13 @@ function getForecast() {
         else if  (forecast.dayOfWeek[i] == `Sunday`) {
            
             if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i]
-                rain = forecast.daypart[0].precipChance[i];
+              icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
                 
                     }
               else  {
-                  icon = forecast.daypart[0].iconCode[i+1]
-                rain = forecast.daypart[0].precipChance[i+1];
+                  icon = forecast.daypart[0].iconCode[i*2]
+                rain = forecast.daypart[0].precipChance[i*2];
                
               }
             dow[i].day = `\nvar day` + i + `= \x22SUN\x22`
