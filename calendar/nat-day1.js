@@ -22,7 +22,7 @@ const today = `${m}${day}`
 // const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 // ical.fromURL('https://calendar.google.com/calendar/ical/9u8jqp3hlt6pe675gie6lf1d9o%40group.calendar.google.com/public/basic.ics', {}, function (err, data) {
     // ical.parseFile('/run/media/hammer/Data/projects/natday.ics', {}, function (err, data) {
-    var data = ical.parseFile('/run/media/hammer/Data/projects/myical.ics');
+    var data = ical.parseFile('/run/media/hammer/Data/projects/calendar/myical.ics');
 	for (let d  in data) {
 		if (data.hasOwnProperty(d)) {
 			var ev = data[d];
@@ -42,12 +42,12 @@ const today = `${m}${day}`
                 
            //  if (`${data[d].start.getMonth()+1}${data[d].start.getDate()}` == today) { 
                 if (`${m1}${d1}` == today) { 
-                console.log(ev.summary)
+                //console.log(ev.summary)
                 let t1 = `var today  = \x22`
                 let t2 = `\x22`
                 //console.log(`${data[d].start.getMonth()+1}${data[d].start.getDate()}`)
                // console.log(today)
-               console.log(`${m1}${d1}`)
+               //console.log(`${m1}${d1}`)
                 
                 fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js`,t1, function (err) {
   if (err) throw err;
@@ -68,6 +68,23 @@ const today = `${m}${day}`
                 // console.log(`${data[d].start.getMonth()+1}/${data[d].start.getDate()} - ${data[d].summary}`);
            
                 
+            }
+            
+            else { 
+                let t1 = `var today  = \x22`
+                let t2 = `\x22`
+                ev.summary=""
+                fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js`,t1, function (err) {
+  if (err) throw err;
+});
+                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js`,ev.summary, function (err) {
+  if (err) throw err;
+});
+                
+                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js`,t2,
+                function (err) {
+  if (err) throw err;
+});
             }
             
                 
