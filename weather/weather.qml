@@ -6,12 +6,13 @@ import org.kde.plasma.core 2.0 as PlasmaCore
     id: root
       // readonly property string weatherSource: "US0TX0706;La Porte"
     readonly property string weatherSource: "wettercom|weather|La Porte, Texas, US|US0TX0706;La Porte"
+    // readonly property string weatherSource: 'wettercom|weather|London, London, GB|GB0KI0101;London'
      //  wettercom|weather|Turin, Piemont, IT|IT0PI0397;Turin
     readonly property int updateInterval: 30
-    readonly property int displayTemperatureUnit: 2
-    readonly property int displaySpeedUnit: 3
-    readonly property int displayPressureUnit: 4
-    readonly property int displayVisibilityUnit: 2
+    readonly property int displayTemperatureUnit: 1
+    readonly property int displaySpeedUnit: 1
+    readonly property int displayPressureUnit: 1
+    readonly property int displayVisibilityUnit: 1
 
     property bool connectingToSource: false
     readonly property bool needsConfiguration: !generalModel.location && !connectingToSource
@@ -69,6 +70,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
         var reportPressureUnit =    data["Pressure Unit"] || invalidUnit;
         var reportVisibilityUnit =  data["Visibility Unit"] || invalidUnit;
         var reportWindSpeedUnit =   data["Wind Speed Unit"] || invalidUnit;
+        // var reportTemperatureUnit = (data && data["Temperature Unit"]) || invalidUnit;
 
         model["conditions"] = data["Current Conditions"] || "";
 
@@ -145,11 +147,21 @@ import org.kde.plasma.core 2.0 as PlasmaCore
         return model;
     }
     
+  //  var weatherIconName = forecastDayTokens[1];
+   //         if (weatherIconName && weatherIconName !== "N/U") {
+    //            var iconAndToolTip = Util.existingWeatherIconName(weatherIconName);
+    
+                
+   // model["currentConditionIconName"] = conditionIconName;
+
+   //     return model;
+  //  }
+    
     
     Item {
         
         Text {
-            text : observationModel.temperature
+            text : temperature
             // text: "TEST"
             color:"black"
         }
