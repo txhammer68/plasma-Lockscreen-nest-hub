@@ -159,7 +159,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
     
     
     Item {
-        
+                                       // *** only want to show current temperature  ***** //
         Text {
             text : temperature
             // text: "TEST"
