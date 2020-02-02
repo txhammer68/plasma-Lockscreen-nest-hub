@@ -1,6 +1,7 @@
 #!/usr/bin/env node
+// node index.js retrieve current weather conditions from open weather service
 var req = require('request');
-const api = require('./api.json');
+const api = require('./api.json');  //put your api key in this file
 const axios = require('axios');
 const fs = require('fs')
 const weatherIcons = require('./icons.json');
@@ -10,7 +11,10 @@ const getWeather = async location => {
 	const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${
 		api.key
 	}`;
-
+    
+     //const url = `http://api.openweathermap.org/data/2.5/forecast?id=4704108&units=imperial&appid=${
+	//	api.key
+	//}`;
 	try {
 		const response = await axios.get(url);
 
@@ -47,18 +51,13 @@ if (require.main == module) {
 }
 
 function printWeather(weather) {
+    
 	// let message = `Current Temperature in ${weather.name} is ${
     let message = `${
 		Math.round(weather.main.temp)
 	}°`;
-
-	// console.log(message);
-    // console.log(weather.weather[0].main,Math.round(weather.main.temp));
-    // console.log(weather.weather[0].description);
-    // console.log(weather.weather[0].icon);
-    // console.log(weather.weather[0].id);
     function weatherIcon () {
-        var iconurl=``
+        var iconurl=`` // assign icon code to file
         if (weather.weather[0].icon === '01d') {
         iconurl= `../icons/01d.png`} else if (weather.weather[0].icon === '01n') {
             iconurl=`../icons/01n.png`}
@@ -99,14 +98,80 @@ function printWeather(weather) {
             return iconurl;
         }
        
-    let t1 = `var temp  = \x22 `
-                let t2 = `° `
+       if (weather.weather[0].description == "broken clouds") {
+           weather.weather[0].description = "partly cloudy"
+       }
+       if (weather.weather[0].description == "few clouds") {
+           weather.weather[0].description = "Mostly Clear"
+       }
+       if (weather.weather[0].description == "light intensity drizzle") {
+           weather.weather[0].description = "light rain"
+       }
+       if (weather.weather[0].description == "heavy intensity drizzle") {
+           weather.weather[0].description = "drizzly rain"
+       }
+       if (weather.weather[0].description == "light intensity drizzle rain") {
+           weather.weather[0].description = "light rain"
+       }
+       if (weather.weather[0].description == "heavy intensity drizzle rain") {
+           weather.weather[0].description = "drizzly rain"
+       }
+       if (weather.weather[0].description == "heavy shower rain and drizzle") {
+           weather.weather[0].description = "drizzly rain"   
+       }
+       if (weather.weather[0].description == "light intensity shower rain") {
+           weather.weather[0].description = "light rain showers"   
+       }
+       if (weather.weather[0].description == "heavy intensity shower rain") {
+           weather.weather[0].description = "heavy rain showers"   
+       }
+       if (weather.weather[0].description == "ragged shower rain") {
+           weather.weather[0].description = "heavy rain showers"   
+       }
+       if (weather.weather[0].description == "thunderstorm with light rain") {
+           weather.weather[0].description = "thunderstorms with light rain"   
+       }
+       if (weather.weather[0].description == "thunderstorm with drizzle") {
+           weather.weather[0].description = "thunderstorms with light drizzle"  
+       }
+       if (weather.weather[0].description == "ragged thunderstorm") {
+           weather.weather[0].description = "heavy thunderstorms"  
+       }
+       if (weather.weather[0].description == "light thunderstorm") {
+           weather.weather[0].description = "light rain thunderstorms"  
+       }
+       if (weather.weather[0].description == "heavy thunderstorm") {
+           weather.weather[0].description = "heavy rain thunderstorms"  
+       }
+       if (weather.weather[0].description == "thunderstorm with rain") {
+           weather.weather[0].description = "light rain thunderstorms"  
+       }
+       if (weather.weather[0].description == "thunderstorm with heavy rain") {
+           weather.weather[0].description = "heavy rain thunderstorms"  
+       }
+       if (weather.weather[0].description == "thunderstorm") {
+           weather.weather[0].description = "thunderstorms"  
+       }
+       if (weather.weather[0].description == "overcast clouds") {
+           weather.weather[0].description = "Mostly Cloudy"  
+       }
+       if (weather.weather[0].description == "scattered clouds") {
+           weather.weather[0].description = "Partly Cloudy"  
+       }
+       
+       console.log(weather)
+       
+       // setup variables to store weather info
+    let t1 = `var temp  = \x22`
+                let t2 = `°  `
                 let t3 = weather.weather[0].description
                 let t4 = Math.round(weather.main.temp)
-                let t5 = ` -  `
+                let t5 = ` `
                 let t6 = `\nvar icon =\x22`
                 let t7 = weatherIcon ();
                 let t8 = `\x22`
+                
+        // write data js variables to file system used in clock.qml
                 
 fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t1, function (err) {
   if (err) throw err;
@@ -118,16 +183,16 @@ fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/conten
                 function (err) {
   if (err) throw err;
 });
-    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t5, function (err) {
-  if (err) throw err;
+   fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t5, function (err) {
+ if (err) throw err;
 });    
     fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t3, function (err) {
   if (err) throw err;
 });
 fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t8,
-                function (err) {
-  if (err) throw err;
-});
+               function (err) {
+if (err) throw err;
+ });
         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t6, function (err) {
   if (err) throw err;
 });    
@@ -137,7 +202,7 @@ fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/conte
         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t8, function (err) {
   if (err) throw err;
 });    
-                
+
 }
 
 function printError(error) {
