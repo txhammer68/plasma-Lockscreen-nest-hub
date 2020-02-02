@@ -1,9 +1,24 @@
+// js node forecast.js retrieve weather forecast for next 5 days weather.com
+// modified weather forecast js to write forecast data to js files used in clock.qml
+// api documentation https://weather.com/swagger-docs/call-for-code
+
 const fs = require('fs')
 var https     = require('https');
-var apiFile  = require('./apiFile'); // apiKey in separate apiFile.js file to protect it :)
+// var apiFile  = require('./apiFile'); // apiKey in separate apiFile.js file to protect it :)
 var zip = `77571`
-var i = 0;
+
 var dow = [{day: ``,maxtemp: 0,mintemp: 0,rain: 0,icon: ``},{day: ``,maxtemp: 0,mintemp: 0,rain: 0,icon: ``},{day: ``,maxtemp: 0,mintemp: 0,rain: 0,icon: ``},{day: ``,maxtemp: 0,mintemp: 0,rain: 0,icon: ``},{day: ``,maxtemp: 0,mintemp: 0,rain: 0,icon: ``},{day: ``,maxtemp: 0,mintemp: 0,rain: 0,icon: ``},{day: ``,maxtemp: 0,mintemp: 0,rain: 0,icon: ``}]
+//setup array for daily forecast
+
+var rain = 0;
+var icon = ``;
+var maxtemp = 0;
+var mintemp = 0;
+var i = 0
+var summary = "";
+
+
+
         
 // function to print out the weather
 function printWeather(forecast) {
@@ -19,11 +34,8 @@ function printError(error) {
   };
 };
 
-
-
-
 function getForecast() {
-  var request = https.get(`https://api.weather.com/v3/wx/forecast/daily/5day?postalKey=your zip code:US&units=e&language=en-US&format=json&apiKey=your key here`, function(response) {
+  var request = https.get(`https://api.weather.com/v3/wx/forecast/daily/5day?postalKey=77571:US&units=e&language=en-US&format=json&apiKey=your key here`, function(response) {
     // console.log(response.statusCode); // for testing to see the status code
     var body = ''; // start with an empty body since node gets responses in chunks
 
@@ -37,152 +49,82 @@ function getForecast() {
         try {
           // Parse the data
           var forecast = JSON.parse(body);
-          // console.log(forecast); // for testing to see the JSON response
-               for (i = 0; i <= 5   ; i++) {
-                var rain = '';
-                var icon = ``;
-         // console.log(forecast.dayOfWeek[0])
-        console.log(forecast.dayOfWeek[i],forecast.narrative[i])
-         // console.log(forecast.dayOfWeek[i],forecast.daypart[0].precipChance[3],forecast.daypart[0].precipChance[4])
-        //console.log(forecast.dayOfWeek[i],forecast.daypart[0].precipChance)
-       
-        if (forecast.dayOfWeek[i] == `Monday`) {
-            
-            if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-               // console.log(forecast.dayOfWeek[i],forecast.daypart[0].dayOrNight[i],rain)
-                
-                    }
-              else  {
-                  icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-               // console.log(forecast.dayOfWeek[i],forecast.daypart[0].dayOrNight[i+1],rain)
+          
+          summary = `var summary = ` + `\x22`+forecast.narrative[0]+`\x22`; // current conditions
+          
+          for (i = 0; i <= 5   ; i++) { //iterate thru the forecast data for each day
                
-              }
-                    
-            
+        if (forecast.dayOfWeek[i] == `Monday`) { //for each day assign forecast data
+            icon = forecast.daypart[0].iconCode[i*2] 
+            rain = forecast.daypart[0].precipChance[i*2];
             dow[i].day = `\nvar day` + i + `=\x22MON\x22`
             dow[i].maxtemp = `\nvar maxtemp` + i + `=\x22`+forecast.temperatureMax[i]+`°`+`\x22`
-            dow[i].mintemp = `\nvar mintemp`  + i + `=\x22` + forecast.temperatureMin[i]+`°`+`\x22`
+            dow[i].mintemp = `\nvar mintemp`  + i + `=\x22` + forecast.temperatureMin[i-1]+`°`+`\x22`
             dow[i].rain = `\nvar rain` + i + `=\x22` + rain+`%`+`\x22`
             dow[i].icon = `\nvar icon` + i +`=\x22` + weatherIcon (icon) +`\x22`
         }
         
         else if  (forecast.dayOfWeek[i] == `Tuesday`) {
-            
-           if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-                    }
-              else  {
-                  icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-                 
-              }
-              
+
+            icon = forecast.daypart[0].iconCode[i*2]
+            rain = forecast.daypart[0].precipChance[i*2];
             dow[i].day = `\nvar day` + i + `=\x22TUE\x22`
             dow[i].maxtemp = `\nvar maxtemp` + i + `=\x22`+forecast.temperatureMax[i]+`°`+`\x22`
-            dow[i].mintemp = `\nvar mintemp`  + i + `=\x22` + forecast.temperatureMin[i]+`°`+`\x22`
+            dow[i].mintemp = `\nvar mintemp`  + i + `=\x22` + forecast.temperatureMin[i-1]+`°`+`\x22`
             dow[i].rain = `\nvar rain` + i + `=\x22` + rain+`%`+`\x22`
             dow[i].icon = `\nvar icon` + i + `=\x22` + weatherIcon (icon) +`\x22`
         }  
         
         else if  (forecast.dayOfWeek[i] == `Wednesday`) {
-           
-            if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-                
-                    }
-              else  {
-                  icon = forecast.daypart[0].iconCode[i*2]
-               rain = forecast.daypart[0].precipChance[i*2];
-               
-              }
-            
-           
+            icon = forecast.daypart[0].iconCode[i*2]
+            rain = forecast.daypart[0].precipChance[i*2];
             dow[i].day = `\nvar day` + i + `= \x22WED\x22`
             dow[i].maxtemp = `\nvar maxtemp` + i + `=\x22`+forecast.temperatureMax[i]+`°`+`\x22`
-            dow[i].mintemp = `\nvar mintemp` + i + `=\x22` + forecast.temperatureMin[i]+`°`+`\x22`
+            dow[i].mintemp = `\nvar mintemp` + i + `=\x22` + forecast.temperatureMin[i-1]+`°`+`\x22`
             dow[i].rain = `\nvar rain` + i + `=\x22` + rain+`%`+`\x22`
             dow[i].icon = `\nvar icon` + i + `=\x22` + weatherIcon (icon) +`\x22`
         } 
-        
+         
         else if  (forecast.dayOfWeek[i] == `Thursday`) {
-           
-            if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-                    }
-              else  {
-                  icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-                
-              }
-            
-            dow[i].day = `\nvar day` + i + `= \x22THUR\x22`
+    
+            icon = forecast.daypart[0].iconCode[i*2]
+            rain = forecast.daypart[0].precipChance[i*2];
+            dow[i].day = `\nvar day` + i + `= \x22THU\x22`
             dow[i].maxtemp = `\nvar maxtemp` + i + `=\x22`+forecast.temperatureMax[i]+`°`+`\x22`
-            dow[i].mintemp = `\nvar mintemp` + i + `=\x22` + forecast.temperatureMin[i]+`°`+`\x22`
+            dow[i].mintemp = `\nvar mintemp` + i + `=\x22` + forecast.temperatureMin[i-1]+`°`+`\x22`
             dow[i].rain = `\nvar rain` + i + `=\x22` + rain+`%`+`\x22`
             dow[i].icon = `\nvar icon` + i + `=\x22` + weatherIcon (icon) +`\x22`
         } 
         else if  (forecast.dayOfWeek[i] == `Friday`) {
-            
-           if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-                    }
-              else  {
-                  icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-               
-              }
+            icon = forecast.daypart[0].iconCode[i*2]
+            rain = forecast.daypart[0].precipChance[i*2];
             dow[i].day = `\nvar day` + i + `= \x22FRI\x22`
             dow[i].maxtemp = `\nvar maxtemp` + i + `=\x22`+forecast.temperatureMax[i]+`°`+`\x22`
-            dow[i].mintemp = `\nvar mintemp` + i + `=\x22` + forecast.temperatureMin[i]+`°`+`\x22`
-            dow[i].rain = `\nvar rain` + i + `=\x22 ` + rain+`%`+`\x22`
+            dow[i].mintemp = `\nvar mintemp` + i + `=\x22` + forecast.temperatureMin[i-1]+`°`+`\x22`
+            dow[i].rain = `\nvar rain` + i + `=\x22` + rain+`%`+`\x22`
             dow[i].icon = `\nvar icon` + i + `=\x22` + weatherIcon (icon) +`\x22`
         }
         else if  (forecast.dayOfWeek[i] == `Saturday`) {
-           
-            if (forecast.daypart[0].dayOrNight[i] == 'D') {
-               icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-               
-                    }
-              else  {
-                 icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-              }
-            
+            icon = forecast.daypart[0].iconCode[i*2]
+            rain = forecast.daypart[0].precipChance[i*2];
             dow[i].day = `\nvar day` + i + `=\x22SAT\x22`
             dow[i].maxtemp = `\nvar maxtemp` + i + `=\x22`+forecast.temperatureMax[i]+`°`+`\x22`
-            dow[i].mintemp = `\nvar mintemp` + i + `=\x22` + forecast.temperatureMin[i]+`°`+`\x22`
+            dow[i].mintemp = `\nvar mintemp` + i + `=\x22` + forecast.temperatureMin[i-1]+`°`+`\x22`
             dow[i].rain = `\nvar rain` + i + `=\x22` + rain+`%`+`\x22`
             dow[i].icon = `\nvar icon` + i + `=\x22` + weatherIcon (icon) +`\x22`
         }
         else if  (forecast.dayOfWeek[i] == `Sunday`) {
-           
-            if (forecast.daypart[0].dayOrNight[i] == 'D') {
-              icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-                
-                    }
-              else  {
-                  icon = forecast.daypart[0].iconCode[i*2]
-                rain = forecast.daypart[0].precipChance[i*2];
-               
-              }
+            icon = forecast.daypart[0].iconCode[i*2]
+            rain = forecast.daypart[0].precipChance[i*2];
             dow[i].day = `\nvar day` + i + `= \x22SUN\x22`
             dow[i].maxtemp = `\nvar maxtemp` + i + `=\x22`+forecast.temperatureMax[i]+`°`+`\x22`
-            dow[i].mintemp = `\nvar mintemp` + i + `=\x22` + forecast.temperatureMin[i]+`°`+`\x22`
-            dow[i].rain = `\nvar rain` + i + `=\x22 ` + rain+`%`+`\x22`
+            dow[i].mintemp = `\nvar mintemp` + i + `=\x22` + forecast.temperatureMin[i-1]+`°`+`\x22`
+            dow[i].rain = `\nvar rain` + i + `=\x22` + rain+`%`+`\x22`
             dow[i].icon = `\nvar icon` + i + `=\x22` + weatherIcon (icon) +`\x22`
         }
-   }
+   }   // end for loop
 
-       function weatherIcon (icon) {
+       function weatherIcon (icon) {  //assign icon url from icon code
         var iconurl=``
         if (icon == 00) {
         iconurl = `../icons/00.png`} 
@@ -284,48 +226,30 @@ function getForecast() {
             iconurl=`../icons/na.png`}
             return iconurl;
         }        
-            //var t1 = dow[i].day
-            //console.log(dow[i])
-            // console.log(forecast.daypart[0].cloudCover)
-            // console.log(forecast)
- 
-         fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[1].day)+`\n`, function (err) {
+        
+        fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,summary, function (err) {
+  if (err) throw err;
+});   // current conditions
+        
+        // write forcast data to qml js variables // skip [0] as it is current day
+        for (i = 1; i <= 5 ; i++) { 
+   
+         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[i].day), function (err) {
   if (err) throw err;
 });
-         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[1].mintemp+`\n`), function (err) {
+         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[i].mintemp), function (err) {
   if (err) throw err;
 });    
-             fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[1].maxtemp+`\n`), function (err) {
+             fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[i].maxtemp), function (err) {
   if (err) throw err;
 });    
-             fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[1].rain+`\n`), function (err) {
+             fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[i].rain), function (err) {
   if (err) throw err;
 });    
-              fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[1].icon+`\n`), function (err) {
+              fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[i].icon), function (err) {
   if (err) throw err;
-});    
-         
-         
-         for (i = 2; i <= 5 ; i++) {
-             
-             fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[i].day)+`\n`, function (err) {
-  if (err) throw err;
-});    
-             fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[i].mintemp+`\n`), function (err) {
-  if (err) throw err;
-});    
-             fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[i].maxtemp+`\n`), function (err) {
-  if (err) throw err;
-});    
-             fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[i].rain+`\n`), function (err) {
-  if (err) throw err;
-});    
-              fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,(dow[i].icon+`\n`), function (err) {
-  if (err) throw err;
-});    
-         }
-         
-         
+});
+}
           // Print the data
           // printWeather(forecast.forecast.txt_forecast.forecastday[0].fcttext);
         } catch(error) {
@@ -340,8 +264,6 @@ function getForecast() {
     });
   });
 
-  
-  
   // Print connection error
   request.on('error', printError);
 
