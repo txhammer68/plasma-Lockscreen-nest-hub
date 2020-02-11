@@ -18,14 +18,14 @@
  */
 
 // custom clock for plasma lockscreen
-// shows weather,email,stocks index
+// shows weather,email,stocks
 
 import QtQuick 2.9
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.5
 import org.kde.plasma.core 2.0
 import "../code/natday.js" as Event
-import "../code/temp.js" as Weather
+// import "../code/temp.js" as Weather
 import "../code/gmail.js" as Gmail
 import "../code/market.js" as Market
 import "../code/forecast.js" as Forecast
@@ -110,27 +110,44 @@ ColumnLayout {
             height:15
         }
         
-     Label {
-     id: info 
-      Layout.preferredWidth :400
-     
+Label {
+    id: info 
+    Layout.preferredWidth :400
+      
      Image {
-       id: current_weather_conditions_icon
+       id: wIcon
+       property var wIconurl:readIconFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt")
        y: -47
+       
+       function readIconFile(fileUrl){  // read icon code from file
+       var xhr = new XMLHttpRequest;
+       xhr.open("GET", fileUrl); // set Method and File
+       xhr.onreadystatechange = function () {
+           if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
+               var response = xhr.responseText;
+               wIconurl  = response;
+               return response;
+           }
+       }
+       xhr.send(); // begin the request
+      // return response;
+   }
        horizontalAlignment: Image.AlignLeft
-       source : Weather.icon
+       asynchronous : true
+       cache: false
+       // source : Weather.icon
+       source: wIconurl
        smooth: true
        sourceSize.width: 48
        sourceSize.height: 48
         }
-           
+
         Text {
         id:current_weather_conditions
-        y: -45
+        y:-45
         x:50
         property var temp:readTempFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt")
         property var desc:readDescFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt")
-        
         
         function readTempFile(fileUrl){     // read current weather temperature from text file
             var xhr = new XMLHttpRequest;
@@ -139,7 +156,6 @@ ColumnLayout {
            if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
                var response = xhr.responseText;
                temp = response
-               //read_txt.temp="46 - "
            }
        }
             xhr.send(); // begin the request
@@ -152,11 +168,9 @@ ColumnLayout {
             if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
                var response = xhr.responseText;
                desc = response
-               //read_txt.desc = "CLEAR"
            }
        }
             xhr.send(); // begin the request
-
    }
         text:"  "+temp+desc
         font.family: "Noto Sans"
@@ -169,24 +183,24 @@ ColumnLayout {
         
         Timer{                  // timer to trigger update for weather temperature
         id: readTemp
-        interval: 31 * 60 * 1000
+        interval: 31 * 60 * 1000 // every 30 minutes
         running: true
         repeat:  true
         onTriggered: read_txt.readTempFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt");
     }
     Timer{
         id: readDesc             // timer to trigger update for weather conditions
-        interval: 31 * 60 * 1000
+        interval: 31 * 60 * 1000   // every 30 minutes
         running: true
         repeat:  true
         onTriggered: read_txt.readDescFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt");
     }
     Timer{
         id: readIcon             // timer to trigger update for weather condition icon
-        interval: 31 * 60 * 1000
+        interval: 31 * 60 * 1000  // every 30 minutes
         running: true
         repeat:  true
-        onTriggered: info.readIconFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt");
+        onTriggered: wIcon.readIconFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt");
     }
         
     Image {
@@ -224,7 +238,7 @@ Label {
    Image {
        id:weather_condition_icon
         y: -90
-        source : Weather.icon
+        source : wIcon.wIconurl
         smooth: true
         sourceSize.width: 48
         sourceSize.height: 48
@@ -234,7 +248,7 @@ Label {
         width: 680
     
     Text {
-        id:weather_conditions_summary
+       id:weather_conditions_summary
        topPadding: -90 
        leftPadding: 60
        text: Forecast.summary
@@ -430,7 +444,6 @@ Label {
         Text { text: " 10Y Yield";color:"whitesmoke";font.bold:true;font.pointSize:18;font.family: "Noto Sans"}
    }
 
-     
     Grid {
         rows: 1
         spacing: 15
@@ -449,7 +462,7 @@ ParallelAnimation {             //animate the info panes fade in and out
         loops: Animation.Infinite
     
     SequentialAnimation {
-        running: true
+        //running: true
         id:a1
        
        PauseAnimation { duration: 25000 }
@@ -459,7 +472,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 1;
             to: 0;
             duration: 1500
-            running: true
+            //running: true
     }
        
         OpacityAnimator {
@@ -467,7 +480,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 0;
             to: 1;
             duration: 1000
-            running: true
+            //running: true
     }
     
      PauseAnimation { duration: 25000}
@@ -477,7 +490,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 1;
             to: 0;
             duration: 1000
-            running: true
+            //running: true
     }
        
         OpacityAnimator {
@@ -485,7 +498,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 0;
             to: 1;
             duration: 1500
-            running: true
+            //running: true
     }
     
      PauseAnimation { duration: 25000}
@@ -495,7 +508,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 1;
             to: 0;
             duration: 1000
-            running: true
+            //running: true
     }
     
         OpacityAnimator {
@@ -504,7 +517,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             to: 1;
             duration: 1500
             //easing.type: Easing.OutCirc
-            running: true
+            //running: true
     }
     PauseAnimation { duration: 15000 }
     
@@ -514,7 +527,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             to: 0;
             duration: 1000
             // easing.type: Easing.InCirc
-            running: true
+            //running: true
     }
     
         OpacityAnimator {
@@ -523,7 +536,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             to: 1;
             duration: 1500
             // easing.type: Easing.OutCirc
-            running: true
+            //running: true
     }
      PauseAnimation { duration: 15000}
     
@@ -533,7 +546,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             to: 0;
             duration: 1000
             // easing.type: Easing.InCirc
-            running: true
+            //running: true
     }
     
      
@@ -543,7 +556,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             to: 1;
             duration: 1500
             // easing.type: Easing.OutnCirc
-            running: true
+            //running: true
     }
   }
 }       
