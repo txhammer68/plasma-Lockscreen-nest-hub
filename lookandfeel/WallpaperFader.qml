@@ -109,12 +109,12 @@ Item {
         
             PropertyChanges {
                 target: wallpaperFader
-                factor: 0
+                factor: 1
             }
-            PropertyChanges {
-                target: clock.shadow
-                opacity: 0
-            }
+           PropertyChanges {
+               target: clock.shadow
+               opacity: 0
+           }
             
             
         },
@@ -128,10 +128,10 @@ Item {
                 target: wallpaperFader
                 factor: 0
             }
-            PropertyChanges {
-                target: clock.shadow
-                opacity: 1
-            }
+          PropertyChanges {
+               target: clock.shadow
+               opacity: 1
+           }
             
         }
     ]

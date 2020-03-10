@@ -78,9 +78,9 @@ PlasmaCore.ColorScope {
         x: parent.x
         y: parent.y
         width: parent.width + 60
-        height: parent.height
+        height: parent.height + 80 
         hoverEnabled: true
-        cursorShape: uiVisible ? Qt.ArrowCursor : Qt.BlankCursor
+        cursorShape: uiVisible ? Qt.ArrowCursor : Qt.BlankCursor // hide cursor
         drag.filterChildren: true
         onPressed: uiVisible = true;
         onPositionChanged: uiVisible = true;
@@ -125,7 +125,7 @@ PlasmaCore.ColorScope {
             }
         }
         
-        Component.onCompleted: PropertyAnimation { id: launchAnimation; target: lockScreenRoot; property: "opacity"; from: 0; to: 1; duration: 1000 }
+        Component.onCompleted: PropertyAnimation { id: launchAnimation; target: lockScreenRoot; property: "opacity"; from: 0; to: 1; duration: 1500 }
 
         states: [
             State {
@@ -158,9 +158,8 @@ PlasmaCore.ColorScope {
             }
         }
 
-        WallpaperFader {
-            anchors.fill: parent
-            state: lockScreenRoot.uiVisible ? "on" : "off"
+       WallpaperFader {
+           anchors.fill: parent
             source: wallpaper
             mainStack: mainStack
             // footer: footer
@@ -172,33 +171,18 @@ PlasmaCore.ColorScope {
             id: clockShadow
             anchors.fill: clock
             source: clock
-            horizontalOffset: 1
-            verticalOffset: 1
-            radius: 10
-            samples: 48
-            spread: 0.4
-            color: Qt.rgba(0, 0, 0, 1)
-            Behavior on opacity {
-                OpacityAnimator {
-                    target: clock;
-                    from: 1;
-                    to: 0;
-                    duration: 500
-                    easing.type: Easing.InOutQuad
-                }
-            }
+            // color: lockScreenUi.lightBackground ?  "black" : "gray" // does not work on dark bg
+            horizontalOffset: .5
+            verticalOffset: .5
+            radius: 8
+            samples: 24
+            spread: 0.3
+           //color: Qt.rgba(0, 0, 0, 1)
+           color: "black"
         }
-        
-   OpacityAnimator on opacity{
-     from: 1
-       to:0
-       duration:500
-      target: clock
-      running:true
-    }
-
         Clock {
             id: clock
+            // opacity: 1
             property Item shadow: clockShadow
             anchors.horizontalCenter: parent.horizontalCenter
             y: (mainBlock.userList.y + mainStack.y)/8 - height/5
@@ -375,18 +359,18 @@ PlasmaCore.ColorScope {
                             NumberAnimation {
                                 target: mainStack
                                 property: "y"
-                                duration: units.longDuration
+                                duration: units.shortDuration
                                 easing.type: Easing.InOutQuad
                             }
                             NumberAnimation {
                                 target: inputPanel
                                 property: "y"
-                                duration: units.longDuration
+                                duration: units.shortDuration
                                 easing.type: Easing.InQuad
                             }
                             OpacityAnimator {
                                 target: inputPanel
-                                duration: units.longDuration
+                                duration: units.shortDuration
                                 easing.type: Easing.InQuad
                             }
                         }

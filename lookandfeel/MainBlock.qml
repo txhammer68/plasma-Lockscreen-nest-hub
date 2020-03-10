@@ -61,7 +61,7 @@ SessionManagementScreen {
             font.pointSize: theme.defaultFont.pointSize + 2
             implicitHeight: 30
             Layout.fillWidth: true
-            opacity: .7
+            opacity: .5
             placeholderText: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Password")
             focus: true
             echoMode: TextInput.Password
@@ -74,7 +74,8 @@ SessionManagementScreen {
             textColor:  "white"
             // placeholderTextColor: passwordFieldOutlined ? "gray" : "gray"
             placeholderTextColor: "gray"
-            passwordCharacter: config.PasswordFieldCharacter == "" ? "●●" : config.PasswordFieldCharacter
+            // passwordCharacter: config.PasswordFieldCharacter == "" ? "●●" : config.PasswordFieldCharacter
+            passwordCharacter: "●●"
             background: Rectangle {
                 radius: 6
                 border.color: "gray"
