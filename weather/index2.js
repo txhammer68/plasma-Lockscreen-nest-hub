@@ -58,44 +58,44 @@ function printWeather(weather) {
 		Math.round(weather.main.temp)
 	}°`;
     function weatherIcon () {
-        var iconurl=`` // assign icon code to file
-        if (weather.weather[0].icon === '01d') {
-        iconurl= `01d.png`} else if (weather.weather[0].icon === '01n') {
-            iconurl=`01n.png`}
+        var iconurl="" // assign icon code to file
+        if (weather.weather[0].icon === "01d") {
+        iconurl= "../icons/01d.png"} else if (weather.weather[0].icon === '01n') {
+            iconurl="../icons/01n.png"}
             else if  (weather.weather[0].icon === '02d') {
-            iconurl=`02d.png`}
+            iconurl="../icons/02d.png"}
         else if  (weather.weather[0].icon === '02n') {
-            iconurl=`02n.png`}
+            iconurl="../icons/02n.png"}
         else if  (weather.weather[0].icon === '03d') {
-            iconurl=`03d.png`}
+            iconurl="../icons/03d.png"}
         else if  (weather.weather[0].icon === '03n') {
-            iconurl=`03n.png`}
+            iconurl="../icons/03n.png"}
             else if  (weather.weather[0].icon === '04n') {
-            iconurl=`04n.png`}
+            iconurl="../icons/04n.png"}
             else if  (weather.weather[0].icon === '04d') {
-            iconurl=`04d.png`}
+            iconurl="../icons/04d.png"}
             else if  (weather.weather[0].icon === '09n') {
-            iconurl=`09n.png`}
+            iconurl="../icons/09n.png"}
             else if  (weather.weather[0].icon === '09d') {
-            iconurl=`09d.png`}
+            iconurl="../icons/09d.png"}
             else if  (weather.weather[0].icon === '10n') {
-            iconurl=`10n.png`}
+            iconurl="../icons/10n.png"}
             else if  (weather.weather[0].icon === '10d') {
-            iconurl=`10d.png`}
+            iconurl="../icons/10d.png"}
             else if  (weather.weather[0].icon === '11n') {
-            iconurl=`11n.png`}
+            iconurl="../icons/11n.png"}
             else if  (weather.weather[0].icon === '11d') {
-            iconurl=`11d.png`}
+            iconurl="../icons/11d.png"}
             else if  (weather.weather[0].icon === '13n') {
-            iconurl=`13n.png`}
+            iconurl="../icons/13n.png"}
             else if  (weather.weather[0].icon === '13d') {
-            iconurl=`13d.png`}
+            iconurl="../icons/13d.png"}
             else if  (weather.weather[0].icon === '50n') {
-            iconurl=`50n.png`}
-            else if  (weather.weather[0].icon === '50d') {
-            iconurl=`50d.png`}
+            iconurl="../icons/50n.png"}
+            else if  (weather.weather[0].icon === "50d") {
+            iconurl="../icons/50d.png"}
             else if  (weather.weather[0].icon === 'na') {
-            iconurl=`na.png`}
+            iconurl="../icons/na.png"}
             return iconurl;
         }
        
@@ -159,30 +159,26 @@ function printWeather(weather) {
        if (weather.weather[0].description == "scattered clouds") {
            weather.weather[0].description = "Partly Cloudy"  
        }
+       if (weather.weather[0].description == "haze") {
+           weather.weather[0].description = "Hazey"  
+       }
        
-       console.log(weather)
+       // console.log(weather)
        
        // setup variables to store weather info
-    let t1 = `var temp  = \x22`
-                let t2 = `°  `
-                let t3 = weather.weather[0].description
-                let t4 = Math.round(weather.main.temp)+`°  `
-                let t5 = ` `
-                let t6 = `\nvar icon =\x22`
-                let t7 = `\x22`+weatherIcon ()+`\x22`;
-                let t8 = `\x22`
+       let t1 = Math.round(weather.main.temp)+`°  `         
+       let t2 = weather.weather[0].description
+       let t3 = weatherIcon ();
                 
-        // write data js variables to file system used in clock.qml
-
-
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt`,t4, function (err) {
+        // write data to js variables on file system used in clock.qml
+fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt`,t1, function (err) {
   if (err) throw err;
 });
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt`,t3, function (err) {
+fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt`,t2, function (err) {
   if (err) throw err;
 });
 
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt`,t7, function (err) {
+fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt`,t3, function (err) {
   if (err) throw err;
 });
     
