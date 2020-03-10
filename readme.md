@@ -83,6 +83,5 @@ ____________
 
 ### TODO:
 _________
-* update temp and email to update dynamically
 * exract image metadata exif for description / location -- good for images from usplash/wallhaven/reddit earthporn
 * idea for kde - allow trusted apps / widgets access to lockscreen
