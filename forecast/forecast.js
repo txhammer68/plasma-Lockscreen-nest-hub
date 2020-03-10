@@ -16,10 +16,7 @@ var maxtemp = 0;
 var mintemp = 0;
 var i = 0
 var summary = "";
-
-
-
-        
+       
 // function to print out the weather
 function printWeather(forecast) {
   var message = 'Your weather forcast is: ' + forecast;
@@ -35,7 +32,7 @@ function printError(error) {
 };
 
 function getForecast() {
-  var request = https.get(`https://api.weather.com/v3/wx/forecast/daily/5day?postalKey=77571:US&units=e&language=en-US&format=json&apiKey=your key here`, function(response) {
+  var request = https.get(`https://api.weather.com/v3/wx/forecast/daily/5day?postalKey=77571:US&units=e&language=en-US&format=json&apiKey=5fedbd808df145cdadbd808df105cd7b`, function(response) {
     // console.log(response.statusCode); // for testing to see the status code
     var body = ''; // start with an empty body since node gets responses in chunks
 
@@ -49,10 +46,9 @@ function getForecast() {
         try {
           // Parse the data
           var forecast = JSON.parse(body);
-          
-          summary = `var summary = ` + `\x22`+forecast.narrative[0]+`\x22`; // current conditions
-          
-          for (i = 0; i <= 5   ; i++) { //iterate thru the forecast data for each day
+         // summary = `var summary = ` + `\x22`+forecast.narrative[0]+`\x22`; // current conditions  
+          summary = forecast.narrative[0]; // current conditions  
+          for (i = 0; i <= 5  ; i++) { //iterate thru the forecast data for each day
                
         if (forecast.dayOfWeek[i] == `Monday`) { //for each day assign forecast data
             icon = forecast.daypart[0].iconCode[i*2] 
@@ -227,9 +223,13 @@ function getForecast() {
             return iconurl;
         }        
         
-        fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,summary, function (err) {
+        fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.txt`,summary, function (err) {
   if (err) throw err;
 });   // current conditions
+        
+        fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`,"", function (err) {
+  if (err) throw err;
+});   // current conditio
         
         // write forcast data to qml js variables // skip [0] as it is current day
         for (i = 1; i <= 5 ; i++) { 
