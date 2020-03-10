@@ -1,0 +1,16 @@
+# updates weather forecast js 
+# sudo systemctl start forecast.service
+# sudo systemctl enable forecast.service
+# sudo systemctl start forecast.timer
+# sudo systemctl enable forecast.timer
+
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=Update weather forecast info
+
+[Service]
+LogLevelMax=2
+Type=simple
+ExecStart=sh /run/media/hammer/Data/projects/node-weather-forecast-command-line-master/forecast.sh

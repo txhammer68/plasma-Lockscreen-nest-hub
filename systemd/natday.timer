@@ -1,5 +1,5 @@
 [Unit]
-Description=runs Naional day calendar update service nightly
+Description=updates event calendar service nightly
  
 [Timer]
 OnCalendar=*-*-* 00:10:00

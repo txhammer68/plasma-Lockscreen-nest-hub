@@ -10,4 +10,4 @@ Description=Update calendar event info
 [Service]
 LogLevelMax=2
 Type=simple
-ExecStart=node /run/media/hammer/Data/projects/nat-day1.js
+ExecStart=sh /run/media/hammer/Data/projects/calendar/natday.sh

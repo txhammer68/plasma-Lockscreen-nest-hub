@@ -1,0 +1,10 @@
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=Update market info weekdays hourly
+
+[Service]
+LogLevelMax=2
+Type=oneshot
+ExecStart=node /run/media/hammer/Data/projects/stocks/index.js

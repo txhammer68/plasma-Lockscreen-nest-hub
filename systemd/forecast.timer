@@ -1,0 +1,12 @@
+[Unit]
+Description=runs weather forecast update service every 1 hours
+ 
+[Timer]
+# OnCalendar=*-*-* 20:05:00
+OnCalendar=00/1:00
+Persistent=true
+OnBootSec=1min
+Unit=forecast.service
+ 
+[Install]
+WantedBy=timers.target
