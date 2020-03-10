@@ -1,8 +1,9 @@
 within the clock.qml edit import statements to refelct your home directory
 
-Clock.qml - import "/home/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js" as Global<br/>
-Clock.qml - import "/home/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js" as Global<br/>
-Clock.qml - import "/home/.local/share/plasma/look-and-feel/DigiTech/contents/code/gmail.js" as Gmail<br/>
+Clock.qml - import "../code/natday.js" as Event<br/>
+Clock.qml - import "../code/gmail.js" as Gmail<br/>
+Clock.qml - import "../code/market.js" as Market<br/>
+Clock.qml - import "../code/forecast.js" as Forecast<br/>
 
 ## Plasma changes
 _____________
