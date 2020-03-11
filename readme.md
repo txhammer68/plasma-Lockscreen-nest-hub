@@ -47,7 +47,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * Edit supplied qml files to change location of JS variables for your system
 * Copy qml files to the new theme folder created
 
-### Testing
+### Testing 
 ___________
 * Test ical event info with > with node natday1.js  will retrieve calendar event and create <br/>
    natday.js variable file used in Clock.qml
