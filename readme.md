@@ -9,6 +9,7 @@ An attempt to get an android type lockscreen <br/>
 Or what i learned using linux for 2 years. <br/>
 
 [![Plasma Lockscreen](lockscreen.png)](https://gofile.io/?c=h7XYA7 "Plasma Lockscreen")
+click image for a short video demo
 
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
