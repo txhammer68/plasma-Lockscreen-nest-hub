@@ -2,13 +2,13 @@
 
 ## Modifications
 * Display unread gmail messages count, current weather temp and conditions
-* Calendar events - national day web ical
+* Calendar events - using any web ical
 * kb/mouse movement, hide clock and status info, show login/password Ui
 
 An attempt to get an android type lockscreen <br/>
 Or what i learned using linux for 2 years. <br/>
 
-[![Plasma Lockscreen](lockscreen.png)](https://gofile.io/?c=bmYlVp "Plasma Lockscreen")
+[![Plasma Lockscreen](lockscreen.png)](https://gofile.io/?c=h7XYA7 "Plasma Lockscreen")
 
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
