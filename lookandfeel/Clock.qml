@@ -50,6 +50,43 @@ ColumnLayout {
     property var gold_symbol: Market.gold_up ? "⏶" : "⏷"
     property var y10_symbol: Market.y10_up ? "⏶" : "⏷"
     
+    
+    function readIconFile(fileUrl){  // read icon code from file
+       var xhr = new XMLHttpRequest;
+       xhr.open("GET", fileUrl); // set Method and File
+       xhr.onreadystatechange = function () {
+           if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
+               var response = xhr.responseText;
+               wIcon.wIconurl  = response;
+           }
+       }
+       xhr.send(); // begin the request
+   }
+   
+   function readTempFile(fileUrl) {     // read current weather temperature from text file
+            var xhr = new XMLHttpRequest;
+            xhr.open("GET", fileUrl); // set Method and File
+            xhr.onreadystatechange = function () {
+           if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
+               var response = xhr.responseText;
+               current_weather_conditions.temp = response
+           }
+       }
+            xhr.send(); // begin the request
+   }
+   
+   function readDescFile(fileUrl) {     // read current weather conditions from text file
+            var xhr = new XMLHttpRequest;
+            xhr.open("GET", fileUrl); // set Method and File
+            xhr.onreadystatechange = function () {
+            if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
+               var response = xhr.responseText;
+               current_weather_conditions.desc = response
+           }
+       }
+            xhr.send(); // begin the request
+   }
+    
     Label {
         lineHeightMode: Text.FixedHeight
         lineHeight: 90
@@ -137,23 +174,11 @@ Label {
        y: -55
        property var wIconurl:readIconFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt")
        Component.onCompleted:readIconFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt")
-       
-       function readIconFile(fileUrl){  // read icon code from file
-       var xhr = new XMLHttpRequest;
-       xhr.open("GET", fileUrl); // set Method and File
-       xhr.onreadystatechange = function () {
-           if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
-               var response = xhr.responseText;
-               wIconurl  = response;
-           }
-       }
-       xhr.send(); // begin the request
-   }
        horizontalAlignment: Image.AlignLeft
        asynchronous : true
        cache: false
        // source : Weather.icon
-       source: wIcon.wIconurl
+       source: wIconurl
        smooth: true
        sourceSize.width: 64
        sourceSize.height: 64
@@ -164,8 +189,8 @@ Label {
         running: true
         repeat:  true
         onTriggered: readIconFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt");
-    }
         }
+    }
 
         Text {
         id:current_weather_conditions
@@ -174,30 +199,6 @@ Label {
         property var temp:readTempFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt")
         property var desc:readDescFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt")
         Component.onCompleted:readTempFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt")
-        
-        function readTempFile(fileUrl) {     // read current weather temperature from text file
-            var xhr = new XMLHttpRequest;
-            xhr.open("GET", fileUrl); // set Method and File
-            xhr.onreadystatechange = function () {
-           if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
-               var response = xhr.responseText;
-               temp = response
-           }
-       }
-            xhr.send(); // begin the request
-   }
-
-        function readDescFile(fileUrl) {     // read current weather conditions from text file
-            var xhr = new XMLHttpRequest;
-            xhr.open("GET", fileUrl); // set Method and File
-            xhr.onreadystatechange = function () {
-            if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
-               var response = xhr.responseText;
-               desc = response
-           }
-       }
-            xhr.send(); // begin the request
-   }
         text:"    "+temp+desc
         font.family: font_style2
         font.pointSize: 22
