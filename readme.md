@@ -53,7 +53,7 @@ ___________
 * Test ical event info with > with node natday1.js  will retrieve calendar event and create <br/>
    natday.js variable file used in Clock.qml
 * Test weather info with > node weather will retrieve temperature info and create temp.js <br/>
-  variable file used in LockScreenUi.qml
+  variable file used in Clock.qml
 * Test gmail count with python3 counter.py - use counter.py provided, <br/>
     will retrieve unread mail count info and create gmail.js 
 * Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/'Your Theme'
@@ -74,11 +74,11 @@ ____________
 
 #### Node JS functions
 * node natday1.js creates file called natday.js which is used in Clock.qml as a variable with import statement
-* node weather creates file called temp.js which is used in LockscreenUi.qml as a variable with import statement
+* node weather creates file called temp.js which is used in Clock.qml as a variable with import statement
 * weather function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
 
 #### Python 3 functions
-* python3 counter.py calls gmail to get unread mail messages and creates a file gmail.js  used in LockscreenUi.qml as a variable with import statement
+* python3 counter.py calls gmail to get unread mail messages and creates a file gmail.js  used in Clock.qml as a variable with import statement
 
 * images used in status area are included, must change path within qml files to reflect location of images
 
