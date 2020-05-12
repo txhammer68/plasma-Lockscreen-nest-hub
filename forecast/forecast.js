@@ -32,7 +32,7 @@ function printError(error) {
 };
 
 function getForecast() {
-  var request = https.get(`https://api.weather.com/v3/wx/forecast/daily/5day?postalKey=77571:US&units=e&language=en-US&format=json&apiKey=5fedbd808df145cdadbd808df105cd7b`, function(response) {
+  var request = https.get(`https://api.weather.com/v3/wx/forecast/daily/5day?postalKey=77571:US&units=e&language=en-US&format=json&apiKey=your key here`, function(response) {
     // console.log(response.statusCode); // for testing to see the status code
     var body = ''; // start with an empty body since node gets responses in chunks
 
@@ -48,6 +48,13 @@ function getForecast() {
           var forecast = JSON.parse(body);
          // summary = `var summary = ` + `\x22`+forecast.narrative[0]+`\x22`; // current conditions  
           summary = forecast.narrative[0]; // current conditions  
+          // summary.innerText = summary.innerText.replace(/[^\s]./, '')
+           // summary=summary.string.substring(start, end)
+           // summary = summary.replace(/^.\s/i, " ");
+           // summary=summary.split(".", 2)
+           summary = summary.substring(summary.indexOf('.')+1);
+           //console.log(summary)
+            
           for (i = 0; i <= 5  ; i++) { //iterate thru the forecast data for each day
                
         if (forecast.dayOfWeek[i] == `Monday`) { //for each day assign forecast data
@@ -223,6 +230,9 @@ function getForecast() {
             return iconurl;
         }        
         
+    var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.txt`, "w");
+    var fd1 = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.js`, "w");
+    
         fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.txt`,summary, function (err) {
   if (err) throw err;
 });   // current conditions
@@ -250,6 +260,10 @@ function getForecast() {
   if (err) throw err;
 });
 }
+
+fs.closeSync( fd );
+fs.closeSync( fd1 );
+
           // Print the data
           // printWeather(forecast.forecast.txt_forecast.forecastday[0].fcttext);
         } catch(error) {
