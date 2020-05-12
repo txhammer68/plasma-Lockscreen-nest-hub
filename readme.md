@@ -43,7 +43,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * modify weather script for your city and change location to write js variable file
    within the nodejs-weather-app-master folder edit index.js and change city name   
     const city = location || 'City Name, State USA';
-* Extract MyBreeze.zip to $home/.local/share/plasma/look-and-feel/MyBreeze/
+* Extract MyBreeze.zip to $home/.local/share/plasma/look-and-feel/MyBreeze/ <br/>
       ** Custom Breeze theme for testing the qml and JS script
 * Copy systemd scripts to systemd folder and start and enable services
 * Using Plasma Look And Feel Explorer create a new LnF theme
