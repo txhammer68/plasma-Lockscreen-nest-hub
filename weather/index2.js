@@ -8,14 +8,8 @@ const fs = require('fs')
 const weatherIcons = require('./icons.json');
 
 const getWeather = async location => {
-	const city = location || 'La Porte, TX USA';
-	const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${
-		api.key
-	}`;
-    
-     //const url = `http://api.openweathermap.org/data/2.5/forecast?id=4704108&units=imperial&appid=${
-	//	api.key
-	//}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=29.669375&lon=-95.064289&units=imperial&appid=${api.key}`;
+	
 	try {
 		const response = await axios.get(url);
 
@@ -171,6 +165,9 @@ function printWeather(weather) {
        let t3 = weatherIcon ();
                 
         // write data to js variables on file system used in clock.qml
+       
+var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt`, "w");
+
 fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt`,t1, function (err) {
   if (err) throw err;
 });
@@ -181,6 +178,8 @@ fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/conten
 fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt`,t3, function (err) {
   if (err) throw err;
 });
+
+fs.closeSync( fd );
     
 }
 function printError(error) {
