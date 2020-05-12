@@ -22,9 +22,13 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 ## Requirements:
 * KDE Plasma 5.15, Node JS server, python3, systemd
 * Node JS server - https://nodejs.dev/
-* Weather function from https://github.com/nahidulhasan/nodejs-weather-app
+* Weather function from https://github.com/nahidulhasan/nodejs-weather-app <br/>
+      * OpenWeather https://openweathermap.org/api
+* Weather forecast from https://github.com/josephjguerra/node-weather-forecast-command-line <br/>
+      * https://www.wunderground.com/signup
 * Python script for gmail https://github.com/akora/gmail-message-counter-python
 * National Day Calendar - https://natdaycal.wordpress.com/
+* Weather Underground developer API key
 * Gmail Oauth https://developers.google.com/gmail/api/quickstart/python
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
       https://userbase.kde.org/Plasma/Create_a_Look_and_Feel_Package
@@ -40,7 +44,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * Install node js server within that folder
 * Install node ical, fs, weather
 * natday1.js is the event info JS, change location to write variable file
-* modify weather script for your city and change location to write js variable file
+* modify weather scripts enter api keys, your city and change location to write js variable file
    within the nodejs-weather-app-master folder edit index.js and change city name   
     const city = location || 'City Name, State USA';
 * Extract MyBreeze.zip to $home/.local/share/plasma/look-and-feel/MyBreeze/ <br/>
@@ -56,8 +60,9 @@ ___________
       /usr/lib/kscreenlocker_greet --testing --theme /home/hammer/.local/share/plasma/look-and-feel/MyBreeze  <br/>
 * Test ical event info with > with node natday1.js  will retrieve calendar event and create <br/>
    natday.js variable file used in Clock.qml
-* Test weather info with > node weather will retrieve temperature info and create temp.js <br/>
+* Test current weather info with > node index.js will retrieve temperature info and create temp.js <br/>
   variable file used in Clock.qml
+  * Test weather forecast with >  node forecast.js <br/>
 * Test gmail count with python3 counter.py - use counter.py provided, <br/>
     will retrieve unread mail count info and create gmail.js 
 * Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/MyBreeze
