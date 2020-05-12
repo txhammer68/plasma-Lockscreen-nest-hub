@@ -25,7 +25,6 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.5
 import org.kde.plasma.core 2.0
 import "../code/natday.js" as Event
-// import "../code/temp.js" as Weather
 import "../code/gmail.js" as Gmail
 import "../code/market.js" as Market
 import "../code/forecast.js" as Forecast
@@ -33,10 +32,9 @@ import "../code/forecast.js" as Forecast
 ColumnLayout {
     spacing : 20
     Layout.preferredWidth : 600
-    //Layout.minimumWidth : 600
-    property var font_color:"whitesmoke"
-    property var font_style1:"Noto Serif"
-    property var font_style2:"Noto Sans"
+    property var font_color:"whitesmoke"    // change font color
+    property var font_style1:"Noto Serif"   // change clock font
+    property var font_style2:"Noto Sans"    // change info status font
     property var dow_color: Market.dow_up ? "green" : "red"
     property var nasdaq_color: Market.nasdaq_up ? "green" : "red"
     property var sp500_color: Market.sp500_up ? "green" : "red"
@@ -51,7 +49,7 @@ ColumnLayout {
     property var y10_symbol: Market.y10_up ? "⏶" : "⏷"
     
     
-    function readIconFile(fileUrl){  // read icon code from file
+    function readIconFile(fileUrl){  // read weather icon code from file
        var xhr = new XMLHttpRequest;
        xhr.open("GET", fileUrl); // set Method and File
        xhr.onreadystatechange = function () {
@@ -87,6 +85,19 @@ ColumnLayout {
             xhr.send(); // begin the request
    }
     
+    
+function readForecastFile(fileUrl){     // read current weather conditions from text file
+            var xhr = new XMLHttpRequest;
+            xhr.open("GET", fileUrl); // set Method and File
+            xhr.onreadystatechange = function () {
+            if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
+               var response = xhr.responseText;
+               current_weather_conditions.forecast = response
+           }
+         }
+            xhr.send(); // begin the request
+       }
+
     Label {
         lineHeightMode: Text.FixedHeight
         lineHeight: 90
@@ -130,9 +141,9 @@ ColumnLayout {
         id:calEvents
         bottomPadding: -25
         text: Event.today
-        //Layout.preferredWidth : 500
+        Layout.preferredWidth : 500
         Layout.fillWidth : false
-        width: 700
+        width: 500
         // Layout.fillWidth: true;
         horizontalAlignment: Text.AlignHCenter
         color: font_color
@@ -143,9 +154,9 @@ ColumnLayout {
         lineHeightMode: Text.FixedHeight
         lineHeight: 40
         font {
-            pointSize: 18 
+            pointSize: 24 
             // family: config.displayFont
-            family: font_style1
+            family: "Ink Free"
             italic:true
             }        
         }
@@ -155,7 +166,7 @@ ColumnLayout {
             Layout.fillWidth: true
             contentItem: Rectangle {
                 implicitWidth: 400
-                implicitHeight: parent.vertical ? 20 : 2
+                implicitHeight: 2
                 color: "gray"
                 antialiasing : true
             }
@@ -177,7 +188,6 @@ Label {
        horizontalAlignment: Image.AlignLeft
        asynchronous : true
        cache: false
-       // source : Weather.icon
        source: wIconurl
        smooth: true
        sourceSize.width: 64
@@ -198,30 +208,43 @@ Label {
         x:50
         property var temp:readTempFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt")
         property var desc:readDescFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt")
-        Component.onCompleted:readTempFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt")
-        text:"    "+temp+desc
+        property var forecast:readForecastFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.txt")
+        Component.onCompleted: {
+            readTempFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt")
+            readDescFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt")
+            readForecastFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.txt")
+        }
+        text:"    "+temp+desc+'\n'+"   "+forecast
         font.family: font_style2
-        font.pointSize: 22
+        font.pointSize: 18
         font.capitalization: Font.Capitalize
         color: font_color
         // color: ColorScope.textColor
         antialiasing : true
         renderType: Text.QtRendering
+        // renderType:Text.NativeRendering
         
         Timer{                  // timer to trigger update for weather temperature
         id: readTemp
         interval: 31* 60 * 1000 // every 30 minutes
         running: true
         repeat:  true
-        onTriggered: current_weather_conditions.readTempFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt")
+        onTriggered: readTempFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt")
     }
     Timer{
         id: readDesc             // timer to trigger update for weather conditions
         interval: 31* 60 * 1000   // every 30 minutes
         running: true
         repeat:  true
-        onTriggered: current_weather_conditions.readDescFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt");
+        onTriggered: readDescFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt");
     }
+    Timer {
+            id: readForecast            // timer to trigger update for weather condition icon
+            interval: 31 * 60 * 1000  // every 60 minutes
+            running: true
+            repeat:  true
+            onTriggered: readForecastFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.txt");
+        }
 }
     
         
@@ -250,67 +273,6 @@ Label {
        renderType: Text.QtRendering
     }
 }
-
-Label {
-        id: info1
-        opacity: 0
-        Layout.preferredWidth :400   
-        wrapMode:Text.Wrap
-        elide: Text.ElideLeft
-        Layout.fillWidth : false
-
-   Image {
-       id:weather_condition_icon
-        y: -95
-        source : wIcon.wIconurl
-        smooth: true
-        sourceSize.width: 64
-        sourceSize.height: 64
-        }
-    Item {
-        id: spacer
-        width: 680
-    }
-    
-    Text {
-       id:weather_conditions_summary
-       property var forecast:readForecastFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.txt")
-       topPadding: -87
-       leftPadding: 65
-       Component.onCompleted:readForecastFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.txt")
-       
-       function readForecastFile(fileUrl){     // read current weather conditions from text file
-            var xhr = new XMLHttpRequest;
-            xhr.open("GET", fileUrl); // set Method and File
-            xhr.onreadystatechange = function () {
-            if(xhr.readyState === XMLHttpRequest.DONE){ // if request_status == DONE
-               var response = xhr.responseText;
-               forecast = response
-           }
-         }
-            xhr.send(); // begin the request
-       }
-       text: "   "+forecast
-       font.family: font_style2
-       font.pointSize: 18
-       color: font_color
-       wrapMode:Text.Wrap
-       elide: Text.ElideLeft
-       Layout.fillWidth : false
-       width: 700
-       renderType: Text.QtRendering
-       antialiasing : true
-      
-        Timer {
-            id: readForecast            // timer to trigger update for weather condition icon
-            interval: 61 * 60 * 1000  // every 60 minutes
-            running: true
-            repeat:  true
-            onTriggered: weather_conditions_summary.readForecastFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.txt");
-        }
-    }
-}
-
 Label {
      id: info2
      opacity: 0
@@ -323,8 +285,8 @@ Label {
         leftPadding: 40
         columnSpacing : 100
         topPadding: -80
-        bottomPadding: 10
-        y: -40
+        bottomPadding: 30
+        y: -10
         Layout.alignment:Text.AlignHCenter
         Text {id:d1;renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;text: Forecast.day1;color:font_color;font.bold:true;font.pointSize:16;font.family: font_style2 }
         Text {id:d2;renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;text: " "+Forecast.day2;color:font_color;font.bold:true;font.pointSize:16;font.family: font_style2 }
@@ -337,7 +299,7 @@ Label {
         id:weather_forecast_icons
         columns: 9
         columnSpacing : 25
-        topPadding: -80
+        topPadding: -60
         leftPadding : 30
                 
     Image { 
@@ -401,18 +363,17 @@ Label {
     
 Grid {
         id:weather_rain_chances
-        //columns: 5
         rows:1
-        //topPadding: 15
-        //columnSpacing : 105
-        rowSpacing :45
-        y: -10
+        topPadding: 10
+        spacing:1
+        // Layout.alignment:Text.AlignHCenter
+        Layout.alignment:Qt.AlignHCenter
         x:50
-        Text { Layout.fillWidth: true;renderType: Text.QtRendering;antialiasing : true;text: " "+Forecast.rain1;color:font_color;font.pointSize:16;font.family: font_style2}
-        Text { Layout.fillWidth: true;renderType: Text.QtRendering;antialiasing : true;text: "                    "+Forecast.rain2;color:font_color;font.pointSize:16;font.family: font_style2}
-        Text { Layout.fillWidth: true;renderType: Text.QtRendering;antialiasing : true;text: "                       "+Forecast.rain3;color:font_color;font.pointSize:16;font.family: font_style2}
-        Text { Layout.fillWidth: true;renderType: Text.QtRendering;antialiasing : true;text: "                     "+Forecast.rain4;color:font_color;font.pointSize:16;font.family: font_style2}
-        Text { Layout.fillWidth: true;renderType: Text.QtRendering;antialiasing : true;text: "                    "+Forecast.rain5;color:font_color;font.pointSize:16;font.family: font_style2}
+        Text {Layout.preferredWidth:16;Layout.fillWidth:true;renderType: Text.QtRendering;antialiasing : true;text: Forecast.rain1;color:font_color;font.pointSize:16;font.family: font_style2}
+        Text {Layout.preferredWidth:16;Layout.fillWidth:true;leftPadding:4;renderType:Text.QtRendering;antialiasing : true;text: "                   "+Forecast.rain2;color:font_color;font.pointSize:16;font.family: font_style2}
+        Text {Layout.preferredWidth:16;Layout.fillWidth:true;leftPadding:4;renderType:Text.QtRendering;antialiasing : true;text: "                       "+Forecast.rain3;color:font_color;font.pointSize:16;font.family: font_style2}
+        Text {Layout.preferredWidth:16;Layout.fillWidth:true;leftPadding:4;renderType:Text.QtRendering;antialiasing : true;text: "                     "+Forecast.rain4;color:font_color;font.pointSize:16;font.family: font_style2} 
+        Text {Layout.preferredWidth:16;Layout.fillWidth:true;leftPadding:4;renderType:Text.QtRendering;antialiasing : true;text: "                    "+Forecast.rain5;color:font_color;font.pointSize:16;font.family: font_style2}
 } 
 
 Grid {
@@ -420,26 +381,26 @@ Grid {
         rows: 1
         rowSpacing : 15
         leftPadding : 30
-        topPadding: 30
+        topPadding: 45
         // y: -20
         Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.mintemp1;color:font_color;font.pointSize:16;font.family: font_style2 }
-        Text {renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
+        Text {id:day1;renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
         Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.maxtemp1;color:font_color;font.pointSize:16;font.family: font_style2 }
         Text {renderType: Text.QtRendering;antialiasing : true;text: "               "}
         Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.mintemp2;color:font_color;font.pointSize:16;font.family: font_style2 }
-        Text {renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
+        Text {id:day2;renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
         Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.maxtemp2;color:font_color;font.pointSize:16;font.family: font_style2 }
         Text {renderType: Text.QtRendering;antialiasing : true;text: "                "}
         Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.mintemp3;color:font_color ;font.pointSize:16;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
+        Text {id:day3;renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
         Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.maxtemp3;color:font_color;font.pointSize:16;font.family: font_style2 }
         Text {renderType: Text.QtRendering;antialiasing : true;text: "                "}
         Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.mintemp4;color:font_color ;font.pointSize:16;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
+        Text {id:day4;renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
         Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.maxtemp4;color:font_color ;font.pointSize:16;font.family: font_style2}
         Text {renderType: Text.QtRendering;antialiasing : true;text: "               "}
         Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.mintemp5;color:font_color ;font.pointSize:16;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
+        Text {id:day5;renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
         Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.maxtemp5;color:font_color ;font.pointSize:16;font.family: font_style2}
 }
      }
@@ -455,29 +416,30 @@ Grid {
         columns: 5
         Layout.alignment:Qt.AlignHCenter
         Layout.preferredWidth : 700
-        y:-160
+        y:-130
         x: 60
-        Text { renderType: Text.QtRendering;antialiasing : true;text: "      DOW";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
+        Text { renderType: Text.QtRendering;antialiasing : true;text: "        DOW";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
         Text { text: "                                         "}
         Text { renderType: Text.QtRendering;antialiasing : true;text: "NASDAQ";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
-        Text { text: "                               "}
+        Text { text: "                            "}
         Text { renderType: Text.QtRendering;antialiasing : true;text: "S&P 500";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
    }
     
    Grid {
         rows: 1
         // spacing: 5
-        y:-130
+        y:-100
         //x: 10
         //Layout.alignment:Qt.AlignHCenter
+        anchors.horizontalCenter: info3.horizontalCenter
         Layout.preferredWidth : 700
         topPadding: 10
         Text {topPadding: -15;renderType: Text.QtRendering;antialiasing : true;text:dow_symbol+" ";color:dow_color;font.pointSize:32;font.family: font_style2}
         Text {renderType: Text.QtRendering;antialiasing : true;text: Market.dow;color:font_color;font.pointSize:18;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:" | "}
+        Text {renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:"  |  "}
         Text {topPadding: -15;renderType: Text.QtRendering;antialiasing : true;text:nasdaq_symbol+" ";color:nasdaq_color;font.pointSize:32;font.family: font_style2}
         Text {renderType: Text.QtRendering;antialiasing : true;text: Market.nasdaq;color:font_color;font.pointSize:18;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:" | "}
+        Text {renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:"  |  "}
         Text {topPadding: -15;renderType: Text.QtRendering;antialiasing : true;text:sp500_symbol+" ";color:sp500_color;font.pointSize:32;font.family: font_style2}
         Text { Layout.fillWidth : true;renderType: Text.QtRendering;antialiasing : true;text: Market.sp500;color:font_color;font.pointSize:18;font.family: font_style2}
     }
@@ -492,7 +454,7 @@ Label {
          id:commidities_info
         columns: 5
         Layout.alignment:Qt.AlignHCenter
-        y:-200
+        y:-170
         x: 50
         Text {renderType: Text.QtRendering;antialiasing : true;text: "          Oil";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
         Text {renderType: Text.QtRendering;antialiasing : true;text: "                                              "}
@@ -504,7 +466,7 @@ Label {
     Grid {
         rows: 1
         spacing: 5
-        y:-175
+        y:-135
         x: 10
         topPadding: 10
         Layout.alignment:Qt.AlignHCenter
@@ -527,7 +489,7 @@ ParallelAnimation {             //animate the info panes fade in and out
         //running: true
         id:a1
        
-       PauseAnimation { duration: 15000 }
+       PauseAnimation { duration: 20000 }
         
         OpacityAnimator {
             target: info;
@@ -537,23 +499,23 @@ ParallelAnimation {             //animate the info panes fade in and out
             //running: true
     }
        
-        OpacityAnimator {
-            target: info1;
-            from: 0;
-            to: 1;
-            duration: 1000
+     //   OpacityAnimator {
+     //       target: info1;
+      //      from: 0;
+      //      to: 1;
+      //      duration: 1000
             //running: true
-    }
+  //  }
     
-     PauseAnimation { duration: 15000}
+   //  PauseAnimation { duration: 20000}
        
-        OpacityAnimator {
-            target: info1;
-            from: 1;
-            to: 0;
-            duration: 1000
+   //     OpacityAnimator {
+    //        target: info1;
+    //        from: 1;
+    //        to: 0;
+    //        duration: 1000
             //running: true
-    }
+   // }
        
         OpacityAnimator {
             target: info2;
@@ -563,7 +525,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             //running: true
     }
     
-     PauseAnimation { duration: 15000}
+     PauseAnimation { duration: 20000}
     
         OpacityAnimator {
             target: info2;
@@ -581,7 +543,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             //easing.type: Easing.OutCirc
             //running: true
     }
-    PauseAnimation { duration: 15000 }
+    PauseAnimation { duration: 20000 }
     
         OpacityAnimator {
             target: info3;
@@ -600,7 +562,7 @@ ParallelAnimation {             //animate the info panes fade in and out
             // easing.type: Easing.OutCirc
             //running: true
     }
-     PauseAnimation { duration: 15000}
+     PauseAnimation { duration:     20000}
     
         OpacityAnimator {
             target: info4;

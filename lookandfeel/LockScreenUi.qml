@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *********************************************************************/
 
-import QtQuick 2.8
+import QtQuick 2.9
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
 import QtGraphicalEffects 1.0
@@ -174,7 +174,7 @@ PlasmaCore.ColorScope {
             // color: lockScreenUi.lightBackground ?  "black" : "gray" // does not work on dark bg
             horizontalOffset: .5
             verticalOffset: .5
-            radius: 8
+            radius: 6   
             samples: 24
             spread: 0.3
            //color: Qt.rgba(0, 0, 0, 1)
