@@ -3,7 +3,7 @@
 ## Modifications
 * Display unread gmail messages count, current weather temp and conditions
 * Calendar events - using any web ical
-* kb/mouse movement, hide clock and status info, show login/password Ui
+* kb/mouse movement, hide clock and status info, show login/password Ui <br/>
 click image for a short video demo
 [![Plasma Lockscreen](lockscreen.png)](https://streamable.com/d5yiyq)
 
