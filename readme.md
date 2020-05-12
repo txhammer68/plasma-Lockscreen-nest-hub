@@ -17,7 +17,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 
 ## Requirements:
 * KDE Plasma 5.15, Node JS server, python3, systemd
-* Node JS server - https://nodejs.dev/{target=_blank}
+* Node JS server - https://nodejs.dev/
 * Weather function from https://github.com/nahidulhasan/nodejs-weather-app <br/>
       * OpenWeather https://openweathermap.org/api
 * Weather forecast from https://github.com/josephjguerra/node-weather-forecast-command-line <br/>
