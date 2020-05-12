@@ -28,7 +28,6 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
       * https://www.wunderground.com/signup
 * Python script for gmail https://github.com/akora/gmail-message-counter-python
 * National Day Calendar - https://natdaycal.wordpress.com/
-* Weather Underground developer API key
 * Gmail Oauth https://developers.google.com/gmail/api/quickstart/python
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
       https://userbase.kde.org/Plasma/Create_a_Look_and_Feel_Package
