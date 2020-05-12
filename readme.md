@@ -60,7 +60,7 @@ ___________
   * Test weather forecast with >  node forecast.js <br/>
 * Test gmail count with python3 counter.py - use counter.py provided, <br/>
     will retrieve unread mail count info and create gmail.js 
-* Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/MyBreeze
+* Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme $HOME/.local/share/plasma/look-and-feel/MyBreeze
 * Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the timers installed above.
 
 ### Notes
