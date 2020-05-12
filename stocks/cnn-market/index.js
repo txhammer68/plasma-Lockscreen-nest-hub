@@ -4,9 +4,7 @@ const fs = require('fs')
 
 // Constants
 const url                  = "http://money.cnn.com/data/markets/"
-const url2                 = "https://money.cnn.com/data/commodities/index.html"
 const col                  = "div.column.double-column > div.column.left-column > "
-const col2                 = "div.column.double-column > div.column.left-column > "
 const wm                   = "> a > span.world-market-"
 
 // Selector Functions
@@ -19,8 +17,7 @@ const germany              = i => nth(3) + "> div > " + nth(2) + "> " + nth(2) +
 const japan                = i => nth(1) + nth(1) + nth(1) + "span.world-market-" + i
 const yield10              = i => col + nth(2) + "> ul > li:nth-child(1) > a > span.column.quote-" + i
 const keyStats             = (n, i) => col + nth(2) + "> ul > li:nth-child(" + i + ") > a > span.column.quote-" + n
-const keyStats2            = (n, i) => col + nth(2) + "> ul > li:nth-child(" + i + ") > a > span.column.commBotRow" + n
-// console.log(keyStats2('col',5))
+
 
 const selector = {
     dow            : dow      ('points'),
@@ -50,190 +47,92 @@ const selector = {
     oilChg         : keyStats ('change', 2),
     gold           : keyStats ('col', 5),
     goldChg        : keyStats ('change', 5)
-}   
+}
 
 const cnnMarket = async () => {
     const d = (await (scrapeIt(url, selector))).data
-    var dow_up=true
-    var nasdaq_up=true
-    var sp500_up=true
-    var oil_up=true
-    var gold_up=true
-    var y10_up=true
-    nfObject = new Intl.NumberFormat('en-US')
-    d.dow = d.dow.replace(/[^\d\.\-]/g, "");  
-    nfObject.format(d.dow)
-    d.dow=Math.round(d.dow)
-    d.nasdaq = d.nasdaq.replace(/[^\d\.\-]/g, "");  
-    nfObject.format(d.nasdaq)
-    d.nasdaq=Math.round(d.nasdaq)
-    d.sp500 = d.sp500.replace(/[^\d\.\-]/g, "");  
-    nfObject.format(d.sp500)
-    d.sp500=Math.round(d.sp500)
-    d.dowChg=nfObject.format(Math.round(d.dowChg))
-    d.dowChg=(d.dowChg<=0?"":"+") + d.dowChg
-    d.nasdaqChg=nfObject.format(Math.round(d.nasdaqChg))
-    d.nasdaqChg=(d.nasdaqChg<=0?"":"+") + d.nasdaqChg
-    d.sp500Chg=nfObject.format(Math.round(d.sp500Chg))
-    d.sp500Chg=(d.sp500Chg<=0?"":"+") + d.sp500Chg
-    var dow1 = (nfObject.format(d.dow) + "     "+d.dowChg)
-    var nasdaq1 = (nfObject.format(d.nasdaq)+"     "+d.nasdaqChg)
-    var sp1 = (nfObject.format(d.sp500)+"     "+d.sp500Chg)
-    var oil1 = (d.oil+"  "+d.oilChg+"%")
-    var gold1 = (d.gold+"  "+d.goldChg+"%")
-    var yield1 = (d.yield10Y + "  "+d.yield10YChg+"%")
    
-    
-    if (Math.sign(d.dowChg)==-1) { 
-        dow_up="false"
-        }
-        else {dow_up="true"}
+   //setup variables to write to fs
    
-   if (Math.sign(d.nasdaqChg)==-1) { 
-        nasdaq_up="false" }
-        else {nasdaq_up="true"}
-        
-    if (Math.sign(d.sp500Chg)==-1) { 
-        sp500_up="false" }
-        else {sp500_up="true"}
-        
-    if (Math.sign(d.oilChg)==-1) { 
-        oil_up="false"}
-        else {oil_up="true"}
-        
-    if (Math.sign(d.goldChg)==-1) { 
-        gold_up="false"}
-        else {gold_up="true"}
-        
-    if (Math.sign(d.yield10YChg)==-1) { 
-        y10_up="false" }
-        else {y10_up="true"}
+   var dow1 = (d.dow + "  "+d.dowChg)
+   var nasdaq1 = (d.nasdaq+"  "+d.nasdaqChg)
+   var sp1 = (d.sp500+"  "+d.sp500Chg)
+   var oil1 = (d.oil+"  "+d.oilChg+"%")
+   var gold1 = (d.gold+"  "+d.goldChg)
+   var yield1 = (d.yield10Y + "  "+d.yield10YChg)
    
-        let t1 = `var dow  = \x22`
-        let t2 = dow1
-        let t3 = `\nvar nasdaq  = \x22`
-        let t4 = nasdaq1
-        let t5 = `  |  \x22`
-        let t6 = `\nvar sp500  = \x22`
-        let t7 = sp1
-        let t8 = `\nvar oil  = \x22`
-        let t9 = oil1
-        let t10 = `\nvar gold  = \x22`
-        let t11 = gold1
-        let t12 = `\x22`
-        let t13 = `\nvar yield10  = \x22`
-        let t14 = yield1
+   let t1 = `var dow  = \x22`
+                let t2 = dow1
+                let t3 = `\nvar nasdaq  = \x22`
+                let t4 = nasdaq1
+                let t5 = `  |  \x22`
+                let t6 = `\nvar sp500  = \x22`
+                let t7 = sp1
+                let t8 = `\nvar oil  = \x22`
+                let t9 = oil1
+                let t10 = `\nvar gold  = \x22`
+                let t11 = gold1
+                let t12 = `\x22`
+                let t13 = `\nvar yield10  = \x22`
+                let t14 = yield1
                 
-        let t1a = `\nvar dow_up  =`
-        let t2b=dow_up
-        
-        let t15 = `\nvar nasdaq_up  = `
-        let t16 = nasdaq_up
-        
-        let t17 = `\nvar sp500_up  =`
-        let t18 = sp500_up
-        
-        let t19 = `\nvar oil_up  =`
-        let t20 = oil_up
-        
-        let t21 = `\nvar gold_up  =`
-        let t22 = gold_up
-        
-        let t23 = `\nvar y10_up  =`
-        let t24 = y10_up
                 
-var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`, "w");
-
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t1, function (err) {
+fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t1, function (err) {
   if (err) throw err;
 });
-
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t2+`\x22`, function (err) {
+    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t2, function (err) {
+  if (err) throw err;
+});     
+    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t5, function (err) {
+  if (err) throw err;
+});    
+    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t3, function (err) {
+  if (err) throw err;
+});    
+    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t4, function (err) {
   if (err) throw err;
 });
-
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t1a, function (err) {
-  if (err) throw err;
-});   
-
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t2b, function (err) {
+fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t5,
+                function (err) {
   if (err) throw err;
 });
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t15, function (err) {
-  if (err) throw err;
-});   
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t16, function (err) {
-  if (err) throw err;
-});  
-
-
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t17, function (err) {
-  if (err) throw err;
-});   
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t18, function (err) {
-  if (err) throw err;
-});  
-
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t19, function (err) {
-  if (err) throw err;
-});   
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t20, function (err) {
-  if (err) throw err;
-});  
-
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t21, function (err) {
-  if (err) throw err;
-});   
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t22, function (err) {
-  if (err) throw err;
-});  
-
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t23, function (err) {
-  if (err) throw err;
-});   
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t24, function (err) {
-  if (err) throw err;
-});  
-
-    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t3, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t6, function (err) {
   if (err) throw err;
 });    
-    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t4+`\x22`, function (err) {
-  if (err) throw err;
-});
-
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t6, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t7, function (err) {
   if (err) throw err;
 });    
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t7, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t12, function (err) {
   if (err) throw err;
 });    
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t12, function (err) {
+         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t8, function (err) {
   if (err) throw err;
 });    
-         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t8, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t9, function (err) {
   if (err) throw err;
 });    
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t9+`\x22`, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t5, function (err) {
   if (err) throw err;
 });    
-         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t10, function (err) {
+         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t10, function (err) {
   if (err) throw err;
 });    
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t11+`\x22`, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t11, function (err) {
   if (err) throw err;
 });    
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t13, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t5, function (err) {
   if (err) throw err;
 });    
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t14, function (err) {
+fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t13, function (err) {
   if (err) throw err;
 });    
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t12, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t14, function (err) {
   if (err) throw err;
 });    
-
-fs.closeSync( fd )
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/market.js`,t12, function (err) {
+  if (err) throw err;
+});    
+   
    
     return  [
         { symbol: "DOW",      value: d.dow,      change: d.dowChg,     changePcnt: d.dowChgPcnt      },
