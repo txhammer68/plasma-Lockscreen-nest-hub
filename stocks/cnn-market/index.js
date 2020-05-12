@@ -60,38 +60,54 @@ const cnnMarket = async () => {
     var oil_up=true
     var gold_up=true
     var y10_up=true
-    var dow1 = (d.dow + "  "+d.dowChg)
-    var nasdaq1 = (d.nasdaq+"  "+d.nasdaqChg)
-    var sp1 = (d.sp500+"  "+d.sp500Chg)
+    nfObject = new Intl.NumberFormat('en-US')
+    d.dow = d.dow.replace(/[^\d\.\-]/g, "");  
+    nfObject.format(d.dow)
+    d.dow=Math.round(d.dow)
+    d.nasdaq = d.nasdaq.replace(/[^\d\.\-]/g, "");  
+    nfObject.format(d.nasdaq)
+    d.nasdaq=Math.round(d.nasdaq)
+    d.sp500 = d.sp500.replace(/[^\d\.\-]/g, "");  
+    nfObject.format(d.sp500)
+    d.sp500=Math.round(d.sp500)
+    d.dowChg=nfObject.format(Math.round(d.dowChg))
+    d.dowChg=(d.dowChg<=0?"":"+") + d.dowChg
+    d.nasdaqChg=nfObject.format(Math.round(d.nasdaqChg))
+    d.nasdaqChg=(d.nasdaqChg<=0?"":"+") + d.nasdaqChg
+    d.sp500Chg=nfObject.format(Math.round(d.sp500Chg))
+    d.sp500Chg=(d.sp500Chg<=0?"":"+") + d.sp500Chg
+    var dow1 = (nfObject.format(d.dow) + "     "+d.dowChg)
+    var nasdaq1 = (nfObject.format(d.nasdaq)+"     "+d.nasdaqChg)
+    var sp1 = (nfObject.format(d.sp500)+"     "+d.sp500Chg)
     var oil1 = (d.oil+"  "+d.oilChg+"%")
     var gold1 = (d.gold+"  "+d.goldChg+"%")
     var yield1 = (d.yield10Y + "  "+d.yield10YChg+"%")
    
-   if (Math.sign(d.dowChg)==-1) { 
-        dow_up=false }
-        else {dow_up=true}
+    
+    if (Math.sign(d.dowChg)==-1) { 
+        dow_up="false"
+        }
+        else {dow_up="true"}
    
    if (Math.sign(d.nasdaqChg)==-1) { 
-        nasdaq_up=false }
-        else {nasdaq_up=true}
+        nasdaq_up="false" }
+        else {nasdaq_up="true"}
         
     if (Math.sign(d.sp500Chg)==-1) { 
-        sp500_up=false }
-        else {sp500q_up=true}
+        sp500_up="false" }
+        else {sp500_up="true"}
         
     if (Math.sign(d.oilChg)==-1) { 
-        oil_up=false }
-        else {oil_up=true}
+        oil_up="false"}
+        else {oil_up="true"}
         
     if (Math.sign(d.goldChg)==-1) { 
-        gold_up=false }
-        else {gold_up=true}
+        gold_up="false"}
+        else {gold_up="true"}
         
     if (Math.sign(d.yield10YChg)==-1) { 
-        y10_up=false }
-        else {y10_up=true}
-   
-   console.log(Math.sign(d.dowChg),dow_up)
+        y10_up="false" }
+        else {y10_up="true"}
    
         let t1 = `var dow  = \x22`
         let t2 = dow1
@@ -126,21 +142,23 @@ const cnnMarket = async () => {
         let t23 = `\nvar y10_up  =`
         let t24 = y10_up
                 
-                
+var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`, "w");
+
 fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t1, function (err) {
   if (err) throw err;
 });
-    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t2+`\x22`, function (err) {
+
+fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t2+`\x22`, function (err) {
   if (err) throw err;
 });
-    
+
 fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t1a, function (err) {
   if (err) throw err;
 });   
+
 fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t2b, function (err) {
   if (err) throw err;
-});  
-
+});
 fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t15, function (err) {
   if (err) throw err;
 });   
@@ -214,6 +232,8 @@ fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/conte
         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/market.js`,t12, function (err) {
   if (err) throw err;
 });    
+
+fs.closeSync( fd )
    
     return  [
         { symbol: "DOW",      value: d.dow,      change: d.dowChg,     changePcnt: d.dowChgPcnt      },
