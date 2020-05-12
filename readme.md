@@ -43,6 +43,8 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * modify weather script for your city and change location to write js variable file
    within the nodejs-weather-app-master folder edit index.js and change city name   
     const city = location || 'City Name, State USA';
+* Extract MyBreeze.zip to $home/.local/share/plasma/look-and-feel/MyBreeze/
+      ** Custom Breeze theme for testing the qml and JS script
 * Copy systemd scripts to systemd folder and start and enable services
 * Using Plasma Look And Feel Explorer create a new LnF theme
 * Edit supplied qml files to change location of JS variables for your system
@@ -56,10 +58,8 @@ ___________
   variable file used in Clock.qml
 * Test gmail count with python3 counter.py - use counter.py provided, <br/>
     will retrieve unread mail count info and create gmail.js 
-* Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/'Your Theme'
+* Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme /home/.local/share/plasma/look-and-feel/MyBreeze
 * Verify SYSTEMD settings in System Settings  > SYSTEMD > TIMERS  - should be a description of the timers installed above.
-* Info on weather temperature and gmail count displayed from before screen locked, 
-   not sure how to update after screen locked.
 
 ### Notes
 ____________
