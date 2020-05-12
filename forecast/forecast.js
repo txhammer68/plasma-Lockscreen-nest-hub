@@ -1,6 +1,7 @@
 // js node forecast.js retrieve weather forecast for next 5 days weather.com
 // modified weather forecast js to write forecast data to js files used in clock.qml
 // api documentation https://weather.com/swagger-docs/call-for-code
+// https://www.wunderground.com/signup for API key
 
 const fs = require('fs')
 var https     = require('https');
