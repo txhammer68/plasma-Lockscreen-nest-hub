@@ -8,6 +8,7 @@ const fs = require('fs')
 const weatherIcons = require('./icons.json');
 
 const getWeather = async location => {
+	
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=29.669375&lon=-95.064289&units=imperial&appid=${api.key}`;
 	
 	try {
@@ -166,16 +167,16 @@ function printWeather(weather) {
                 
         // write data to js variables on file system used in clock.qml
        
-var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt`, "w");
+var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.txt`, "w");
 
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt`,t1, function (err) {
+fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.txt`,t1, function (err) {
   if (err) throw err;
 });
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt`,t2, function (err) {
+fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/desc.txt`,t2, function (err) {
   if (err) throw err;
 });
 
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt`,t3, function (err) {
+fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/icon.txt`,t3, function (err) {
   if (err) throw err;
 });
 

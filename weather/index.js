@@ -7,9 +7,8 @@ const fs = require('fs')
 const weatherIcons = require('./icons.json');
 
 const getWeather = async location => {
-	// const city = location || 'La Porte, TX USA';
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=29.669375&lon=-95.064289&units=imperial&appid=${api.key}`;
-
+	
 	try {
 		const response = await axios.get(url);
 
@@ -166,36 +165,36 @@ function printWeather(weather) {
                 
         // write data js variables to file system used in clock.qml
         
-var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`, "w");
+var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`, "w");
                 
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t1, function (err) {
+fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t1, function (err) {
   if (err) throw err;
 });
-    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t4, function (err) {
+    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t4, function (err) {
   if (err) throw err;
 });      
-    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t2,
+    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t2,
                 function (err) {
   if (err) throw err;
 });
-   fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t5, function (err) {
+   fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t5, function (err) {
  if (err) throw err;
 });    
 
-    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t3, function (err) {
+    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t3, function (err) {
   if (err) throw err;
 });
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t8,
+fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t8,
                function (err) {
 if (err) throw err;
  });
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t6, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t6, function (err) {
   if (err) throw err;
 });    
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t7, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t7, function (err) {
   if (err) throw err;
 });    
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.js`,t8, function (err) {
+        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t8, function (err) {
   if (err) throw err;
 });
 
