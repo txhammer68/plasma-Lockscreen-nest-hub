@@ -5,7 +5,7 @@
 * Calendar events - using any web ical
 * kb/mouse movement, hide clock and status info, show login/password Ui <br/>
 click image for a short video demo
-[![Plasma Lockscreen](lockscreen.png)](https://streamable.com/d5yiyq)
+[![Plasma Lockscreen](lockscreen.png)](https://streamable.com/d5yiyq?target="_blank")
 
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
