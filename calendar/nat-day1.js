@@ -13,19 +13,11 @@ if (day < 10) {//if less then 10 add a leading zero
   }
 
 const today = `${m}${day}`
-// console.log(checkIfToday(today))
-  //console.log(day)
- // console.log(m)
-  // console.log(today)
-  
-// const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-// ical.fromURL('https://calendar.google.com/calendar/ical/9u8jqp3hlt6pe675gie6lf1d9o%40group.calendar.google.com/public/basic.ics', {}, function (err, data) {
-    // ical.parseFile('/run/media/hammer/Data/projects/natday.ics', {}, function (err, data) {
+ 
     var data = ical.parseFile('/run/media/hammer/Data/projects/calendar/myical.ics');
 	for (let d  in data) {
 		if (data.hasOwnProperty(d)) {
 			var ev = data[d];
-            
 			if (data[d].type == 'VEVENT') {
                 var m1 = data[d].start.getMonth()+1
                 var d1 = data[d].start.getDate()
@@ -37,24 +29,20 @@ const today = `${m}${day}`
                 m1 = "0"+m1;            //if less then 10 add a leading zero
                 }
                  
-               // if (`${m1}` == "01" ){ 
-               //  console.log(data[d].dtstart,data[d].summary)
-              //  }
-           //  if (`${data[d].start.getMonth()+1}${data[d].start.getDate()}` == today) { 
                 if (`${m1}${d1}` == today) { 
                 let t1 = `var today  = \x22`
                 let t2 = `\x22`
-                console.log(today,ev.summary);
+                // console.log(today,ev.summary);
                //console.log(`${m1}${d1}`)
                 
-                fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js`,t1, function (err) {
+                fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t1, function (err) {
   if (err) throw err;
 });
-                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js`,ev.summary, function (err) {
+                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,ev.summary, function (err) {
   if (err) throw err;
 });
                 
-                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js`,t2,
+                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t2,
                 function (err) {
   if (err) throw err;
 });
@@ -68,7 +56,7 @@ const today = `${m}${day}`
                 
             }
             
-            else { 
+            else {                  // no event today set to blank to erase yesterdays event
                // console.log(today,m1,d1);
                 let t1 = `var today  = \x22`
                 let t2 = `\x22`
@@ -77,14 +65,14 @@ const today = `${m}${day}`
                  // console.log(today,ev.summary);
                 //  console.log(today,m1,d1); // no event today
                 ev.summary=""
-                fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js`,t1, function (err) {
+                fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t1, function (err) {
   if (err) throw err;
 });
-                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js`,ev.summary, function (err) {
+                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,ev.summary, function (err) {
   if (err) throw err;
 });
                 
-                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/natday.js`,t2,
+                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t2,
                 function (err) {
   if (err) throw err;
 });
