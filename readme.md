@@ -5,7 +5,7 @@
 * Calendar events - using any web ical
 * kb/mouse movement, hide clock and status info, show login/password Ui <br/>
 click image for a short video demo
-[![Plasma Lockscreen](lockscreen.png)](https://streamable.com/d5yiyq?target="_blank")
+[![Plasma Lockscreen](lockscreen.png)](https://streamable.com/d5yiyq)
 
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
@@ -17,7 +17,7 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 
 ## Requirements:
 * KDE Plasma 5.15, Node JS server, python3, systemd
-* Node JS server - https://nodejs.dev/ {:target="_blank"}
+* Node JS server - https://nodejs.dev/{target=_blank}
 * Weather function from https://github.com/nahidulhasan/nodejs-weather-app <br/>
       * OpenWeather https://openweathermap.org/api
 * Weather forecast from https://github.com/josephjguerra/node-weather-forecast-command-line <br/>
