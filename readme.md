@@ -9,21 +9,21 @@ click image for a short video demo
 
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
-this is a hack using local files as JS variables <br/>
-Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens. <br/>
 Using javacript node and python to create JS variables written to file system <br/>
 The JS variables are used within qml losckreen files and systemd scripts to update them. <br/>
-I am not a QML/QT expert, maybe someone with better skills could do this more efficently.
+Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens. <br/>
 
 ## Requirements:
-* KDE Plasma 5.15, Node JS server, python3, systemd
+* KDE Plasma 5.15, Linux 4.x kernel w/ systemd, Node JS server, python3
 * Node JS server - https://nodejs.dev/
+* Python3 https://www.python.org/download/releases/3.0/
 * Weather function from https://github.com/nahidulhasan/nodejs-weather-app <br/>
       * OpenWeather https://openweathermap.org/api
 * Weather forecast from https://github.com/josephjguerra/node-weather-forecast-command-line <br/>
       * https://www.wunderground.com/signup
-* Python script for gmail https://github.com/akora/gmail-message-counter-python
 * National Day Calendar - https://natdaycal.wordpress.com/
+* Stock Market info from CNN Money - 'npm install cnn' <br/>
+* Python script for gmail https://github.com/akora/gmail-message-counter-python
 * Gmail Oauth https://developers.google.com/gmail/api/quickstart/python
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
       https://userbase.kde.org/Plasma/Create_a_Look_and_Feel_Package
@@ -40,8 +40,8 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
 * Install node ical, fs, weather
 * natday1.js is the event info JS, change location to write variable file
 * modify weather scripts enter api keys, your city and change location to write js variable file
-   within the nodejs-weather-app-master folder edit index.js and change city name   
-    const city = location || 'City Name, State USA';
+     * within my github there are modified weather scripts of the originals
+     * use these in place of the ones downloaded from above
 * Extract MyBreeze.zip to $home/.local/share/plasma/look-and-feel/MyBreeze/ <br/>
    ** Custom Breeze theme for testing the qml and JS script
 * Copy systemd scripts to systemd folder and start and enable services
