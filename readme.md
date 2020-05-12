@@ -44,14 +44,16 @@ I am not a QML/QT expert, maybe someone with better skills could do this more ef
    within the nodejs-weather-app-master folder edit index.js and change city name   
     const city = location || 'City Name, State USA';
 * Extract MyBreeze.zip to $home/.local/share/plasma/look-and-feel/MyBreeze/ <br/>
-      ** Custom Breeze theme for testing the qml and JS script
+   ** Custom Breeze theme for testing the qml and JS script
 * Copy systemd scripts to systemd folder and start and enable services
-* Using Plasma Look And Feel Explorer create a new LnF theme
 * Edit supplied qml files to change location of JS variables for your system
 * Copy qml files to the new theme folder created
 
 ### Testing 
 ___________
+* Change global theme to new MyBreeze theme <br/>
+  ** test lockscreen with <br/>
+      /usr/lib/kscreenlocker_greet --testing --theme /home/hammer/.local/share/plasma/look-and-feel/MyBreeze  <br/>
 * Test ical event info with > with node natday1.js  will retrieve calendar event and create <br/>
    natday.js variable file used in Clock.qml
 * Test weather info with > node weather will retrieve temperature info and create temp.js <br/>
@@ -79,8 +81,6 @@ ____________
 
 #### Python 3 functions
 * python3 counter.py calls gmail to get unread mail messages and creates a file gmail.js  used in Clock.qml as a variable with import statement
-
-* images used in status area are included, must change path within qml files to reflect location of images
 
 ### TODO:
 _________
