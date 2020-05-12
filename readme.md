@@ -37,7 +37,7 @@ Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1
       use counter.py provided, instead of one from github
    ** See https://developers.google.com/gmail/api/quickstart/python for more info
 * Install node js server within that folder
-* Install node ical, fs, weather
+* Install node js scripts for ical, fs, weather, cnn
 * natday1.js is the event info JS, change location to write variable file
 * modify weather scripts enter api keys, your city and change location to write js variable file
      * within my github there are modified weather scripts of the originals
