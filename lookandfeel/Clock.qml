@@ -19,6 +19,7 @@
 
 // custom clock for plasma lockscreen
 // shows weather,email,stocks
+// /usr/lib/kscreenlocker_greet --testing --theme $HOME/.local/share/plasma/look-and-feel/DigiTech
 
 import QtQuick 2.9
 import QtQuick.Layouts 1.1
@@ -32,7 +33,7 @@ import "../code/forecast.js" as Forecast
 ColumnLayout {
     spacing : 20
     Layout.preferredWidth : 600
-    property var font_color:"whitesmoke"    // change font color
+    property var font_color:"white"         // change font color
     property var font_style1:"Noto Serif"   // change clock font
     property var font_style2:"Noto Sans"    // change info status font
     property var dow_color: Market.dow_up ? "green" : "red"
@@ -141,9 +142,9 @@ function readForecastFile(fileUrl){     // read current weather conditions from 
         id:calEvents
         bottomPadding: -25
         text: Event.today
-        Layout.preferredWidth : 500
+        Layout.preferredWidth : 550
         Layout.fillWidth : false
-        width: 500
+        width: 550
         // Layout.fillWidth: true;
         horizontalAlignment: Text.AlignHCenter
         color: font_color
@@ -162,6 +163,7 @@ function readForecastFile(fileUrl){     // read current weather conditions from 
         }
         
         ToolSeparator {
+            id:ts
             orientation:Qt.Horizontal
             Layout.fillWidth: true
             contentItem: Rectangle {
@@ -173,16 +175,20 @@ function readForecastFile(fileUrl){     // read current weather conditions from 
         }
         
         Item {              // spacer
+            id:spc1
             height:15
         }
         
 Label {
     id: info 
-    Layout.preferredWidth :400
+    Layout.preferredWidth :620
+    anchors.top:ts.bottom
+    anchors.left:ts.left
       
      Image {
        id: wIcon
-       y: -55
+       anchors.topMargin: 5
+       anchors.top:ts.bottom
        property var wIconurl:readIconFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt")
        Component.onCompleted:readIconFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/icon.txt")
        horizontalAlignment: Image.AlignLeft
@@ -204,8 +210,9 @@ Label {
 
         Text {
         id:current_weather_conditions
-        y:-45
-        x:50
+        anchors.topMargin:5
+        anchors.top:wIcon.top
+        anchors.left:wIcon.right
         property var temp:readTempFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/temp.txt")
         property var desc:readDescFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/desc.txt")
         property var forecast:readForecastFile("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/forecast.txt")
@@ -219,10 +226,8 @@ Label {
         font.pointSize: 18
         font.capitalization: Font.Capitalize
         color: font_color
-        // color: ColorScope.textColor
         antialiasing : true
         renderType: Text.QtRendering
-        // renderType:Text.NativeRendering
         
         Timer{                  // timer to trigger update for weather temperature
         id: readTemp
@@ -250,8 +255,9 @@ Label {
         
     Image {
         id:email_icon
-        y: -55
-        x: 625
+        anchors.topMargin: 5
+        anchors.top:wIcon.top
+        anchors.left:info.right
         source: "../icons/email3.png"
         // source: "//usr/share/icons/breeze-dark/actions/24/gnumeric-link-email.svg"
         smooth: true
@@ -261,16 +267,17 @@ Label {
       
       Text {
         id:email_count
-        y: -50
-        x: 675
+        anchors.topMargin: 5
+        anchors.leftMargin:5
+        anchors.top:wIcon.top
+        anchors.left:email_icon.right
         text: Gmail.count
         font.family: font_style2
         font.bold:true
         font.pointSize:18
-       // color: ColorScope.textColor
-       color: font_color
-       antialiasing : true
-       renderType: Text.QtRendering
+        color: font_color
+        antialiasing : true
+        renderType: Text.QtRendering
     }
 }
 Label {
@@ -278,170 +285,123 @@ Label {
      opacity: 0
      Layout.preferredWidth :700
      Layout.alignment:Qt.AlignHCenter
+     anchors.top:ts.bottom
+     anchors.left:ts.left
 
-       Grid {
-        id:weather_forecast_5_days
+     Grid {
         columns: 5
-        leftPadding: 40
-        columnSpacing : 100
-        topPadding: -80
-        bottomPadding: 30
-        y: -10
-        Layout.alignment:Text.AlignHCenter
-        Text {id:d1;renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;text: Forecast.day1;color:font_color;font.bold:true;font.pointSize:16;font.family: font_style2 }
-        Text {id:d2;renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;text: " "+Forecast.day2;color:font_color;font.bold:true;font.pointSize:16;font.family: font_style2 }
-        Text {id:d3;renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;text: "  "+Forecast.day3;color:font_color;font.bold:true;font.pointSize:16;font.family: font_style2 }
-        Text {id:d4;renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;text: " "+Forecast.day4;color:font_color;font.bold:true;font.pointSize:16;font.family: font_style2 }
-        Text {id:d5;renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;text: "  "+Forecast.day5;color:font_color;font.bold:true;font.pointSize:16;font.family: font_style2 }
-    }
-
-    Grid {
-        id:weather_forecast_icons
-        columns: 9
-        columnSpacing : 25
-        topPadding: -60
-        leftPadding : 30
-                
-    Image { 
-        source : Forecast.icon1
-        smooth: true
-        sourceSize.width: 64
-        sourceSize.height: 64
-    }
-    Image {
-        source : "../icons/blank.png"
-        smooth: true
-        sourceSize.width: 36
-        sourceSize.height: 36
+        columnSpacing : 200
+        anchors.top:info2.bottom
+        anchors.left:info2.left
+        anchors.leftMargin:30
+        Text {id:d1;text:Forecast.day1;width:120;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+        Image {
+            id:im1;
+            anchors.left:d1.left
+            anchors.top:d1.bottom
+            anchors.topMargin: 5
+            source : Forecast.icon1
+            smooth: true
+            sourceSize.width: 64
+            sourceSize.height: 64
         }
+    Text {id:d2;width:140; leftPadding:45;anchors.left:d1.right;text: Forecast.day2;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
     Image {
+        id:im2;
+        anchors.top:d2.bottom
+        anchors.topMargin: 5
+        anchors.horizontalCenter:d2.horizontalCenter
         source : Forecast.icon2
         smooth: true
         sourceSize.width: 64
         sourceSize.height: 64
-    }
-    Image {
-        source : "../icons/blank.png"
-        smooth: true
-        sourceSize.width: 36
-        sourceSize.height: 36
         }
+    Text {id:d3;width:140; leftPadding:45;anchors.left:d2.right;text: Forecast.day3;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
     Image {
-        source : Forecast.icon3
+        id:im3;
+        anchors.horizontalCenter:d3.horizontalCenter
+        anchors.top:d3.bottom
+        anchors.topMargin: 5
+        source :Forecast.icon3
         smooth: true
         sourceSize.width: 64
         sourceSize.height: 64
-}
-    Image {
-        source : "../icons/blank.png"
-        smooth: true
-        sourceSize.width: 36
-        sourceSize.height: 36
         }
-
+    Text {id:d4;width:140; leftPadding:45;anchors.left:d3.right;text: Forecast.day4;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
     Image {
+        id:im4;
+        anchors.top:d4.bottom
+        anchors.topMargin: 5
+        anchors.horizontalCenter:d4.horizontalCenter
         source : Forecast.icon4
         smooth: true
         sourceSize.width: 64
         sourceSize.height: 64
-}
-    Image {
-        source : "../icons/blank.png"
-        smooth: true
-        sourceSize.width: 36
-        sourceSize.height: 36
         }
-
+    Text {id:d5;width:140; leftPadding:45;anchors.left:d4.right;text: Forecast.day5;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
     Image {
-        source : Forecast.icon5
+        id:im5;
+        anchors.top:d5.bottom
+        anchors.topMargin: 5
+        anchors.horizontalCenter:d5.horizontalCenter
+        source :Forecast.icon5
         smooth: true
         sourceSize.width: 64
         sourceSize.height: 64
-}
-    }
+        }
+    Text { id:r1;text: Forecast.rain1;anchors.top:im1.bottom;anchors.horizontalCenter:im1.horizontalCenter;topPadding:5;bottomPadding:5;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:r2;text: Forecast.rain2;anchors.top:im2.bottom;anchors.horizontalCenter:im2.horizontalCenter;topPadding:5;bottomPadding:5;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:r3;text: Forecast.rain3;anchors.top:im3.bottom;anchors.horizontalCenter:im3.horizontalCenter;topPadding:5;bottomPadding:5;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:r4;text: Forecast.rain4;anchors.top:im4.bottom;anchors.horizontalCenter:im4.horizontalCenter;topPadding:5;bottomPadding:5;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:r5;text: Forecast.rain5;anchors.top:im5.bottom;anchors.horizontalCenter:im5.horizontalCenter;topPadding:5;bottomPadding:5;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:f1;text: Forecast.mintemp1;anchors.top:r1.bottom;anchors.right:f1m.left;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:f1m;text: " | ";anchors.top:f1.top;anchors.horizontalCenter:im1.horizontalCenter;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { text: Forecast.maxtemp1;anchors.top:f1.top;anchors.left:f1m.right;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:f2;text: Forecast.mintemp2;anchors.top:r2.bottom;anchors.right:f2m.left;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:f2m;text: " | ";anchors.top:r2.bottom;anchors.horizontalCenter:im2.horizontalCenter;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { text: Forecast.maxtemp2;anchors.top:f2.top;anchors.left:f2m.right;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:f3;text: Forecast.mintemp3;anchors.top:r3.bottom;anchors.right:f3m.left;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:f3m;text: " | ";anchors.top:r3.bottom;anchors.horizontalCenter:im3.horizontalCenter;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { text: Forecast.maxtemp3;anchors.top:f3.top;anchors.left:f3m.right;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:f4;text: Forecast.mintemp4;anchors.top:r4.bottom;anchors.right:f4m.left;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:f4m;text: " | ";anchors.top:r4.bottom;anchors.horizontalCenter:im4.horizontalCenter;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { text: Forecast.maxtemp4;anchors.top:f4.top;anchors.left:f4m.right;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:f5;text: Forecast.mintemp5;anchors.top:r5.bottom;anchors.right:f5m.left;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { id:f5m;text: " | ";anchors.top:r5.bottom;anchors.horizontalCenter:im5.horizontalCenter;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
+    Text { text: Forecast.maxtemp5;anchors.top:f5.top;anchors.left:f5m.right;font.pointSize:16;font.family: font_style2;color: font_color;antialiasing : true;renderType: Text.QtRendering}
     
-    
-Grid {
-        id:weather_rain_chances
-        rows:1
-        topPadding: 10
-        spacing:1
-        // Layout.alignment:Text.AlignHCenter
-        Layout.alignment:Qt.AlignHCenter
-        x:50
-        Text {Layout.preferredWidth:16;Layout.fillWidth:true;renderType: Text.QtRendering;antialiasing : true;text: Forecast.rain1;color:font_color;font.pointSize:16;font.family: font_style2}
-        Text {Layout.preferredWidth:16;Layout.fillWidth:true;leftPadding:4;renderType:Text.QtRendering;antialiasing : true;text: "                   "+Forecast.rain2;color:font_color;font.pointSize:16;font.family: font_style2}
-        Text {Layout.preferredWidth:16;Layout.fillWidth:true;leftPadding:4;renderType:Text.QtRendering;antialiasing : true;text: "                       "+Forecast.rain3;color:font_color;font.pointSize:16;font.family: font_style2}
-        Text {Layout.preferredWidth:16;Layout.fillWidth:true;leftPadding:4;renderType:Text.QtRendering;antialiasing : true;text: "                     "+Forecast.rain4;color:font_color;font.pointSize:16;font.family: font_style2} 
-        Text {Layout.preferredWidth:16;Layout.fillWidth:true;leftPadding:4;renderType:Text.QtRendering;antialiasing : true;text: "                    "+Forecast.rain5;color:font_color;font.pointSize:16;font.family: font_style2}
-} 
-
-Grid {
-        id:weather_temperatures_high_lows
-        rows: 1
-        rowSpacing : 15
-        leftPadding : 30
-        topPadding: 45
-        // y: -20
-        Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.mintemp1;color:font_color;font.pointSize:16;font.family: font_style2 }
-        Text {id:day1;renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.maxtemp1;color:font_color;font.pointSize:16;font.family: font_style2 }
-        Text {renderType: Text.QtRendering;antialiasing : true;text: "               "}
-        Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.mintemp2;color:font_color;font.pointSize:16;font.family: font_style2 }
-        Text {id:day2;renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.maxtemp2;color:font_color;font.pointSize:16;font.family: font_style2 }
-        Text {renderType: Text.QtRendering;antialiasing : true;text: "                "}
-        Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.mintemp3;color:font_color ;font.pointSize:16;font.family: font_style2}
-        Text {id:day3;renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.maxtemp3;color:font_color;font.pointSize:16;font.family: font_style2 }
-        Text {renderType: Text.QtRendering;antialiasing : true;text: "                "}
-        Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.mintemp4;color:font_color ;font.pointSize:16;font.family: font_style2}
-        Text {id:day4;renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.maxtemp4;color:font_color ;font.pointSize:16;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: "               "}
-        Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.mintemp5;color:font_color ;font.pointSize:16;font.family: font_style2}
-        Text {id:day5;renderType: Text.QtRendering;antialiasing : true;text: " | ";color:font_color;font.pointSize:14;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;Layout.fillWidth: true;horizontalAlignment: Text.AlignHCenter;text: Forecast.maxtemp5;color:font_color ;font.pointSize:16;font.family: font_style2}
+  }
 }
-     }
-     
+  
   Label {
         id: info3
         opacity: 0
         Layout.preferredWidth : 700
         Layout.alignment: Qt.AlignHCenter
+        anchors.top:info2.bottom
+        anchors.left:info2.left
+        anchors.topMargin:-30
            
    Grid {
         id:stock_market_info
-        columns: 5
+        columns: 3
         Layout.alignment:Qt.AlignHCenter
         Layout.preferredWidth : 700
-        y:-130
-        x: 60
-        Text { renderType: Text.QtRendering;antialiasing : true;text: "        DOW";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
-        Text { text: "                                         "}
-        Text { renderType: Text.QtRendering;antialiasing : true;text: "NASDAQ";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
-        Text { text: "                            "}
-        Text { renderType: Text.QtRendering;antialiasing : true;text: "S&P 500";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
-   }
-    
-   Grid {
-        rows: 1
-        // spacing: 5
-        y:-100
-        //x: 10
-        //Layout.alignment:Qt.AlignHCenter
-        anchors.horizontalCenter: info3.horizontalCenter
-        Layout.preferredWidth : 700
-        topPadding: 10
-        Text {topPadding: -15;renderType: Text.QtRendering;antialiasing : true;text:dow_symbol+" ";color:dow_color;font.pointSize:32;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: Market.dow;color:font_color;font.pointSize:18;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:"  |  "}
-        Text {topPadding: -15;renderType: Text.QtRendering;antialiasing : true;text:nasdaq_symbol+" ";color:nasdaq_color;font.pointSize:32;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: Market.nasdaq;color:font_color;font.pointSize:18;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:"  |  "}
-        Text {topPadding: -15;renderType: Text.QtRendering;antialiasing : true;text:sp500_symbol+" ";color:sp500_color;font.pointSize:32;font.family: font_style2}
-        Text { Layout.fillWidth : true;renderType: Text.QtRendering;antialiasing : true;text: Market.sp500;color:font_color;font.pointSize:18;font.family: font_style2}
+        anchors.top:info3.bottom
+        anchors.left:info3.left
+        anchors.leftMargin:20
+        Text {id:dow;leftPadding:75;width:250;renderType: Text.QtRendering;antialiasing : true;text:" DOW ";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
+        Text {id:nasdaq;width:250;leftPadding:30;anchors.left:dow.right;renderType:Text.QtRendering;antialiasing : true;text:"  NASDAQ ";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
+        Text {id:sp500;width:250;leftPadding:20;anchors.left:nasdaq.right;renderType:Text.QtRendering;antialiasing : true;text:" S&P 500";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
+        Text {id:dow1;anchors.top:dow.bottom;anchors.left:dow.left;leftPadding:-10;topPadding:-5;renderType:Text.QtRendering;antialiasing : true;text:dow_symbol+" ";color:dow_color;font.pointSize:32;font.family: font_style2
+        Text {id:dow2;anchors.top:dow.bottom;anchors.left:dow1.right;topPadding:5;renderType:Text.QtRendering;antialiasing : true;text: Market.dow;color:font_color;font.pointSize:18;font.family: font_style2}
+        Text {id:dow3;anchors.top:dow.bottom;anchors.left:dow2.right;topPadding:5;renderType:Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:"     |     ";leftPadding:5}
+        Text {id:nasdaq1;anchors.top:nasdaq.bottom;anchors.left:dow3.right;topPadding:-5;renderType:Text.QtRendering;antialiasing : true;text:nasdaq_symbol+" ";color:nasdaq_color;font.pointSize:32;font.family: font_style2}
+        Text {id:nasdaq2;anchors.top:nasdaq.bottom;anchors.left:nasdaq1.right;topPadding:5;renderType:Text.QtRendering;antialiasing : true;text: Market.nasdaq;color:font_color;font.pointSize:18;font.family: font_style2}
+        Text {id:nasdaq3;anchors.top:nasdaq.bottom;anchors.left:nasdaq2.right;topPadding:5;renderType:Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:"     |     ";leftPadding:5}
+        Text {id:sp500a;anchors.top:sp500.bottom;anchors.left:nasdaq3.right;topPadding:-5;renderType:Text.QtRendering;antialiasing : true;text:sp500_symbol+" ";color:sp500_color;font.pointSize:32;font.family: font_style2}
+        Text {id:sp500b;anchors.top:sp500.bottom;anchors.left:sp500a.right;topPadding:5;renderType:Text.QtRendering;antialiasing : true;text: Market.sp500;color:font_color;font.pointSize:18;font.family: font_style2}
+        }
     }
 }
 Label {
@@ -449,44 +409,36 @@ Label {
         opacity: 0
         Layout.preferredWidth : 700
         Layout.alignment:Qt.AlignHCenter
+        anchors.top:info3.bottom
+        anchors.left:info3.left
+        anchors.topMargin:-30
      
      Grid {
          id:commidities_info
         columns: 5
         Layout.alignment:Qt.AlignHCenter
-        y:-170
-        x: 50
-        Text {renderType: Text.QtRendering;antialiasing : true;text: "          Oil";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: "                                              "}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: "  Gold";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: "                                        "}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: "   10Y Yield";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
+        anchors.top:info4.bottom
+        anchors.left:info4.left
+        anchors.leftMargin:20
+        Text {id:oil;leftPadding:65;width:250;renderType: Text.QtRendering;antialiasing : true;text: " Oil ";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
+        Text {id:gold;width:250;leftPadding:15;anchors.left:oil.right;renderType: Text.QtRendering;antialiasing : true;text: " Gold";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
+        Text {id:y10;width:200;leftPadding:-10;anchors.left:gold.right;renderType: Text.QtRendering;antialiasing : true;text: "10Y Yield";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
+        Text {id:oil1;anchors.top:oil.bottom;anchors.left:oil.left;leftPadding:-10;topPadding:-5;renderType: Text.QtRendering;antialiasing : true;text:oil_symbol;color:oil_color;font.pointSize:32;font.family: font_style2}
+        Text {id:oil2;anchors.top:oil.bottom;anchors.left:oil1.right;leftPadding:5;topPadding:5;renderType: Text.QtRendering;antialiasing : true; text: Market.oil;color:font_color;font.pointSize:18;font.family: font_style2}
+        Text {id:oil3;anchors.top:oil.bottom;anchors.left:oil2.right;renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:" | ";leftPadding:5}
+        Text {id:gold1;anchors.top:gold.bottom;anchors.left:gold.left;leftPadding:-30;topPadding:-5;renderType: Text.QtRendering;antialiasing : true;text:gold_symbol;color:gold_color;font.pointSize:32;font.family: font_style2}
+        Text {id:gold2;anchors.top:gold.bottom;anchors.left:gold1.right;leftPadding:5;topPadding:5;renderType: Text.QtRendering;antialiasing : true; text: Market.gold;color:font_color;font.pointSize:18;font.family: font_style2}
+        Text {id:gold3;anchors.top:gold.bottom;anchors.left:gold2.right;renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:" | ";leftPadding:5}
+        Text {id:y10a;anchors.top:y10.bottom;anchors.left:gold3.right;leftPadding:10;topPadding:-5;renderType: Text.QtRendering;antialiasing : true;text:y10_symbol;color:y10_color;font.pointSize:32;font.family: font_style2}
+        Text {id:y10b;anchors.top:y10.bottom;anchors.left:y10a.right;leftPadding:5;topPadding:8;renderType: Text.QtRendering;antialiasing : true;text: Market.yield10;color:font_color;font.pointSize:18;font.family: font_style2}
    }
-
-    Grid {
-        rows: 1
-        spacing: 5
-        y:-135
-        x: 10
-        topPadding: 10
-        Layout.alignment:Qt.AlignHCenter
-        Text {topPadding: -15;renderType: Text.QtRendering;antialiasing : true;text:oil_symbol;color:oil_color;font.pointSize:32;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true; text: Market.oil;color:font_color;font.pointSize:18;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:" | "}
-        Text {topPadding: -15;renderType: Text.QtRendering;antialiasing : true;text:gold_symbol;color:gold_color;font.pointSize:32;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true; text: Market.gold;color:font_color;font.pointSize:18;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:" | "}
-        Text {topPadding: -15;renderType: Text.QtRendering;antialiasing : true;text:y10_symbol;color:y10_color;font.pointSize:32;font.family: font_style2}
-        Text {renderType: Text.QtRendering;antialiasing : true;text: Market.yield10;color:font_color;font.pointSize:18;font.family: font_style2}
-     }
-     }
+}
 
 ParallelAnimation {             //animate the info panes fade in and out
         running: true
         loops: Animation.Infinite
     
     SequentialAnimation {
-        //running: true
         id:a1
        
        PauseAnimation { duration: 20000 }
@@ -496,33 +448,14 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 1;
             to: 0;
             duration: 1500
-            //running: true
     }
        
-     //   OpacityAnimator {
-     //       target: info1;
-      //      from: 0;
-      //      to: 1;
-      //      duration: 1000
-            //running: true
-  //  }
-    
-   //  PauseAnimation { duration: 20000}
-       
-   //     OpacityAnimator {
-    //        target: info1;
-    //        from: 1;
-    //        to: 0;
-    //        duration: 1000
-            //running: true
-   // }
        
         OpacityAnimator {
             target: info2;
             from: 0;
             to: 1;
             duration: 1500
-            //running: true
     }
     
      PauseAnimation { duration: 20000}
@@ -532,7 +465,6 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 1;
             to: 0;
             duration: 1000
-            //running: true
     }
     
         OpacityAnimator {
@@ -540,8 +472,6 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 0;
             to: 1;
             duration: 1500
-            //easing.type: Easing.OutCirc
-            //running: true
     }
     PauseAnimation { duration: 20000 }
     
@@ -550,8 +480,6 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 1;
             to: 0;
             duration: 1000
-            // easing.type: Easing.InCirc
-            //running: true
     }
     
         OpacityAnimator {
@@ -559,8 +487,6 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 0;
             to: 1;
             duration: 1500
-            // easing.type: Easing.OutCirc
-            //running: true
     }
      PauseAnimation { duration:     20000}
     
@@ -569,8 +495,6 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 1;
             to: 0;
             duration: 1000
-            // easing.type: Easing.InCirc
-            //running: true
     }
     
      
@@ -579,8 +503,6 @@ ParallelAnimation {             //animate the info panes fade in and out
             from: 0;
             to: 1;
             duration: 1500
-            // easing.type: Easing.OutnCirc
-            //running: true
     }
   }
 }       
