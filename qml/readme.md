@@ -27,4 +27,4 @@ Clock.qml - import "../code/forecast.js" as Forecast<br/>
 Modified Clock.qml to remove AMPM, as plasma only allows 24 hour clock or AMPM, added calendar event import variable <br/>
 Modified LockscreenUi.qml  to make clock and header status disappear / login info appear when mouse/kb movement detected <br/>
 Modified UserDelegate.qml to remove circle around user avatar, enlarged avatar and font <br/>
-Modified WallpaperFader.qml to make the clock and header status disappear when the mouse/kb movement detected.
+Modified WallpaperFader.qml to make the clock and header status disappear when the mouse/kb movement detected
