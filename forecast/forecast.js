@@ -231,33 +231,33 @@ function getForecast() {
             return iconurl;
         }        
         
-    var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.txt`, "w");
-    var fd1 = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`, "w");
+    var fd = fs.openSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.txt`, "w");
+    var fd1 = fs.openSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`, "w");
     
-        fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.txt`,summary, function (err) {
+        fs.writeFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.txt`,summary, function (err) {
   if (err) throw err;
 });   // current conditions
         
-        fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,"", function (err) {
+        fs.writeFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,"", function (err) {
   if (err) throw err;
 });   // current conditio
         
         // write forcast data to qml js variables // skip [0] as it is current day
         for (i = 1; i <= 5 ; i++) { 
    
-         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,(dow[i].day), function (err) {
+         fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,(dow[i].day), function (err) {
   if (err) throw err;
 });
-         fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,(dow[i].mintemp), function (err) {
+         fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,(dow[i].mintemp), function (err) {
   if (err) throw err;
 });    
-             fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,(dow[i].maxtemp), function (err) {
+             fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,(dow[i].maxtemp), function (err) {
   if (err) throw err;
 });    
-             fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,(dow[i].rain), function (err) {
+             fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,(dow[i].rain), function (err) {
   if (err) throw err;
 });    
-              fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,(dow[i].icon), function (err) {
+              fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/forecast.js`,(dow[i].icon), function (err) {
   if (err) throw err;
 });
 }
