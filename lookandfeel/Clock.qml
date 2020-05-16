@@ -142,9 +142,9 @@ function readForecastFile(fileUrl){     // read current weather conditions from 
         id:calEvents
         bottomPadding: -25
         text: Event.today
-        Layout.preferredWidth : 550
+        Layout.preferredWidth : 600
         Layout.fillWidth : false
-        width: 550
+        width: 600
         // Layout.fillWidth: true;
         horizontalAlignment: Text.AlignHCenter
         color: font_color
@@ -422,15 +422,15 @@ Label {
         anchors.leftMargin:20
         Text {id:oil;leftPadding:65;width:250;renderType: Text.QtRendering;antialiasing : true;text: " Oil ";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
         Text {id:gold;width:250;leftPadding:15;anchors.left:oil.right;renderType: Text.QtRendering;antialiasing : true;text: " Gold";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
-        Text {id:y10;width:200;leftPadding:-10;anchors.left:gold.right;renderType: Text.QtRendering;antialiasing : true;text: "10Y Yield";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
+        Text {id:y10;width:200;leftPadding:-15;anchors.left:gold.right;renderType: Text.QtRendering;antialiasing : true;text: "10Y Yield";color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2}
         Text {id:oil1;anchors.top:oil.bottom;anchors.left:oil.left;leftPadding:-10;topPadding:-5;renderType: Text.QtRendering;antialiasing : true;text:oil_symbol;color:oil_color;font.pointSize:32;font.family: font_style2}
-        Text {id:oil2;anchors.top:oil.bottom;anchors.left:oil1.right;leftPadding:5;topPadding:5;renderType: Text.QtRendering;antialiasing : true; text: Market.oil;color:font_color;font.pointSize:18;font.family: font_style2}
-        Text {id:oil3;anchors.top:oil.bottom;anchors.left:oil2.right;renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:" | ";leftPadding:5}
-        Text {id:gold1;anchors.top:gold.bottom;anchors.left:gold.left;leftPadding:-30;topPadding:-5;renderType: Text.QtRendering;antialiasing : true;text:gold_symbol;color:gold_color;font.pointSize:32;font.family: font_style2}
-        Text {id:gold2;anchors.top:gold.bottom;anchors.left:gold1.right;leftPadding:5;topPadding:5;renderType: Text.QtRendering;antialiasing : true; text: Market.gold;color:font_color;font.pointSize:18;font.family: font_style2}
-        Text {id:gold3;anchors.top:gold.bottom;anchors.left:gold2.right;renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:" | ";leftPadding:5}
-        Text {id:y10a;anchors.top:y10.bottom;anchors.left:gold3.right;leftPadding:10;topPadding:-5;renderType: Text.QtRendering;antialiasing : true;text:y10_symbol;color:y10_color;font.pointSize:32;font.family: font_style2}
-        Text {id:y10b;anchors.top:y10.bottom;anchors.left:y10a.right;leftPadding:5;topPadding:8;renderType: Text.QtRendering;antialiasing : true;text: Market.yield10;color:font_color;font.pointSize:18;font.family: font_style2}
+        Text {id:oil2;width:150;anchors.top:oil.bottom;anchors.left:oil1.right;leftPadding:5;topPadding:5;renderType: Text.QtRendering;antialiasing : true; text: Market.oil;color:font_color;font.pointSize:18;font.family: font_style2}
+        Text {id:oil3;anchors.top:oil.bottom;anchors.left:oil2.right;renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;font.family: font_style2;text:" | ";leftPadding:1}
+        Text {id:gold1;anchors.top:gold.bottom;anchors.left:oil3.right;leftPadding:5;topPadding:-5;renderType: Text.QtRendering;antialiasing : true;text:gold_symbol;color:gold_color;font.pointSize:32;font.family: font_style2}
+        Text {id:gold2;width:150;anchors.top:gold.bottom;anchors.left:gold1.right;leftPadding:5;topPadding:5;renderType: Text.QtRendering;antialiasing : true; text: Market.gold;color:font_color;font.pointSize:18;font.family: font_style2}
+        Text {id:gold3;anchors.top:gold.bottom;anchors.left:gold2.right;renderType: Text.QtRendering;antialiasing : true;color:font_color;font.bold:true;font.pointSize:18;leftPadding:35;font.family: font_style2;text:" | "}
+        Text {id:y10a;anchors.top:y10.bottom;anchors.left:gold3.right;leftPadding:15;topPadding:-5;renderType: Text.QtRendering;antialiasing : true;text:y10_symbol;color:y10_color;font.pointSize:32;font.family: font_style2}
+        Text {id:y10b;width:150;anchors.top:y10.bottom;anchors.left:y10a.right;topPadding:8;renderType: Text.QtRendering;antialiasing : true;leftPadding:10;text: Market.yield10;color:font_color;font.pointSize:18;font.family: font_style2}
    }
 }
 
