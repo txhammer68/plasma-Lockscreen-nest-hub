@@ -14,7 +14,7 @@ if (day < 10) {//if less then 10 add a leading zero
 
 const today = `${m}${day}`
  
-    var data = ical.parseFile('/run/media/hammer/Data/projects/calendar/myical.ics');
+    var data = ical.parseFile('$HOME/projects/calendar/myical.ics');
 	for (let d  in data) {
 		if (data.hasOwnProperty(d)) {
 			var ev = data[d];
@@ -35,14 +35,14 @@ const today = `${m}${day}`
                 // console.log(today,ev.summary);
                //console.log(`${m1}${d1}`)
                 
-                fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t1, function (err) {
+                fs.writeFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t1, function (err) {
   if (err) throw err;
 });
-                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,ev.summary, function (err) {
+                fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,ev.summary, function (err) {
   if (err) throw err;
 });
                 
-                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t2,
+                fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t2,
                 function (err) {
   if (err) throw err;
 });
@@ -65,14 +65,14 @@ const today = `${m}${day}`
                  // console.log(today,ev.summary);
                 //  console.log(today,m1,d1); // no event today
                 ev.summary=""
-                fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t1, function (err) {
+                fs.writeFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t1, function (err) {
   if (err) throw err;
 });
-                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,ev.summary, function (err) {
+                fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,ev.summary, function (err) {
   if (err) throw err;
 });
                 
-                fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t2,
+                fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/natday.js`,t2,
                 function (err) {
   if (err) throw err;
 });
