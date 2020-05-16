@@ -1,6 +1,12 @@
 ## Systemd changes
 _________
 * Edit systemd service files to reflect location of node js scripts
+* copy wakeup scripts to  /lib/systemd/system-sleep/
+ ** this will execute when system resumes from sleep mode
+
+* copy systemd .service and .timer files to /ext/systemd/system
+  ** Use systemctl to enable and start the services and timers
+  
 * copy natday.service to /etc/systemd/system/       --used to fetch calendar events daily at 12:10 am
 * copy natday.timer to /etc/systemd/system/         --used to fetch calendar events daily at 12:10 am
   * run sudo sudo systemctl start natday.service      --starts systemd service and timer
@@ -15,7 +21,8 @@ _________
   * run sudo sudo systemctl enable temp.timer
 * copy gmail.service to /etc/systemd/system/        --used to get gmail count daily every 60 mins
 * copy gmail.timer to /etc/systemd/system/          --used to get gmail count daily every 60 mins
-  * run sudo sudo systemctl start gmail.service       --starts systemd service and timer
   * run sudo sudo systemctl start gmail.timer       --starts systemd service and timer
   * run sudo sudo systemctl enable gmail.service      --enables systemd service and timer
   * run sudo sudo systemctl enable gmail.timer
+  
+  
