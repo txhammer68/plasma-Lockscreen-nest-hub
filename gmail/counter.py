@@ -76,7 +76,7 @@ def main():
     # print(counter)
     # print(email_count4)
     
-    f = open("/home/hammer/.local/share/plasma/look-and-feel/DigiTech/contents/code/gmail.js", "w+")
+    f = open("$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/gmail.js", "w+")
     print("var count=",counter,file=f)
     f.close()
 
