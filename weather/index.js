@@ -165,36 +165,36 @@ function printWeather(weather) {
                 
         // write data js variables to file system used in clock.qml
         
-var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`, "w");
+var fd = fs.openSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`, "w");
                 
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t1, function (err) {
+fs.writeFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t1, function (err) {
   if (err) throw err;
 });
-    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t4, function (err) {
+    fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t4, function (err) {
   if (err) throw err;
 });      
-    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t2,
+    fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t2,
                 function (err) {
   if (err) throw err;
 });
-   fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t5, function (err) {
+   fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t5, function (err) {
  if (err) throw err;
 });    
 
-    fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t3, function (err) {
+    fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t3, function (err) {
   if (err) throw err;
 });
-fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t8,
+fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t8,
                function (err) {
 if (err) throw err;
  });
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t6, function (err) {
+        fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t6, function (err) {
   if (err) throw err;
 });    
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t7, function (err) {
+        fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t7, function (err) {
   if (err) throw err;
 });    
-        fs.appendFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t8, function (err) {
+        fs.appendFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.js`,t8, function (err) {
   if (err) throw err;
 });
 
