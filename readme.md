@@ -1,11 +1,10 @@
 # Custom Plasma Lockscreen
-
 ## Modifications
-* Display unread gmail messages count, current weather temp conditions, forecast, stock market indexes
+* Display unread gmail messages count, current weather conditions and forecast, stock market indexes
 * Calendar events - birthdays/holidays
-* Using qml animation to show current weather conditions, forecast, and stock market indexes
+* Using qml animation timers to show current weather conditions, forecast, and stock market indexes
 * kb/mouse movement, hide clock and status info, show login/password Ui <br/>
-click image for a short video demo
+Click image for a short video demo
 [![Plasma Lockscreen](lockscreen.png)](https://streamable.com/d5yiyq)
 
 ### How it works:
