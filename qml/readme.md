@@ -2,6 +2,7 @@
 _____________
 Use Plasma Look And Feel Explorer installed as plasma-sdk to create a new Look and Feel Theme within 
 /home/.local/share/plasma/look-and-feel/'Your Theme'
+
 This is required as Breeze LnF theme has all the components needed to customize the Lockscreen.
 Copy the folders from Breeze > /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/
 to your new theme folder created above.
