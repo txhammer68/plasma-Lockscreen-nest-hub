@@ -1,8 +1,10 @@
 #!/bin/bash
-sleep 15s
+# place in /lib/systemd/system-sleep/
 if [ "${1}" == "pre" ]; then
 exit 0
 elif [ "${1}" == "post" ]; then
+sleep 10s
 cd /run/media/hammer/Data/projects/nodejs-weather-app-master
-node index.js
+node index2.js
 fi
+exit 0 
