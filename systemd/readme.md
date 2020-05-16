@@ -1,8 +1,8 @@
 ## Systemd changes
 _________
 * Edit systemd service files to reflect location of node js scripts
-* copy wakeup scripts to  /lib/systemd/system-sleep/
- ** this will execute when system resumes from sleep mode
+* copy wakeup scripts to  /lib/systemd/system-sleep/ </br>
+ ** this will execute when system resumes from sleep mode </br>
 
 * copy systemd .service and .timer files to /ext/systemd/system
   ** Use systemctl to enable and start the services and timers
