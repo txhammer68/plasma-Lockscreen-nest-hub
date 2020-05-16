@@ -167,16 +167,16 @@ function printWeather(weather) {
                 
         // write data to js variables on file system used in clock.qml
        
-var fd = fs.openSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.txt`, "w");
+var fd = fs.openSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.txt`, "w");
 
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.txt`,t1, function (err) {
+fs.writeFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/temp.txt`,t1, function (err) {
   if (err) throw err;
 });
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/desc.txt`,t2, function (err) {
+fs.writeFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/desc.txt`,t2, function (err) {
   if (err) throw err;
 });
 
-fs.writeFileSync(`/home/hammer/.local/share/plasma/look-and-feel/MyBreeze/contents/code/icon.txt`,t3, function (err) {
+fs.writeFileSync(`$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/icon.txt`,t3, function (err) {
   if (err) throw err;
 });
 
