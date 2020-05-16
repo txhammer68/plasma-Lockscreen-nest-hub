@@ -2,10 +2,10 @@
 _________
 * Edit systemd service files to reflect location of node js scripts
 * copy wakeup scripts to  /lib/systemd/system-sleep/ </br>
- ** this will execute when system resumes from sleep mode </br>
+** this will execute when system resumes from sleep mode </br>
 
-* copy systemd .service and .timer files to /ext/systemd/system
-  ** Use systemctl to enable and start the services and timers
+* copy systemd .service and .timer files to /ext/systemd/system </br>
+** Use systemctl to enable and start the services and timers
   
 * copy natday.service to /etc/systemd/system/       --used to fetch calendar events daily at 12:10 am
 * copy natday.timer to /etc/systemd/system/         --used to fetch calendar events daily at 12:10 am
