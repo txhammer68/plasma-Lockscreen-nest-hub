@@ -30,9 +30,15 @@ Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1
       https://userbase.kde.org/Plasma/Create_a_Look_and_Feel_Package
 * Some knowledge of node javascript,python,plasma qml files,linux systemd
 
-### Installation at your own risk ;)  Backup original files so u can revert back.
+### Installation process. Backup original files so u can revert back.
 
-* Extract all files to home directory / lockscreen
+* Extract all files to home directory / lockscreen <br/>
+* Extract MyBreeze.zip to $HOME/.local/share/plasma/look-and-feel/ <br/>
+   ** Custom Breeze theme for testing the qml and JS script <br/>
+* Change global theme to new MyBreeze theme <br/>
+  ** test lockscreen with <br/>
+      /usr/lib/kscreenlocker_greet --testing --theme $HOME/.local/share/plasma/look-and-feel/MyBreeze   <br/>
+### Thats the easy part, now for the hard parts must setup scripts update data...
 * See https://developers.google.com/gmail/api/quickstart/python for more info
 * From github - https://github.com/akora/gmail-message-counter-python modify for your inbox, setup Oauth credentials
    ** Modified to write to a file the unread mail count, add categories - updates, social, 
@@ -43,8 +49,6 @@ Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1
 * modify weather scripts enter api keys, your city and change location to write js variable file
      * within my github there are modified weather scripts of the originals
      * use these in place of the ones downloaded from above
-* Extract MyBreeze.zip to $HOME/.local/share/plasma/look-and-feel/ <br/>
-   ** Custom Breeze theme for testing the qml and JS script
 * Copy systemd scripts to systemd folder and start and enable services
 * Edit supplied qml files to change location of JS variables for your system
 * Copy qml files to the new theme folder created
