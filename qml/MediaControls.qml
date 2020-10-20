@@ -32,8 +32,9 @@ Item {
         id: controlsRow
         anchors.bottom: parent.bottom
         // y: units.smallSpacing // some distance to the password field
-        y: 60
-        width: parent.width
+        y: 30
+        x: -10
+        width: parent.width + 100
         height: units.gridUnit * 3
         spacing: 0
 

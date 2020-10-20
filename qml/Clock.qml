@@ -33,7 +33,7 @@ ColumnLayout {
     Layout.preferredWidth : 600
     property var font_color:"white"         // change font color
     property var font_style1:"Noto Serif"   // change clock font
-    property var font_style2:"Noto Sans"    // change info status font
+    property var font_style2:"San Francisco Display"    // change info status font
     property date currentDate: new Date()
     property var yesterday:(Qt.formatDate(currentDate, "MMd"))
     property var dow_color: Market.dow_up ? "green" : "red"
@@ -71,7 +71,7 @@ var currentTime = new Date().getTime();
 root.secondsElapsed = (currentTime-startTime)/1000;
 }
 }
-    
+
     function isDateChanged() {   // update events after midnight
                 var today = Qt.formatDate(timeSource.data["Local"]["DateTime"],"MMd")
                 if (yesterday != today) {
@@ -166,7 +166,7 @@ root.secondsElapsed = (currentTime-startTime)/1000;
         property var desc:""
         text: desc
         Layout.preferredWidth : 600
-        Layout.fillWidth : false
+        Layout.fillWidth : true
         anchors.top:date.bottom
         horizontalAlignment: Text.AlignHCenter
         textFormat: Text.RichText
@@ -206,6 +206,7 @@ Label {
      Image {
        id: wIcon
        anchors.topMargin: 5
+       anchors.rightMargin: 15
        anchors.top:ts.bottom
        anchors.left:ts.left
        property var wIconurl:""
@@ -222,12 +223,13 @@ Label {
         Layout.fillWidth: false
         width:calEvents.width *1.2
         anchors.topMargin:5
+        anchors.leftMargin:15
         anchors.top:wIcon.top
         anchors.left:wIcon.right
         property var temp:""
         property var desc:""
         property var forecast:""
-        text:"      "+temp+"          "+forecast        
+        text:temp+forecast        
         font.family: font_style2
         font.pointSize: 18
         font.capitalization: Font.Capitalize
@@ -242,7 +244,7 @@ Label {
         running: true
         repeat:  true
         onTriggered: {
-            root.startTime=0
+            root.startTime=0  // restart counter since last update
             readWeatherFile("/home/matt/.local/share/plasma/look-and-feel/DigiTech/contents/code/weather.json")
             readEmailFile("/home/matt/.local/share/plasma/look-and-feel/DigiTech/contents/code/gmail.txt")
         }
@@ -251,7 +253,7 @@ Label {
 
 Timer{                  // timer to trigger update after wake from suspend mode
        id: suspend
-       interval: 1000 ///delay 20 secs for suspend to resume
+       interval: 60*1000 ///delay 60 secs for suspend to resume
        running: true
        repeat:  true
        onTriggered: {

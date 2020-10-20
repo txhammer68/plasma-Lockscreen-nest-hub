@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *********************************************************************/
 
 import QtQuick 2.9
-import QtQuick.Controls 1.1
+import QtQuick.Controls 1.6
 import QtQuick.Layouts 1.1
 import QtGraphicalEffects 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
@@ -248,7 +248,9 @@ PlasmaCore.ColorScope {
                 actionItems: [
                     ActionButton {
                         text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Switch User")
-                        iconSource: "system-switch-user"
+                        // iconSource: "system-switch-user"
+                        iconSource:"/usr/share/icons/Adwaita/48x48/legacy/system-users.png"
+                        iconSize: units.iconSizes.medium
                         onClicked: mainStack.push(switchSessionPage)
                         // the current session isn't listed in the model, hence a check for greater than zero, not one
                         visible: (sessionsModel.count > 0 || sessionsModel.canStartNewSession) && sessionsModel.canSwitchUser

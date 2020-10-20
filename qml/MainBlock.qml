@@ -17,10 +17,10 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.2
+import QtQuick 2.8
 
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.1
+import QtQuick.Controls 2.5
 import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
@@ -33,6 +33,7 @@ SessionManagementScreen {
 
     property Item mainPasswordBox: passwordBox
     property bool lockScreenUiVisible: false
+    property bool hidePasswordRevealIcon: config.HidePasswordRevealIcon == "true"
 
     //the y position that should be ensured visible when the on screen keyboard is visible
     property int visibleBoundary: mapFromItem(loginButton, 0, 0).y
@@ -55,19 +56,18 @@ SessionManagementScreen {
 
     RowLayout {
         Layout.fillWidth: true
-
         PlasmaComponents.TextField {
             id: passwordBox
             font.pointSize: theme.defaultFont.pointSize + 2
             implicitHeight: 30
             Layout.fillWidth: true
-            opacity: .5
+            opacity: .65
             placeholderText: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Password")
             focus: true
             echoMode: TextInput.Password
             inputMethodHints: Qt.ImhHiddenText | Qt.ImhSensitiveData | Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
             enabled: !authenticator.graceLocked
-            revealPasswordButtonShown: true
+            revealPasswordButtonShown: hidePasswordRevealIcon
             
             style: TextFieldStyle {
             // textColor: passwordFieldOutlined ? "gray" : "gray"
@@ -75,11 +75,11 @@ SessionManagementScreen {
             // placeholderTextColor: passwordFieldOutlined ? "gray" : "gray"
             placeholderTextColor: "gray"
             // passwordCharacter: config.PasswordFieldCharacter == "" ? "●●" : config.PasswordFieldCharacter
-            passwordCharacter: "●●"
+            //passwordCharacter: "●●"
             background: Rectangle {
                 radius: 6
-                border.color: "gray"
-                border.width: 1
+                border.color: "steelblue"
+                border.width: 2
                 // color: passwordFieldOutlined ? "black" : "black"
                 color: "black"
             }
@@ -114,6 +114,7 @@ SessionManagementScreen {
 
         PlasmaComponents.Button {
             id: loginButton
+            opacity:.65
             Accessible.name: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Unlock")
             implicitHeight: passwordBox.height - units.smallSpacing * 0.5 // otherwise it comes out taller than the password field
 
