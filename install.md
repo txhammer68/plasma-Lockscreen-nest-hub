@@ -19,9 +19,9 @@
   * natday1.js is the event info JS, change location to write variable file
   * https://calendar.google.com/calendar/ical/9u8jqp3hlt6pe675gie6lf1d9o%40group.calendar.google.com/public/basic.ics
 
-## Stocks
-   * Using Python to scrape cnn market website
-   * There is python script called cnn-market, modified to write data t a file used in Clock.qml for stock market data
+## Stock Market Index
+   * Using Node JS to scrape cnn market website
+   * There is js called cnn-market, modified to write data to a  file used in Clock.qml for stock market data
 
 ## Pre Install
   * Weather: enter api keys, your city geo code and change location to write .json data files
