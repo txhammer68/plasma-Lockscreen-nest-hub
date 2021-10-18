@@ -1,18 +1,24 @@
 Detailed install steps
+# Setup process for lockscreen data
 
-### Data scrapers
-* See https://developers.google.com/gmail/api/quickstart/python for more info
-* From github - https://github.com/akora/gmail-message-counter-python modify for your inbox, setup Oauth credentials
-   ** Modified to write to a file the unread mail count, add categories - updates, social, 
-      use counter.py provided, instead of one from github
-* Install node js server within that folder
-* Install node js scripts for ical, fs, weather, cnn
-* natday1.js is the event info JS, change location to write variable file
-* modify weather scripts enter api keys, your city and change location to write js variable file
+   ## Tools
+    * Node JS, Python, curl, Node functions - ical, fs, weather, Python scraper cnn
+   
+   ## G-Mail
+  * See https://developers.google.com/gmail/api/quickstart/python for more info
+  * From github - https://github.com/akora/gmail-message-counter-python modify for your inbox, setup Oauth credentials
+    ** Modified to write to a file the unread mail count, add categories - updates, social, 
+        use counter.py provided, instead of one from github
+## National Day Calendar Events ical
+  * natday1.js is the event info JS, change location to write variable file
+  * https://calendar.google.com/calendar/ical/9u8jqp3hlt6pe675gie6lf1d9o%40group.calendar.google.com/public/basic.ics
+
+## Pre Install
+  * Modify weather scripts enter api keys, your city geo code and change location to write .json data files
      * within my github there are modified weather scripts of the originals
      * use these in place of the ones downloaded from above
 * Copy systemd scripts to systemd folder and start and enable services
-* Edit supplied qml files to change location of JS variables for your system
+* Edit supplied qml files to change location of .json data files for your system
 * Copy qml files to the new theme folder created
 
 ### Systemd
