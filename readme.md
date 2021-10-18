@@ -40,5 +40,5 @@ Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1
 * Change global theme to new MyBreeze theme <br/>
   ** test lockscreen with <br/>
       /usr/lib/kscreenlocker_greet --testing --theme $HOME/.local/share/plasma/look-and-feel/MyBreeze   <br/>
- * Read install.md for detailed installation steps
+ * Read [install.md](install.md) for detailed installation steps
 
