@@ -8,6 +8,13 @@
   * From github - https://github.com/akora/gmail-message-counter-python modify for your inbox, setup Oauth credentials
     ** Modified to write to a file the unread mail count, add categories - updates, social, 
         use counter.py provided, instead of one from github
+   ## Weather
+         * Requirements: api key for weather.com, geocode for location, location path to save .json data, i.e. /tmp/weather.json
+         * Sample api for current conditions:
+         * curl -s -X GET "https://api.weather.com/v3/wx/observations/current?geocode=32.64%2C-95.02&units=e&language=en-US&format=json&apiKey=Your Key Here" -H  "accept: application/json" -o /tmp/weather.json >/dev/null
+         * Sample api for weather forecast:
+         * curl -s -X GET "https://api.weather.com/v3/wx/forecast/daily/5day?language=en&apiKey=Your Key Here&geocode=32.64,-95.02&units=e& format=json" -H  "accept: application/json" -o /tmp/forecast.json >/dev/null
+         * Within the qml file Clock.qml, read the .json data with a timer
 ## National Day Calendar Events ical
   * natday1.js is the event info JS, change location to write variable file
   * https://calendar.google.com/calendar/ical/9u8jqp3hlt6pe675gie6lf1d9o%40group.calendar.google.com/public/basic.ics
