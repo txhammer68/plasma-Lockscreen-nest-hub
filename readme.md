@@ -23,7 +23,7 @@ Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1
 * Weather forecast from https://github.com/josephjguerra/node-weather-forecast-command-line <br/>
       * https://www.wunderground.com/signup
 * National Day Calendar - https://natdaycal.wordpress.com/
-* Stock Market info from CNN Money - 'npm install cnn' <br/>
+* Stock Market info from CNN Money - 'pip install cnn' <br/>
 * Python script for gmail https://github.com/akora/gmail-message-counter-python
 * Gmail Oauth https://developers.google.com/gmail/api/quickstart/python
 * Plasma Look And Feel Explorer installed as plasma-sdk from your distro repo
