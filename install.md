@@ -19,8 +19,12 @@
   * natday1.js is the event info JS, change location to write variable file
   * https://calendar.google.com/calendar/ical/9u8jqp3hlt6pe675gie6lf1d9o%40group.calendar.google.com/public/basic.ics
 
+## Stocks
+   * Using Python to scrape cnn market website
+   * There is python script called cnn-market, modified to write data t a file used in Clock.qml for stock market data
+
 ## Pre Install
-  * Modify weather scripts enter api keys, your city geo code and change location to write .json data files
+  * Weather: enter api keys, your city geo code and change location to write .json data files
      * within my github there are modified weather scripts of the originals
      * use these in place of the ones downloaded from above
 * Copy systemd scripts to systemd folder and start and enable services
