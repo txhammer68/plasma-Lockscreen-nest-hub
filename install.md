@@ -1,4 +1,3 @@
-Detailed install steps
 # Setup process for lockscreen data
 
    ## Tools
