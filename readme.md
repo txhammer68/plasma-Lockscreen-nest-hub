@@ -11,7 +11,7 @@ Click image for a short video demo
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
 Using javacript node and python to create JS variables written to file system <br/>
-The JS variables are used within qml losckreen files and systemd scripts to update them. <br/>
+The JS variables are used within qml locksreen files and systemd scripts to update them. <br/>
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens. <br/>
 
 ## Requirements:
