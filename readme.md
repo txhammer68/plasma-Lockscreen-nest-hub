@@ -15,14 +15,16 @@ The JS variables are used within qml locksreen files and systemd scripts to upda
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens. <br/>
 
 ## Requirements:
-* KDE Plasma 5.15, Linux 4.x kernel w/ systemd, Node JS server, python3
-* Node JS server - https://nodejs.dev/
-* Python3 https://www.python.org/download/releases/3.0/
-* Weather function from https://github.com/nahidulhasan/nodejs-weather-app <br/>
-      * OpenWeather https://openweathermap.org/api
-* Weather forecast from https://github.com/josephjguerra/node-weather-forecast-command-line <br/>
-      * https://www.wunderground.com/signup
-* National Day Calendar - https://natdaycal.wordpress.com/
+* KDE Plasma 5.15, Linux 4.x kernel w/ systemd, Node JS server, python3 <br/>
+* Node JS server - [Node JS](https://nodejs.dev/) <br/>
+* Python3 [Python](https://www.python.org/download/releases/3.0/) <br/>
+* Weather function [Weather Conditions](https://github.com/nahidulhasan/nodejs-weather-app) <br/>
+      * OpenWeather [OWM](https://openweathermap.org/api) <br/>
+      * Weather.com [TWC](https://weather.com/swagger-docs/call-for-code) <br/>
+      * Accuweather [ACW](https://developer.accuweather.com/) <br/>
+      * weather.gov [NOAA](https://www.weather.gov/documentation/services-web-api) <br/>
+
+* National Day Calendar - https://natdaycal.wordpress.com/ <br/>
 * Stock Market info from CNN Money - 'pip install cnn' <br/>
 * Python script for gmail https://github.com/akora/gmail-message-counter-python
 * Gmail Oauth https://developers.google.com/gmail/api/quickstart/python
