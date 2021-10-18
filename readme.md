@@ -1,11 +1,12 @@
 # Custom Plasma Lockscreen
 ## Modifications
-* Display unread gmail messages count, current weather conditions and forecast, stock market indexes
+* Display unread gmail messages count, current weather conditions and forecast, stock market index's
 * Calendar events - birthdays/holidays
-* Using qml animation timers to show current weather conditions, forecast, and stock market indexes
+* Using qml animation timers to show current weather conditions, forecast, and stock market index's
 * kb/mouse movement, hide clock and status info, show login/password Ui <br/>
 Click image for a short video demo
-[![Plasma Lockscreen](lockscreen.png)](https://streamable.com/d5yiyq)
+[![Plasma Lockscreen](lockscreen.png)](https://user-images.githubusercontent.com/9554887/137651273-b48f7208-2461-436c-b146-abd574601509.mp4)
+
 
 ### How it works:
 For security reasons, kscreenlocker does not allow internet acesss, 
