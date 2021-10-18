@@ -1,11 +1,11 @@
 # Setup process for lockscreen data
 
    ## Tools
-    * Node JS, Python, curl, Node functions - ical, fs, weather, Python scraper cnn
+    * Node JS, Python, curl, Node functions - ical, fs, weather scraper cnn market, Python for G-Mail inbox authorization
    
    ## G-Mail
-  * See https://developers.google.com/gmail/api/quickstart/python for more info
-  * From github - https://github.com/akora/gmail-message-counter-python modify for your inbox, setup Oauth credentials
+  * [google developer](https://developers.google.com/gmail/api/quickstart/python)
+  * [github](https://github.com/akora/gmail-message-counter-python)
     ** Modified to write to a file the unread mail count, add categories - updates, social, 
         use counter.py provided, instead of one from github
    ## Weather
@@ -17,7 +17,7 @@
          * Within the qml file Clock.qml, read the .json data with a timer
 ## National Day Calendar Events ical
   * natday1.js is the event info JS, change location to write variable file
-  * https://calendar.google.com/calendar/ical/9u8jqp3hlt6pe675gie6lf1d9o%40group.calendar.google.com/public/basic.ics
+  * [ical](https://calendar.google.com/calendar/ical/9u8jqp3hlt6pe675gie6lf1d9o%40group.calendar.google.com/public/basic.ics)
 
 ## Stock Market Index
    * Using Node JS to scrape cnn market website
@@ -64,14 +64,10 @@ ____________
 * you must edit the qml files to reflect the location of these files, also the node JS files must be changed 
     to reflect the location to write the JS variable files
 * optional - modify natday1.js to your own public event calendar
-* weather function from https://github.com/nahidulhasan/nodejs-weather-app - 
+* [weather function](https://github.com/nahidulhasan/nodejs-weather-app)
        modified to write to file, use provided index.js to get the file system write logic
-* Weather forecast from https://github.com/josephjguerra/node-weather-forecast-command-line <br/>
+* [Weather forecast](https://github.com/josephjguerra/node-weather-forecast-command-line) <br/>
       * modified to write to file, use provided forecast.js to get the file system write logic
-#### Node JS functions
-* node natday1.js creates file called natday.js which is used in Clock.qml as a variable with import statement
-* node weather creates file called temp.js which is used in Clock.qml as a variable with import statement
-* current weather info function from https://github.com/nahidulhasan/nodejs-weather-app - modified to write to file instead of console
 
 #### Python 3 functions
 * python3 counter.py calls gmail to get unread mail messages and creates a file gmail.js  used in Clock.qml as a variable with import statement
