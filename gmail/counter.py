@@ -76,7 +76,7 @@ def main():
     # print(counter)
     # print(email_count4)
     
-    f = open("$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/code/gmail.js", "w+")
+    f = open("/tmp/gmail.text", "w+")
     print("var count=",counter,file=f)
     f.close()
 
