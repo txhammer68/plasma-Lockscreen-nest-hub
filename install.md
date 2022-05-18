@@ -3,6 +3,7 @@
 #### To enable a custom lockscreen/logout theme
 Copy the default global theme Breeze `/usr/share/plasma/look-and-feel/`
 to MyBreeze within `$HOME/.local/share/plasma/look-and-feel/MyBreeze`
+* Included is a MyBreeze theme for testing, but this is how u can create your own
 
     
    ## Tools
