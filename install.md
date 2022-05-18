@@ -16,10 +16,10 @@ to MyBreeze within `$HOME/.local/share/plasma/look-and-feel/MyBreeze`
         use counter.py provided, instead of one from github
 
 ## Stock Market Index
-   * Edit qml code to add/remove stock indexes
+   * Edit qml code Clock.qml within components folder to add/remove stock indexes
 
 ## Weather
-   * Edit qml code to change lat/lon for weather location
+   * Edit qml code Clock.qml within components folder to change lat/lon for weather location
     
 ### Testing 
 ___________
