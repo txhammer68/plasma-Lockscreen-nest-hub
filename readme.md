@@ -14,7 +14,7 @@ Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1
 
 ## Requirements:
 * Some knowledge of linux, node javascript,python,plasma qml files
-* KDE Plasma 5.15, Linux 4.x kernel w/ systemd, Node JS server, python3 <br/>
+* KDE Plasma 5.15, Linux 4.x kernel python3 <br/>
 * [Python](https://www.python.org/download/releases/3.0/) <br/>
 * [Python script for gmail](https://github.com/akora/gmail-message-counter-python)
 * [Gmail Oauth](https://developers.google.com/gmail/api/quickstart/python)
