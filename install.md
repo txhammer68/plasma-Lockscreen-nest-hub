@@ -3,10 +3,7 @@
 #### To enable a custom lockscreen/logout theme
 Copy the default global theme Breeze `/usr/share/plasma/look-and-feel/`
 to MyBreeze within `$HOME/.local/share/plasma/look-and-feel/MyBreeze`
-Then within the new MyBreeze
-    copy the Clock.qml to the components folder in the new MyBreeze theme folder
-    copy icons to `$HOME/.local/share/plasma/look-and-feel/MyBreeze/contents/icons
-    copy LockscreenUI.qml to the lockscreen folder in the new MyBreeze theme folder
+
     
    ## Tools
     * Python for G-Mail inbox authorization, yahoo finance api for stocks, espn api for sports
@@ -19,6 +16,9 @@ Then within the new MyBreeze
 
 ## Stock Market Index
    * Edit qml code to add/remove stock indexes
+
+## Weather
+   * Edit qml code to change lat/lon for weather location
     
 ### Testing 
 ___________
@@ -30,4 +30,4 @@ ___________
 * Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme $HOME/.local/share/plasma/look-and-feel/MyBreeze
 
 #### Python 3 functions
-* python3 counter.py calls gmail to get unread mail messages and creates a file gmail.js  used in Clock.qml as a variable with import statement
+* python3 counter.py calls gmail to get unread mail messages and creates a file gmail.js  used in Clock.qml
