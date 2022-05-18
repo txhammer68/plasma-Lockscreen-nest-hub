@@ -31,4 +31,4 @@ ___________
 * Test Lockscreen with /usr/lib/kscreenlocker_greet --testing --theme $HOME/.local/share/plasma/look-and-feel/MyBreeze
 
 #### Python 3 functions
-* python3 counter.py calls gmail to get unread mail messages and creates a file gmail.js  used in Clock.qml
+* python3 counter.py calls gmail to get unread mail messages and creates a file gmail.text  used in Clock.qml
