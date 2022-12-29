@@ -12,8 +12,10 @@ Click image for a short video demo
 For security reasons, kscreenlocker does not allow internet acesss, 
 Modified Breeze plasma qml files to get the desired effects. Designed for 1920x1080 screens. <br/>
 
-** New itegrated both into one with config settings
-![[Config Lockscreen](config.png)]
+** New integrated both into one with config settings<br>
+<picture>
+  <img alt="config" src="config.png" width="60%">
+</picture> <br>
 
 ## Requirements:
 * Some knowledge of linux, node javascript,python,plasma qml files
